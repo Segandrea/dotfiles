@@ -1,0 +1,75 @@
+# Editing in vi-mode
+set editing-mode vi
+
+# No audible bell
+set bell-style none
+
+# Show matching parenthesis
+set blink-matching-paren On
+
+# Possible completion common prefix is colored following LS_COLORS
+set colored-completion-prefix On
+# Possible completion is colored by following LS_COLORS
+set colored-stats On
+
+# Completion ignore case
+set completion-ignore-case On
+
+# Display shortened completions
+set completion-prefix-display-length 5
+
+# Show completion immediately if present
+set show-all-if-ambiguous On
+
+# Show completion even if not modified
+set show-all-if-unmodified On
+
+# On menu-complete show common prefix, then cycle through options
+set menu-complete-display-prefix On
+
+# Add trailing slash when autocompleting symlinked directory
+set mark-symlinked-directories On
+
+# Intelligent completion when in the middle of a partially completed word
+set skip-completed-text On
+
+## show mode
+#set show-mode-in-prompt On
+#
+## text to display in command mode
+#set vi-cmd-mode-string foo
+#
+## text to display in insert mode
+#set vi-ins-mode-string bar
+
+### keymaps
+### keymaps vi-mode (command)
+# Place keymaps for vi-like command mode below
+set keymap vi-command
+
+# Remap v to something else instead of opening file
+"v":redraw-current-line
+# Use j/k to find a command in history
+# (you can write some initial letters of the command first).
+"k":history-search-backward
+"j":history-search-forward
+# Use the up and down arrow keys for finding a command in history
+# (you can write some initial letters of the command first).
+"\e[A":history-search-backward
+"\e[B":history-search-forward
+# Control-l to clear terminal
+"\C-l":clear-screen
+
+### keymaps vi-mode (insert)
+# Place keymaps for vi-like inser mode below
+set keymap vi-insert
+# Press tab to cycle through completions (forward)
+TAB:menu-complete
+# Press shift-tab to cycle through completions (forward)
+"\e[Z":menu-complete-backward
+# Use the up and down arrow keys for finding a command in history
+# (you can write some initial letters of the command first).
+"\e[A":history-search-backward
+"\e[B":history-search-forward
+# Control-l to clear terminal
+"\C-l":clear-screen
