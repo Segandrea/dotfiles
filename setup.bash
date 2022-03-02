@@ -16,6 +16,7 @@ declare -a pacman_packages=(
     "curl"
     "flatpak"
     "git"
+    "grub-btrfs"
     "gzip"
     "neovim"
     "p7zip"
