@@ -21,6 +21,7 @@ declare -a pacman_packages=(
     "neovim"
     "p7zip"
     "rustup"
+    "shellcheck"
     "tmux"
     "unrar"
     "vim"
@@ -39,7 +40,6 @@ declare -a aur_packages=(
     "gnome-shell-extension-vertical-overview-git"
     "gnome-shell-extension-workspaces-bar-git"
     "google-chrome"
-    "nerd-fonts-complete"
     "snapd"
     "timeshift"
     "timeshift-autosnap"
@@ -251,6 +251,8 @@ link_configs(){
     ln -sf "${dotpath}/starship.toml" "$HOME/.config"
     # linking alacritty configuration
     ln -sf "${dotpath}/alacritty" "$HOME/.config"
+    # linking fonts
+    ln -sf "${dotpath}/fonts" "$HOME/.local/share"
 
     echo "${succ} Configurations linked."
 }
@@ -328,6 +330,22 @@ fix_keychron(){
 }
 # }}}
 
+# 12. Other (fonts) {{{
+other_things(){
+    # install Hasklug nerd fonts (hasklig)
+    if [[ ! -d "${dotpath}/fonts/Hasklig" ]]; then
+        echo "${info} Downloading hasklug nerd fonts (hasklig)"
+        mkdir "${dotpath}/fonts/Hasklig"
+        cd "${dotpath}/fonts/Hasklig" # Entering the directory just to be sure of not doing bad things
+        wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hasklig.zip --output-document="${dotpath}/fonts/Hasklig/Hasklig.zip"
+        unzip "Hasklig.zip" -d "${dotpath}/fonts/Hasklig/"
+        rm -i -- *.zip
+        cd "${dotpath}" # going back
+        echo "${succ} Downloading hasklug nerd fonts (hasklig): done."
+    fi
+}
+# }}}
+
 # Finale: reboot system {{{
 reboot_system(){
     local res
@@ -370,6 +388,8 @@ main() {
     flatpak_install
     # 11. keychron k2v2 fix
     fix_keychron
+    # 12. Other (fonts)
+    other_things
     # Finale: reboot system
     reboot_system
 }
