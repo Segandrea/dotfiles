@@ -32,6 +32,7 @@ declare -a aur_packages=(
     "dracula-cursors-git"
     "dracula-gtk-theme"
     "dracula-icons-git"
+    "gnome-shell-extension-gtktitlebar-git"
     "gnome-shell-extension-pop-shell-bin"
     "gnome-shell-extension-simple-net-speed"
     "gnome-shell-extension-vertical-overview-git"
