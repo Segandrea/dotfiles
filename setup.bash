@@ -34,11 +34,12 @@ declare -a aur_packages=(
     "dracula-gtk-theme"
     "dracula-icons-git"
     "gnome-shell-extension-gtktitlebar-git"
-    "gnome-shell-extension-pop-shell-bin"
+    "gnome-shell-extension-pop-shell-git"
     "gnome-shell-extension-simple-net-speed"
     "gnome-shell-extension-vertical-overview-git"
     "gnome-shell-extension-workspaces-bar-git"
-    "otf-hasklig"
+    "google-chrome"
+    "nerd-fonts-complete"
     "snapd"
     "timeshift"
     "timeshift-autosnap"
@@ -173,7 +174,7 @@ snap_setup(){
                 sudo systemctl enable --now snapd.socket
                 sudo ln -sf /var/lib/snapd/snap /snap
                 echo "${info} Enabling snap..."
-                sleep 5
+                sleep 15
                 sudo snap install hello-world
                 sudo snap remove hello-world
                 echo "${succ} Snapd successfully enabled."
@@ -200,7 +201,7 @@ flatpak_setup(){
             if [[ -x "$(command -v snap)" ]]; then
                 echo "${info} Enabling flatpak..."
                 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-                echo "${succ} Snapd successfully enabled."
+                echo "${succ} Flatpak successfully enabled."
             else
                 echo "${error} Flatpak not found."
                 exit
