@@ -55,12 +55,13 @@ alias quit='exit'
 alias cls='clear'
 
 # compile c with @daddinuz flames
-alias ddc='gcc -std=c11 -Wall -Wextra -Wpedantic -Werror'
+alias ddc='gcc -std=c17 -Wall -Wextra -Wpedantic -Werror'
 
 # NetworkManager shortcuts
 alias nmlist='nmcli device wifi list'
 
 # fix for letting my drawing tablet go on second screen
+#TODO: write a wayland version
 alias huion2screen='xinput map-to-output 22 HDMI-2'
 
 # xclip shortcuts
