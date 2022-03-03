@@ -343,6 +343,12 @@ other_things(){
         cd "${dotpath}" # going back
         echo "${succ} Downloading hasklug nerd fonts (hasklig): done."
     fi
+    # apply dconf configuration
+    if ! gnome-extensions list | grep -q pop-shell ; then
+        echo "${info} Restoration of gnome settings"
+        dconf load / < "${dotpath}/gnome_settings.ini"
+        echo "${succ} Restoration of gnome settings: done."
+    fi
 }
 # }}}
 
@@ -388,7 +394,7 @@ main() {
     flatpak_install
     # 11. keychron k2v2 fix
     fix_keychron
-    # 12. Other (fonts)
+    # 12. Other (fonts, dconf settings)
     other_things
     # Finale: reboot system
     reboot_system
