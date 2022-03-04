@@ -92,6 +92,11 @@ nnoremap > >>
 nnoremap < <<
 vnoremap > >gv
 vnoremap < <gv
+" increment/decrement
+vnoremap <C-a> <C-a>gv
+vnoremap <C-x> <C-x>gv
+vnoremap <C-i> g<C-a>gv
+vnoremap <C-d> g<C-x>gv
 
 " fold colors to make it more readable with alacritty's dracula theme
 hi Folded ctermfg=2
