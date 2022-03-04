@@ -381,6 +381,7 @@ other_things(){
                 sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
             fi
         fi
+        rm -rf "${dotpath}/Cyberpunk-GRUB-Theme"
         echo "${succ} Grub Cyberpunk theme installed."
     fi
 }
