@@ -349,6 +349,40 @@ other_things(){
         dconf load / < "${dotpath}/gnome_settings.ini"
         echo "${succ} Restoration of gnome settings: done."
     fi
+    # install cyberpunk grub theme
+    if [[ ! -d "${dotpath}/Cyberpunk-GRUB-Theme" ]]; then
+        echo "${info} Downloading Cyberpunk theme for GRUB."
+        local THEME_DIR="/usr/share/grub/themes"
+        local THEME_NAME="Cyberpunk"
+        # downloading Cyberpunk theme for grub
+        git clone https://github.com/anoopmsivadas/Cyberpunk-GRUB-Theme.git
+
+        # if already installed remove (useful for updates)
+        if [[ -d "${THEME_DIR}/${THEME_NAME}" ]]; then
+            sudo rm -rf "${THEME_DIR}/${THEME_NAME}"
+        fi
+        sudo mkdir -p "${THEME_DIR}/${THEME_NAME}"
+
+        # copy everything and edit grub config to specify the theme
+        sudo cp -a "Cyberpunk-GRUB-Theme/${THEME_NAME}"/* "${THEME_DIR}/${THEME_NAME}"
+        sudo cp -an /etc/default/grub /etc/default/grub.bak
+        sudo sed -i '/GRUB_THEME=/d' /etc/default/grub
+        echo "GRUB_THEME=\"${THEME_DIR}/${THEME_NAME}/theme.txt\"" | sudo tee -a /etc/default/grub
+
+        echo "${info} Updating grub..."
+        if [[ -x "$(command -v update-grub)" ]]; then
+            sudo update-grub
+        elif [[ -x "$(command -v grub-mkconfig)" ]]; then
+            sudo grub-mkconfig -o /boot/grub/grub.cfg
+        elif [[ -x "$(command -v grub2-mkconfig)" ]]; then
+            if [[ -x "$(command -v zypper)" ]]; then
+                sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+            elif [[ -x "$(command -v dnf)" ]]; then
+                sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+            fi
+        fi
+        echo "${succ} Grub Cyberpunk theme installed."
+    fi
 }
 # }}}
 
