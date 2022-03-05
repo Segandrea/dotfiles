@@ -343,12 +343,6 @@ other_things(){
         cd "${dotpath}" # going back
         echo "${succ} Downloading hasklug nerd fonts (hasklig): done."
     fi
-    # apply dconf configuration
-    if ! gnome-extensions list | grep -q pop-shell ; then
-        echo "${info} Restoration of gnome settings"
-        dconf load / < "${dotpath}/gnome_settings.ini"
-        echo "${succ} Restoration of gnome settings: done."
-    fi
     # install cyberpunk grub theme
     if [[ ! -d "${dotpath}/Cyberpunk-GRUB-Theme" ]]; then
         echo "${info} Downloading Cyberpunk theme for GRUB."
@@ -383,6 +377,12 @@ other_things(){
         fi
         rm -rf "${dotpath}/Cyberpunk-GRUB-Theme"
         echo "${succ} Grub Cyberpunk theme installed."
+    fi
+    # apply dconf configuration
+    if ! gnome-extensions list | grep -q pop-shell ; then
+        echo "${info} Restoration of gnome settings"
+        dconf load / < "${dotpath}/gnome_settings.ini"
+        echo "${succ} Restoration of gnome settings: done."
     fi
 }
 # }}}
