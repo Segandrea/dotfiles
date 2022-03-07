@@ -12,6 +12,8 @@ info="$(tput setaf 4)Info:$(tput sgr 0)"                # blue info
 # pacman packages
 declare -a pacman_packages=(
     "alacritty"
+    "bluez"
+    "bluez-utils"
     "bzip2"
     "curl"
     "flatpak"
@@ -332,6 +334,12 @@ fix_keychron(){
 
 # 12. Other (fonts) {{{
 other_things(){
+    # enable bluetoothctl
+    if [[ -n "$(pacman -Qs bluez-utils)" ]]; then
+        echo "${info} Enabling bluetoothctl."
+        sudo systemctl enable --now bluetooth
+        echo "${succ} Bluetoothctl enabled."
+    fi
     # install Hasklug nerd fonts (hasklig)
     if [[ ! -d "${dotpath}/fonts/Hasklig" ]]; then
         echo "${info} Downloading hasklug nerd fonts (hasklig)"
