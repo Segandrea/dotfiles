@@ -43,18 +43,18 @@ declare -a aur_packages=(
     "gnome-shell-extension-workspaces-bar-git"
     "google-chrome"
     "snapd"
+    "starship"
     "timeshift"
     "timeshift-autosnap"
     "ulauncher"
 )
 # snap packages
-declare -a snap_packages=(
-    "starship"
-    "telegram-desktop"
-    "spotify"
-)
+declare -a snap_packages=()
 # flatpak packages
-declare -a flatpak_packages=()
+declare -a flatpak_packages=(
+    "org.telegram.desktop"
+    "com.spotify.Client"
+)
 # }}}
 
 # 1. set up git {{{
@@ -293,7 +293,7 @@ flatpak_install(){
                 echo "${error} flatpak is not installed."
                 exit
             fi
-            sudo flatpak install "${flatpak_packages[@]}"
+            sudo flatpak install flathub "${flatpak_packages[@]}"
         ;;
     esac
 }
