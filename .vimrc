@@ -55,6 +55,8 @@ set splitbelow
 set splitright
 " hide status bar
 set laststatus=0
+" conceal particular characters
+set conceallevel=2
 
 autocmd InsertEnter * norm zz
 autocmd InsertEnter * set nohlsearch
