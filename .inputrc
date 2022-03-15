@@ -33,14 +33,12 @@ set mark-symlinked-directories On
 # Intelligent completion when in the middle of a partially completed word
 set skip-completed-text On
 
-## show mode
+# show mode
 #set show-mode-in-prompt On
-#
-## text to display in command mode
-#set vi-cmd-mode-string foo
-#
-## text to display in insert mode
-#set vi-ins-mode-string bar
+# text to display in command mode (nerd font required)
+#set vi-cmd-mode-string "\1\e[0;32m\2\1\e[m\2"
+# text to display in insert mode (nerd font required)
+#set vi-ins-mode-string 
 
 ### keymaps
 ### keymaps vi-mode (command)
@@ -59,6 +57,8 @@ set keymap vi-command
 "\e[B":history-search-forward
 # Control-l to clear terminal
 "\C-l":clear-screen
+# Control-x to expand aliases
+"\C-x":shell-expand-line
 
 ### keymaps vi-mode (insert)
 # Place keymaps for vi-like inser mode below
@@ -73,3 +73,5 @@ TAB:menu-complete
 "\e[B":history-search-forward
 # Control-l to clear terminal
 "\C-l":clear-screen
+# Control-x to expand aliases
+"\C-x":shell-expand-line
