@@ -25,7 +25,7 @@ alias desktop='cd "${HOME}/Desktop"'
 alias pictures='cd "${HOME}/Pictures"'
 alias videos='cd "${HOME}/Videos"'
 alias configurations='cd "${HOME}/.config"'
-alias dotfiles='cd "${HOME}/Workspaces/.popdot"'
+alias dotfiles='cd "${HOME}/Workspaces/dotfiles"'
 alias workspaces='cd "${HOME}/Workspaces"'
 
 # (e)dit file with nvim
@@ -80,3 +80,6 @@ alias lockscreen='dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org
 alias sptnext='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next'
 alias sptprev='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous'
 alias spttoggle='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause'
+
+# upgrade pacman, aur and flatpak packages
+alias upgradeall='yay -Syu && flatpak update'
