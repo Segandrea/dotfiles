@@ -13,11 +13,11 @@ mkcd(){                  # Make a directory and cd in it
     mkdir -p -- "$1" && cd -P -- "$1" || return
 }
 
-cla(){                    # cd then clean the screen and do la
+cla(){                   # cd then clean the screen and do la
     cd "$1" && clear && ls -AF
 }
 
-bnr(){            # Bakcup or restore a file
+bnr(){                   # Bakcup or restore a file
     if [[ "$1" == *.bkp ]]; then
         echo "Restoring from bakup"
         cp "$1" "${1%.bkp}"
@@ -43,6 +43,15 @@ ra(){                    # Rm but asking if sure because rm -i sucks
             echo "Abort."
             ;;
     esac
+}
+
+randomchoice(){          # Choose from inputted values
+    declare -a choices=( "$@" )
+    echo "${choices[$(shuf -i 0-$(($#-1)) -n1)]}"
+}
+
+flipacoin(){             # Flip a coin
+    [[ "$(shuf -i 1-2 -n1)" == "1" ]] && echo "head" || echo "tail"
 }
 
 extract() {              # Extract things with tar bunzip2 unrar gunzip unzip uncompress 7z
