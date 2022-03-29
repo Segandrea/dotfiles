@@ -242,6 +242,7 @@ link_configs(){
     # linking bash related files
     ln -sf "${dotpath}/.bashrc" "$HOME"
     ln -sf "${dotpath}/.aliases.bash" "$HOME"
+    ln -sf "${dotpath}/.aliasesunpushed.bash" "$HOME"
     ln -sf "${dotpath}/.functions.bash" "$HOME"
     ln -sf "${dotpath}/.inputrc" "$HOME"
     # linking tmux configuration
