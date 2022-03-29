@@ -439,7 +439,11 @@ main() {
     # 11. keychron k2v2 fix
     fix_keychron
     # 12. Other (fonts, dconf settings)
-    other_things
+    local do_other_things
+    read -r -p "${info} Do you want to do other miscellaneous things? [y/N] " do_other_things
+    if [[ "${do_other_things}" == "y" ]]; then
+        other_things
+    fi
     # Finale: reboot system
     reboot_system
 }
