@@ -13,7 +13,6 @@
 #
 # aliases
 [[ -f "$HOME/.aliases.bash" ]] && source "$HOME/.aliases.bash"
-[[ -f "$HOME/.aliasesunpushed.bash" ]] && source "$HOME/.aliasesunpushed.bash"
 # functions
 [[ -f "$HOME/.functions.bash" ]] && source "$HOME/.functions.bash"
 
