@@ -9,6 +9,21 @@ gping(){                 # Ping google with time
     done
 }
 
+unigping(){              # Ping google using curl Because almawifi blocks ICMP
+    declare -i succ_count=0
+    declare -i err_count=0
+    while true; do
+        if curl --silent --head google.com > /dev/null; then
+            ((succ_count++))
+            echo "$(date +"[%T]") OK: success=${succ_count} errors=${err_count}"
+        else
+            ((err_count++))
+            echo "$(date +"[%T]") ERR: success=${succ_count} errors=${err_count}"
+        fi
+        sleep 1
+    done
+}
+
 mkcd(){                  # Make a directory and cd in it
     mkdir -p -- "$1" && cd -P -- "$1" || return
 }
