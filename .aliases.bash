@@ -45,7 +45,7 @@ alias :q='exit'
 alias :wq='exit'
 
 # calm and gentle, don't be angry
-alias please='sudo "$(history -p !!)"'
+alias please='sudo $(history -p !!)'
 alias cd..='cd ..'
 alias cd...='cd ../..'
 alias sl='ls'
@@ -85,5 +85,5 @@ alias spttoggle='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /
 alias upgradeall='yay -Syu && flatpak update'
 
 # connect and disconnect sony wf-c500
-alias btcs="bluetoothctl connect $(bluetoothctl paired-devices | sed 's/^Device \(.*\) WF-C500$/\1/')"
-alias btds="bluetoothctl disconnect $(bluetoothctl paired-devices | sed 's/^Device \(.*\) WF-C500$/\1/')"
+alias btcs='bluetoothctl connect $(bluetoothctl paired-devices | sed "s/^Device \(.*\) WF-C500$/\1/")'
+alias btds='bluetoothctl disconnect $(bluetoothctl paired-devices | sed "s/^Device \(.*\) WF-C500$/\1/")'
