@@ -58,14 +58,6 @@ set laststatus=0
 " conceal particular characters
 set conceallevel=2
 
-autocmd InsertEnter * norm zz
-autocmd InsertEnter * set nohlsearch
-" restore position
-autocmd BufReadPost *
-  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-  \ |   exe "normal! g`\""
-  \ | endif
-
 " navigate through splits
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -103,3 +95,21 @@ vnoremap <C-d> g<C-x>gv
 " fold colors to make it more readable with alacritty's dracula theme
 hi Folded ctermfg=2
 hi Folded ctermbg=8
+
+" Center the view when entering insert mode
+autocmd InsertEnter * norm zz
+" remove highlight from searched word when entering insert mode
+autocmd InsertEnter * set nohlsearch
+" restore position
+autocmd BufReadPost *
+  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  \ |   exe "normal! g`\""
+  \ | endif
+" Markdown settings
+augroup markdown
+    autocmd Filetype markdown set shiftwidth=2 tabstop=2
+augroup END
+" Webdev settings
+augroup webdev
+    autocmd Filetype javascript,html,css set shiftwidth=2 tabstop=2
+augroup END
