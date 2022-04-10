@@ -87,3 +87,7 @@ alias upgradeall='yay -Syu && flatpak update'
 # connect and disconnect sony wf-c500
 alias btcs='bluetoothctl connect $(bluetoothctl paired-devices | sed "s/^Device \(.*\) WF-C500$/\1/")'
 alias btds='bluetoothctl disconnect $(bluetoothctl paired-devices | sed "s/^Device \(.*\) WF-C500$/\1/")'
+
+# dump and load  settings
+alias dconfdump='dconf dump / > DUMPEDSETTINGS.ini'
+alias dconfload='dconf load / < settings.ini'
