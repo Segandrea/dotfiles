@@ -1,7 +1,19 @@
-#############################################################
-# # # # # # # # # # # # FUNCTIONS # # # # # # # # # # # # # #
-#############################################################
-gping(){                 # Ping google with time
+################################################################################
+###                                 FUNCTIONS                                ###
+################################################################################
+##                                                                            ##
+## Editing notes:                                                             ##
+## - Always check with 'shellcheck ${HOME}/.functions.bash' before sourcing   ##
+## - Comments that describe functions must start at the beginning of the line ##
+##    with a single # sign followed by a whitespace this is needed for        ##
+##    the 'showfunctions()' function                                          ##
+## - Comments with other meaning should start with two # sings and can be     ##
+##    wherever in the line                                                    ##
+##                                                                            ##
+################################################################################
+
+# Ping google with time
+gping(){
     ping 8.8.8.8 | while read -r pingout; do
         local datedping
         datedping="$(date +"[%T]"): ${pingout}"
@@ -9,7 +21,8 @@ gping(){                 # Ping google with time
     done
 }
 
-unigping(){              # Ping google using curl Because almawifi blocks ICMP
+# Ping google using curl Because almawifi blocks ICMP
+unigping(){
     declare -i succ_count=0
     declare -i err_count=0
     while true; do
@@ -24,15 +37,18 @@ unigping(){              # Ping google using curl Because almawifi blocks ICMP
     done
 }
 
-mkcd(){                  # Make a directory and cd in it
+# Make a directory and cd in it
+mkcd(){
     mkdir -p -- "$1" && cd -P -- "$1" || return
 }
 
-cla(){                   # cd then clean the screen and do la
+# cd then clean the screen and do la
+cla(){
     cd "$1" && clear && ls -AF
 }
 
-bnr(){                   # Bakcup or restore a file
+# Bakcup or restore a file
+bnr(){
     if [[ "$1" == *.bkp ]]; then
         echo "Restoring from bakup"
         cp "$1" "${1%.bkp}"
@@ -42,7 +58,8 @@ bnr(){                   # Bakcup or restore a file
     fi
 }
 
-ra(){                    # Rm but asking if sure because rm -i sucks
+# Rm but asking if sure because rm -i sucks
+ra(){
     echo ""
     echo "###################"
     echo "## Are you sure? ##"
@@ -60,16 +77,19 @@ ra(){                    # Rm but asking if sure because rm -i sucks
     esac
 }
 
-randomchoice(){          # Choose from inputted values
+# Choose from inputted values
+randomchoice(){
     declare -a choices=( "$@" )
     echo "${choices[$(shuf -i 0-$(($#-1)) -n1)]}"
 }
 
-flipacoin(){             # Flip a coin
+# Flip a coin
+flipacoin(){
     [[ "$(shuf -i 1-2 -n1)" == "1" ]] && echo "head" || echo "tail"
 }
 
-extract() {              # Extract things with tar bunzip2 unrar gunzip unzip uncompress 7z
+# Extract things with tar bunzip2 unrar gunzip unzip uncompress 7z
+extract(){
   if [ -f "$1" ] ; then
     case "$1"  in
       *.tar.bz2)   tar xjf "$1" ;;
@@ -92,4 +112,73 @@ extract() {              # Extract things with tar bunzip2 unrar gunzip unzip un
     echo "'$1' is not a valid file"
     exit 1
   fi
+}
+
+# Edit aliases and eventually source it
+ealiases(){
+    local do_source
+    local aliases="${HOME}/.aliases.bash"
+    "$EDITOR" "${aliases}"
+    read -rp "Do you want to source ${aliases}? [Y/n] " do_source
+    case "${do_source}" in
+        [nN][oO]|[nN])
+            echo "Not sourced"
+        ;;
+        *)
+            source "${aliases}"
+        ;;
+    esac
+}
+
+# Edit functions and eventually source it
+efunctions(){
+    local do_source
+    local config_file="${HOME}/.functions.bash"
+    "$EDITOR" "${config_file}"
+    read -rp "Do you want to source ${config_file}? [Y/n] " do_source
+    case "${do_source}" in
+        [nN][oO]|[nN])
+            echo "Not sourced"
+        ;;
+        *)
+            source "${config_file}"
+        ;;
+    esac
+}
+
+# Edit bashrc and eventually source it
+ebash(){
+    local do_source
+    local config_file="${HOME}/.bashrc"
+    "$EDITOR" "${config_file}"
+    read -rp "Do you want to source ${config_file}? [Y/n] " do_source
+    case "${do_source}" in
+        [nN][oO]|[nN])
+            echo "Not sourced"
+        ;;
+        *)
+            source "${config_file}"
+        ;;
+    esac
+}
+
+# Edit tmux configuration and eventually source it
+etmux(){
+    local do_source
+    local config_file="${HOME}/.tmux.conf"
+    "$EDITOR" "${config_file}"
+    read -rp "Do you want to source ${config_file}? [Y/n] " do_source
+    case "${do_source}" in
+        [nN][oO]|[nN])
+            echo "Not sourced"
+        ;;
+        *)
+            tmux source-file "${config_file}"
+        ;;
+    esac
+}
+
+# List all custom functions
+showfunctions(){
+    grep -A 1 -e "^# .*" "${HOME}/.functions.bash"
 }

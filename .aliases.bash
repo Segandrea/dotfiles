@@ -33,11 +33,7 @@ alias e='nvim'
 # vim can't use system clipboard in wayland, using nvim instead
 alias vim='nvim -u "${HOME}/.vimrc"'
 
-# edit configuration files and source them
-alias ealiases='vim "${HOME}/.aliases.bash" && source "${HOME}/.aliases.bash"'
-alias efunctions='vim "${HOME}/.functions.bash" && source "${HOME}/.functions.bash"'
-alias ebash='vim "${HOME}/.bashrc" && source "${HOME}/.bashrc"'
-alias etmux='vim "${HOME}/.tmux.conf" && tmux source-file "${HOME}/.tmux.conf"'
+# edit configuration files
 alias evim='vim "${HOME}/.vimrc"'
 
 # exit but with style
