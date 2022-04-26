@@ -22,6 +22,7 @@ declare -a pacman_packages=(
     "gzip"
     "neovim"
     "p7zip"
+    "ripgrep"
     "rustup"
     "shellcheck"
     "tmux"
