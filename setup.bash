@@ -80,6 +80,7 @@ git_setup(){
             git config --global core.editor "${editor}"
 
             git config --global init.defaultBranch "main"
+            git config --global diff.tool vimdiff
             echo "${succ} Setting up git: done."
         ;;
     esac
