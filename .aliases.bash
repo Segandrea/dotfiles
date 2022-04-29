@@ -17,6 +17,8 @@ alias psgrep='ps aux | grep'
 
 # show git tree
 alias gittree='git log --all --graph --decorate --oneline'
+# use vimdiff to see differences in files
+alias gd='git difftool'
 
 # go to places
 alias documents='cd "${HOME}/Documents"'
@@ -32,7 +34,6 @@ alias workspaces='cd "${HOME}/Workspaces"'
 alias e='nvim'
 # vim can't use system clipboard in wayland, using nvim instead
 alias vim='nvim -u "${HOME}/.vimrc"'
-
 # edit configuration files
 alias evim='vim "${HOME}/.vimrc"'
 
