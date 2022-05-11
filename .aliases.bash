@@ -79,7 +79,7 @@ alias sptprev='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /or
 alias spttoggle='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause'
 
 # upgrade pacman, aur and flatpak packages
-alias upgradeall='yay -Syu && flatpak update'
+alias upgradeall='yay -Syu && flatpak update && rustup update'
 
 # connect and disconnect sony wf-c500
 alias btcs='bluetoothctl power on && bluetoothctl connect $(bluetoothctl paired-devices | sed "s/^Device \(.*\) WF-C500$/\1/")'
