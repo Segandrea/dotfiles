@@ -78,7 +78,7 @@ alias sptnext='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /or
 alias sptprev='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous'
 alias spttoggle='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause'
 
-# upgrade pacman, aur and flatpak packages
+# upgrade from pacman, aur, flatpak and other packages
 alias upgradeall='yay -Syu && flatpak update && rustup update'
 
 # connect and disconnect sony wf-c500
