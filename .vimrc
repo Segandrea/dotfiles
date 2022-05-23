@@ -4,7 +4,7 @@
 " disable vi compatibility
 set nocompatible
 " set colorscheme
-colorscheme delek
+colorscheme elflord
 " syntax highlight
 syntax on
 " show completions
