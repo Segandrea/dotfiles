@@ -6,6 +6,8 @@ alias ll='ls -lah --time-style=long-iso'
 alias l='ls -lh --time-style=long-iso'
 # show (A)ll files but . and ..
 alias la='ls -A'
+# (l)ist filenames in (c)olumns
+alias lc='ls -A1'
 # keep (R)aw colors when input piped
 alias less='less -R'
 # colored grep
