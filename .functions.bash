@@ -54,7 +54,7 @@ bnr(){
         cp "$1" "${1%.bkp}"
     else
         echo "Making backup"
-	cp "$1" "${1}.bkp"
+        cp "$1" "${1}.bkp"
     fi
 }
 
@@ -182,4 +182,16 @@ etmux(){
 # List all custom functions
 showfunctions(){
     grep -A 1 -e "^# .*" "${HOME}/.functions.bash"
+}
+
+# Fzf to a directory or edit a file
+goto(){
+    local target
+    target="$(fd . "$HOME" --hidden | fzf --preview='head -50 {}' --border=rounded)"
+
+    if [[ -d "${target}" ]]; then
+        cd "${target}" || return
+    elif [[ -f "${target}" ]]; then
+        nvim "${target}"
+    fi
 }
