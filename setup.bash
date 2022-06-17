@@ -12,11 +12,14 @@ info="$(tput setaf 4)Info:$(tput sgr 0)"                # blue info
 # pacman packages
 declare -a pacman_packages=(
     "alacritty"
+    "bat"
     "bluez"
     "bluez-utils"
     "bzip2"
     "curl"
+    "fd"
     "flatpak"
+    "fzf"
     "git"
     "grub-btrfs"
     "gzip"
@@ -26,6 +29,7 @@ declare -a pacman_packages=(
     "rustup"
     "shellcheck"
     "tmux"
+    "tree"
     "unrar"
     "vim"
     "wget"

@@ -184,10 +184,12 @@ showfunctions(){
     grep -A 1 -e "^# .*" "${HOME}/.functions.bash"
 }
 
-# Fzf to a directory or edit a file
+# Fzf to a directory or edit a file from home
 goto(){
     local target
-    target="$(fd . "$HOME" --hidden | fzf --preview='head -50 {}' --border=rounded)"
+    local path_to_avoid="$HOME/\.|$HOME/Android|$HOME/ApkProjects|$HOME/snap|$HOME/Music|$HOME/Pictures|$HOME/Public|$HOME/Templates|$HOME/Videos|.git/|.idea/"
+    local preview="[[ -d {} ]] && tree -C {} || bat {}"
+    target="$(fd . "$HOME" --hidden | grep -Ev "${path_to_avoid}" | fzf --preview="${preview}" --border=rounded)"
 
     if [[ -d "${target}" ]]; then
         cd "${target}" || return
