@@ -75,3 +75,5 @@ TAB:menu-complete
 "\C-l":clear-screen
 # Control-x to expand aliases
 "\C-x":shell-expand-line
+# Launch goto function
+"\C-f":"fzfopen\n"
