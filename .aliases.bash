@@ -30,6 +30,7 @@ alias pictures='cd "${HOME}/Pictures"'
 alias videos='cd "${HOME}/Videos"'
 alias configurations='cd "${HOME}/.config"'
 alias dotfiles='cd "${HOME}/Workspaces/dotfiles"'
+alias calcolo='cd "${HOME}/Workspaces/calcolo_numerico" && source venv/bin/activate'
 alias workspaces='cd "${HOME}/Workspaces"'
 
 # (e)dit file with nvim
