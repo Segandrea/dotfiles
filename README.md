@@ -34,13 +34,13 @@ Configuration of tmux, uses [Tmux Plugin Manager](https://github.com/tmux-plugin
 * [Dracula Theme](https://draculatheme.com/tmux)
 * [Tmux-yank](https://github.com/tmux-plugins/tmux-yank)
 * [Tmux-sensible](https://github.com/tmux-plugins/tmux-sensible)
-* Others will probably be added in future.
+* Other plugins will probably be added in future.
 
 ## Setup script
 A setup script for:
 * Git configuration and installation of repos
 * Installing packages from official sources
-* Enabling and installing `flatpak `and `snap`
+* Enabling and installing `flatpak` and `snap`
 * Installing specific stuff from other sources
 * Linking configuration files in the `$HOME` directory
 * Eventually setting up some other stuff
