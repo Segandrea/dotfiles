@@ -40,7 +40,7 @@ Configuration of tmux, uses [Tmux Plugin Manager](https://github.com/tmux-plugin
 A setup script for:
 * Git configuration and installation of repos
 * Installing packages from official sources
-* Enabling and installing `flatpak `and `snap`
+* Enabling and installing `flatpak` and `snap`
 * Installing specific stuff from other sources
 * Linking configuration files in the `$HOME` directory
 * Eventually setting up some other stuff
