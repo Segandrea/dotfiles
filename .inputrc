@@ -41,10 +41,10 @@ set skip-completed-text On
 #set vi-ins-mode-string 
 
 ### keymaps
+
 ### keymaps vi-mode (command)
 # Place keymaps for vi-like command mode below
 set keymap vi-command
-
 # Remap v to something else instead of opening file
 "v":redraw-current-line
 # Use j/k to find a command in history
@@ -59,6 +59,8 @@ set keymap vi-command
 "\C-l":clear-screen
 # Control-x to expand aliases
 "\C-x":shell-expand-line
+# Launch goto function
+"\C-f":"fzfopen\n"
 
 ### keymaps vi-mode (insert)
 # Place keymaps for vi-like inser mode below
