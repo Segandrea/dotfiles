@@ -16,7 +16,7 @@
 # source functions
 [[ -f "$HOME/.config/bash/functions.bash" ]] && source "$HOME/.config/bash/functions.bash"
 # enable bash completion
-[[ -f "$HOME/.config/bash/completion.bash" ]] && source "$HOME/.config/bash/completion.bash"
+[[ -f "$HOME/.config/bash/completions.bash" ]] && source "$HOME/.config/bash/completions.bash"
 
 ##
 # Other utilities
