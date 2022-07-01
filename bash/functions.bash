@@ -115,38 +115,6 @@ extract(){
   fi
 }
 
-# Edit aliases and eventually source it
-ealiases(){
-    local do_source
-    local aliases="${HOME}/.aliases.bash"
-    "$EDITOR" "${aliases}"
-    read -rp "Do you want to source ${aliases}? [Y/n] " do_source
-    case "${do_source}" in
-        [nN][oO]|[nN])
-            echo "Not sourced"
-        ;;
-        *)
-            source "${aliases}"
-        ;;
-    esac
-}
-
-# Edit functions and eventually source it
-efunctions(){
-    local do_source
-    local config_file="${HOME}/.functions.bash"
-    "$EDITOR" "${config_file}"
-    read -rp "Do you want to source ${config_file}? [Y/n] " do_source
-    case "${do_source}" in
-        [nN][oO]|[nN])
-            echo "Not sourced"
-        ;;
-        *)
-            source "${config_file}"
-        ;;
-    esac
-}
-
 # Edit bashrc and eventually source it
 ebash(){
     local do_source
@@ -163,25 +131,9 @@ ebash(){
     esac
 }
 
-# Edit tmux configuration and eventually source it
-etmux(){
-    local do_source
-    local config_file="${HOME}/.tmux.conf"
-    "$EDITOR" "${config_file}"
-    read -rp "Do you want to source ${config_file}? [Y/n] " do_source
-    case "${do_source}" in
-        [nN][oO]|[nN])
-            echo "Not sourced"
-        ;;
-        *)
-            tmux source-file "${config_file}"
-        ;;
-    esac
-}
-
 # List all custom functions
 showfunctions(){
-    grep -A 1 -e "^# .*" "${HOME}/.functions.bash"
+    grep -A 1 -e "^# .*" "$(realpath "${BASH_SOURCE[0]}")"
 }
 
 # Fzf to a directory or edit a file from home

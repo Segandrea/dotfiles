@@ -4,7 +4,7 @@
 set -e
 
 # 0. needed vars declaration and definition {{{
-dotpath="$(dirname "$(realpath "${BASH_SOURCE[0]}")")" # path of this script directory
+dotpath="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"  # path of this script directory
 error="$(tput setaf 1)Error:$(tput sgr 0)"              # red error
 succ="$(tput setaf 2)Success:$(tput sgr 0)"             # green success
 warn="$(tput setaf 3)Warning:$(tput sgr 0)"             # yellow warning
@@ -250,8 +250,7 @@ link_configs(){
     ln -sf "${dotpath}/.bash" "$HOME/.config"
     ln -sf "${dotpath}/.inputrc" "$HOME"
     # linking tmux configuration
-    ln -sf "${dotpath}/.tmux" "$HOME"
-    ln -sf "${dotpath}/.tmux.conf" "$HOME"
+    ln -sf "${dotpath}/tmux" "$HOME/.config"
     # linking basic vim configuration
     ln -sf "${dotpath}/.vimrc" "$HOME"
     # linking starship configuration

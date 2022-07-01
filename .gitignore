@@ -1,4 +1,4 @@
-.tmux/plugins/
+tmux/plugins/
 fonts/*
 !fonts/.gitkeep
 Cyberpunk-GRUB-Theme/
