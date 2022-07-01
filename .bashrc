@@ -5,41 +5,22 @@
 # Source global config
 [[ -f "/etc/bashrc" ]] && source "/etc/bashrc"
 [[ -f "/etc/bash.bashrc" ]] && source "/etc/bash.bashrc"
-# Source bash-completion
-[[ -r "/usr/share/bash-completion/bash_completion" ]] && source "/usr/share/bash-completion/bash_completion"
 
 ##
 # configs
 #
-# aliases
-[[ -f "$HOME/.aliases.bash" ]] && source "$HOME/.aliases.bash"
-# functions
-[[ -f "$HOME/.functions.bash" ]] && source "$HOME/.functions.bash"
+# source env variables
+[[ -f "$HOME/.config/bash/env.bash" ]] && source "$HOME/.config/bash/env.bash" 
+# source aliases
+[[ -f "$HOME/.config/bash/aliases.bash" ]] && source "$HOME/.config/bash/aliases.bash" 
+# source functions
+[[ -f "$HOME/.config/bash/functions.bash" ]] && source "$HOME/.config/bash/functions.bash"
+# enable bash completion
+[[ -f "$HOME/.config/bash/completion.bash" ]] && source "$HOME/.config/bash/completion.bash"
 
 ##
-# env
+# Other utilities
 #
-# correct typos in directory names during cd
-shopt -s cdspell
-# correct typos in directory during autocompletion
-shopt -s dirspell
-# check and update the values of LINES and COLUMNS
-shopt -s checkwinsize
-# append to history
-shopt -s histappend
-# don't put duplicate lines or lines starting with space in history
-export HISTCONTROL=ignoreboth
-# use .bash_history as file for storing history
-export HISTFILE="$HOME/.bash_history"
-# use less as pager
-export PAGER=less
-# use vim as default editor
-export EDITOR=vim
-# use chrome as default browser
-export BROWSER=google-chrome
-# limits recursive functions, see 'man bash'
-[[ -z "$FUNCNEST" ]] && export FUNCNEST=100
-
 # starship prompt
 eval "$(starship init bash)"
 # setup colors
@@ -53,10 +34,5 @@ if [[ -x "$(command -v tmux)" && -z "$TMUX" ]]; then
         tmux new
     fi
 fi
-
-# nvm
-export NVM_DIR="$HOME/.nvm"
-# This loads nvm
+# Load nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# This loads nvm bash_completion
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
