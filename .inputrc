@@ -59,8 +59,12 @@ set keymap vi-command
 "\C-l":clear-screen
 # Control-x to expand aliases
 "\C-x":shell-expand-line
+
+# Bash related mappings
+$if Bash
 # Launch goto function
 "\C-f":"fzfopen\n"
+$endif
 
 ### keymaps vi-mode (insert)
 # Place keymaps for vi-like inser mode below
@@ -77,5 +81,9 @@ TAB:menu-complete
 "\C-l":clear-screen
 # Control-x to expand aliases
 "\C-x":shell-expand-line
+
+# Bash related mappings
+$if Bash
 # Launch goto function
 "\C-f":"fzfopen\n"
+$endif
