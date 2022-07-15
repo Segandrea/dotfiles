@@ -18,7 +18,7 @@ export HISTFILE="$HOME/.bash_history"
 # use less as pager
 export PAGER=less
 # use vim as default editor
-export EDITOR=vim
+export EDITOR=nvim
 # use chrome as default browser
 export BROWSER=google-chrome
 # nvm

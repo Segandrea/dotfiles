@@ -65,7 +65,7 @@ alias nmconn='nmcli device wifi connect <<< "$(nmcli -g "ssid" device wifi list 
 #TODO: write a wayland version
 alias huion2screen='xinput map-to-output 22 HDMI-2'
 
-# xclip shortcuts
+# clipboard shortcuts
 if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
     alias toclip='wl-copy'
     alias fromclip='wl-paste'
