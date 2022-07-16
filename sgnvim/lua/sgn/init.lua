@@ -16,9 +16,15 @@ require('packer').startup(function()
   use 'williamboman/nvim-lsp-installer'
   use 'neovim/nvim-lspconfig'
 
+  -- Use whichkey to show keybindings
+  use 'folke/which-key.nvim'
+
 end)
 
+-- configure treesitter
 require('sgn.plugins.treesitter')
---lsp-installer must be configured before lsp-config
+-- lsp-installer must be configured before lsp-config
 require('sgn.plugins.lspinstaller')
 require('sgn.plugins.lspconfig')
+-- configure whichkey
+require('sgn.plugins.whichkey')

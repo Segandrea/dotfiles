@@ -47,37 +47,6 @@ local servers = {
     zls = {},
 }
 
--- mappings lsp commands
-local map = vim.keymap.set
-local options = { noremap = true, silent = true }
-
--- see `:help vim.diagnostic.*` for doc on these
-map('n', '<leader>e', vim.diagnostic.open_float, options)
-map('n', '[d', vim.diagnostic.goto_prev, options)
-map('n', ']d', vim.diagnostic.goto_next, options)
-map('n', '<leader>q', vim.diagnostic.setloclist, options)
-
-local on_attach = function(client, bufnr)
-    -- completion trigghered with omnifunction (c-x c-o)
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    local bufoptions = { noremap = true, silent = true, buffer = bufnr }
-    map('n', 'gD', vim.lsp.buf.declaration, bufoptions)
-    map('n', 'gd', vim.lsp.buf.definition, bufoptions)
-    map('n', 'K', vim.lsp.buf.hover, bufoptions)
-    map('n', 'gi', vim.lsp.buf.implementation, bufoptions)
-    map('n', '<c-k>', vim.lsp.buf.signature_help, bufoptions)
-    map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufoptions)
-    map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufoptions)
-    map('n', '<leader>wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, bufoptions)
-    map('n', '<leader>D', vim.lsp.buf.type_definition, bufoptions)
-    map('n', '<leader>rn', vim.lsp.buf.rename, bufoptions)
-    map('n', '<leader>ca', vim.lsp.buf.code_action, bufoptions)
-    map('n', 'gr', vim.lsp.buf.references, bufoptions)
-    map('n', '<leader>f', vim.lsp.buf.formatting, bufoptions)
-end
-
 local lsp_flags = {
     debounce_text_changes = 150,
 }
@@ -112,14 +81,12 @@ require('lspconfig').sumneko_lua.setup {
             },
         },
     },
-    on_attach = on_attach,
     flags = lsp_flags,
 }
 
 -- basic configuration for every lsp
 for server, _ in pairs(servers) do
     require('lspconfig')[server].setup {
-        on_attach = on_attach,
         flags = lsp_flags,
     }
 end

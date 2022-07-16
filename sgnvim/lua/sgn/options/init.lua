@@ -1,38 +1,53 @@
+-- TODO: should be moved in a file var.lua
 vim.g.mapleader = ' '
--- list of options
-vim.opt.clipboard = "unnamedplus"
+
+-- [[ Clipboard ]]
+vim.opt.clipboard = 'unnamedplus'
+
+-- [[ Readability ]]
 vim.opt.conceallevel = 2
-vim.opt.encoding = "utf-8"
-vim.bo.expandtab = true
-vim.opt.foldenable = true
--- vim.opt.foldlevel = 99                   -- moved in plugins/treesitter.lua
--- vim.opt.foldmethod = "expr"              -- moved in plugins/treesitter.lua
-vim.opt.hlsearch = true
-vim.opt.ignorecase = true
-vim.opt.incsearch = true
-vim.opt.laststatus = 0
 vim.opt.list = true
 vim.opt.listchars.tab = '>'
 vim.opt.listchars.trail = '·'
-vim.opt.mousehide = true
-vim.opt.number = true
-vim.opt.relativenumber = true
 vim.opt.scrolloff = 5
-vim.opt.showcmd = true
-vim.opt.showmatch = true
 vim.opt.sidescroll = 1
-vim.opt.smartcase = true
-vim.opt.smartindent = true
-vim.opt.smarttab = true
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.wildmenu = true
+vim.opt.mousehide = true
 vim.opt.wrap = false
 
--- TODO: remove r, o
---vim.opt.formatoptions = vim.opt.formatoptions .. 'tcjql'
+-- [[ Encoding ]]
+vim.opt.encoding = 'utf-8'
+vim.opt.fileencoding = 'utf-8'
 
--- TODO: add dependance on filetype
+-- [[ Folding ]]
+vim.opt.foldenable = true
+
+-- [[ Searchability ]]
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.incsearch = true
+vim.opt.showmatch = true
+vim.opt.smartcase = true
+
+-- [[ Lines ]]
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.colorcolumn = '80'
+
+-- [[ Statusline ]]
+vim.opt.wildmenu = true
+vim.opt.showcmd = true
+vim.opt.laststatus = 0
+
+-- [[ Splits ]]
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+-- [[ Indentation ]]
+vim.opt.smartindent = true
+vim.opt.smarttab = true
+
+-- [[ Whitespaces ]]
+vim.bo.expandtab = true
 vim.bo.shiftwidth = 4
 vim.bo.tabstop = 4
 
