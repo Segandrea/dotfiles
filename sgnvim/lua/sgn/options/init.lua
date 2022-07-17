@@ -48,8 +48,8 @@ vim.opt.smarttab = true
 
 -- [[ Whitespaces ]]
 vim.bo.expandtab = true
-vim.bo.shiftwidth = 4
-vim.bo.tabstop = 4
+vim.bo.shiftwidth = 2
+vim.bo.tabstop = 2
 
 -- TODO: add a different colorscheme
 vim.cmd[[colorscheme dracula]]

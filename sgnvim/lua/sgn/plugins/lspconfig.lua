@@ -84,9 +84,12 @@ require('lspconfig').sumneko_lua.setup {
     flags = lsp_flags,
 }
 
+-- capabilities to be added to lsp from cmp_nvim_lsp
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- basic configuration for every lsp
 for server, _ in pairs(servers) do
     require('lspconfig')[server].setup {
         flags = lsp_flags,
+        capabilities = capabilities,
     }
 end
