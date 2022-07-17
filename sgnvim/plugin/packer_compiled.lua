@@ -94,6 +94,11 @@ _G.packer_plugins = {
     path = "/home/segandrea/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["tmux.nvim"] = {
+    loaded = true,
+    path = "/home/segandrea/.local/share/nvim/site/pack/packer/start/tmux.nvim",
+    url = "https://github.com/aserowy/tmux.nvim"
+  },
   ["which-key.nvim"] = {
     loaded = true,
     path = "/home/segandrea/.local/share/nvim/site/pack/packer/start/which-key.nvim",

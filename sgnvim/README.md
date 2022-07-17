@@ -26,12 +26,12 @@
 
 ## TODOS:
 - [] configure lsp
-- [] configure lsp installer
-- [] install which-key
-- [] mappings of the lsp with which-key
+- [x] configure lsp installer
+- [x] install which-key
+- [x] mappings of the lsp with which-key
 - [] install completion plugins
 - [] install snippet plugins
-- [] add plugin for tmux split movement
+- [x] add plugin for tmux split movement
 - [] make differences between .md files and code files
 - [] install something like vimwiki and markdown preview
 - [] install dev icons

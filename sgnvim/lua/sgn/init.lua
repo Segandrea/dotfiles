@@ -19,6 +19,9 @@ require('packer').startup(function()
   -- Use whichkey to show keybindings
   use 'folke/which-key.nvim'
 
+  -- Seamless navigation between tmux panes
+  use 'aserowy/tmux.nvim'
+
 end)
 
 -- configure treesitter
@@ -28,3 +31,5 @@ require('sgn.plugins.lspinstaller')
 require('sgn.plugins.lspconfig')
 -- configure whichkey
 require('sgn.plugins.whichkey')
+-- configure tmux.nvim
+require('sgn.plugins.tmux')
