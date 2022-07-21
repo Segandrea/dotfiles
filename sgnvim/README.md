@@ -25,13 +25,14 @@
 ```
 
 ## TODOS:
-- [] configure lsp
+- [] configure lsps
 - [x] configure lsp installer
 - [x] install which-key
 - [x] mappings of the lsp with which-key
-- [] install completion plugins
-- [] install snippet plugins
+- [x] install completion plugins
+- [x] install snippet plugins
 - [x] add plugin for tmux split movement
+- [] install autoclose plugin
 - [] make differences between .md files and code files
 - [] install something like vimwiki and markdown preview
 - [] install dev icons

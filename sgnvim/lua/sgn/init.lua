@@ -4,7 +4,7 @@ require('sgn.mappings')
 require('sgn.autocmds')
 
 --[[ List of packages ]]
-require('packer').startup(function()
+require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   -- You can alias plugin names
@@ -27,6 +27,10 @@ require('packer').startup(function()
   use 'folke/which-key.nvim'
   -- Seamless navigation between tmux panes
   use 'aserowy/tmux.nvim'
+  -- Auto close things
+  use 'windwp/nvim-autopairs'
+  -- Comments
+  use 'numToStr/Comment.nvim'
 end)
 
 
@@ -43,3 +47,7 @@ require('sgn.plugins.completion')
 require('sgn.plugins.whichkey')
 -- configure tmux.nvim
 require('sgn.plugins.tmux')
+-- configure autopairs
+require('sgn.plugins.autopairs')
+-- configure comment
+require('sgn.plugins.comment')

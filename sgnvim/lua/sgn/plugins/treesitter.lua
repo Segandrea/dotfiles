@@ -19,6 +19,8 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     extended_mode = true, -- highlight also non-bracket things like tags 
   },
+  --[[ requires nvim-autopairs ]]
+  autotag = { enable = true },
 }
 
 vim.opt.foldmethod = 'expr'

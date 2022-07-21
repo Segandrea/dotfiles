@@ -2,6 +2,7 @@ local map = vim.keymap.set
 local options = { noremap = true, silent = true }
 
 -- normal mode mappings
+map('n', '<Esc>', ':set<space>nohlsearch<cr><esc>', options)
 map('n', 'n', ':set<space>hlsearch<cr>nzzzv', options)
 map('n', 'N', ':set<space>hlsearch<cr>Nzzzv', options)
 map('n', '/', ':set<space>hlsearch<cr>mb/', options)
