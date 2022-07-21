@@ -257,8 +257,10 @@ link_configs(){
     ln -sf "${dotpath}/starship.toml" "$HOME/.config"
     # linking alacritty configuration
     ln -sf "${dotpath}/alacritty" "$HOME/.config"
-    # linking neovim configuration
+    # linking first neovim configuration
     ln -sf "${dotpath}/sgnvim" "$HOME/.config"
+    # linking second neovim configuration
+    ln -sf "${dotpath}/barquonvim" "$HOME/.config"
     # linking fonts
     ln -sf "${dotpath}/fonts" "$HOME/.local/share"
 
