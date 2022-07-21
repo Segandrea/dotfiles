@@ -59,7 +59,7 @@ alias ddc='gcc -std=c17 -Wall -Wextra -Wpedantic -Werror'
 
 # NetworkManager shortcuts
 alias nmlist='nmcli device wifi list'
-alias nmconn='nmcli device wifi connect <<< "$(nmcli -g "ssid" device wifi list | fzf --no-info --border=rounded --prompt="Connect to: " --pointer="➜")"'
+alias nmconn='nmcli device wifi connect "$(nmcli d w rescan && nmcli -g "ssid" device wifi list | fzf --no-info --border=rounded --prompt="Connect to: " --pointer="➜")"'
 
 # fix for letting my drawing tablet go on second screen
 #TODO: write a wayland version
