@@ -25,14 +25,16 @@ gping(){
 unigping(){
     declare -i succ_count=0
     declare -i err_count=0
+    declare -i pack_count=1
     while true; do
         if curl --silent --head google.com > /dev/null; then
             ((succ_count++))
-            echo "$(date +"[%T]") OK: success=${succ_count} errors=${err_count}"
+            echo "$(date +"[%T]") ${pack_count} OK: success=${succ_count} errors=${err_count}"
         else
             ((err_count++))
-            echo "$(date +"[%T]") ERR: success=${succ_count} errors=${err_count}"
+            echo "$(date +"[%T]") ${pack_count} ERR: success=${succ_count} errors=${err_count}"
         fi
+        ((pack_count++))
         sleep 1
     done
 }
