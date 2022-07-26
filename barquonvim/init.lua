@@ -67,7 +67,7 @@ require('packer').startup(function(use)
   })
 
   -- lsp (preconfigured with lsp-zero.nvim)
-  use {
+  use({
     'VonHeikemen/lsp-zero.nvim',
     requires = {
       -- LSP Support
@@ -88,6 +88,39 @@ require('packer').startup(function(use)
     },
     -- this module will contain all lsp related configs
     config = function() require('barquonvim.plugins.lsp-config') end,
-  }
+  })
+
+  -- autopairs
+  use({
+    'windwp/nvim-autopairs',
+    config = function()
+      require('barquonvim.plugins.nvim-autopairs-config')
+    end,
+  })
+
+  -- indent lines
+  use({
+    'lukas-reineke/indent-blankline.nvim',
+    config = function ()
+      require('barquonvim.plugins.indent-blankline-config')
+    end,
+  })
+
+  -- dashboard
+  use({
+    'glepnir/dashboard-nvim',
+    config = function ()
+      require('barquonvim.plugins.dashboard-nvim-config')
+    end,
+  })
+
+  -- render latex in neovim
+  use({
+    'jbyuki/nabla.nvim',
+    ft = { 'markdown', 'latex', 'norg' },
+    config = function()
+      require('barquonvim.plugins.nabla-config')
+    end,
+  })
 
 end)
