@@ -25,3 +25,12 @@ export BROWSER=google-chrome
 export NVM_DIR="$HOME/.nvm"
 # limits recursive functions, see 'man bash'
 [[ -z "$FUNCNEST" ]] && export FUNCNEST=100
+
+# my most used directories
+export DOCUMENTS_DIR="$HOME/Documents"
+export DOWNLOADS_DIR="$HOME/Downloads"
+export DESKTOP_DIR="$HOME/Desktop"
+export PICTURES_DIR="$HOME/Pictures"
+export VIDEOS_DIR="$HOME/Videos"
+export WORKSPACES_DIR="$HOME/Workspaces"
+export DOTFILES_DIR="$WORKSPACES_DIR/dotfiles"

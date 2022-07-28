@@ -143,9 +143,8 @@ showfunctions(){
 # Fzf to a directory or edit a file from home
 fzfopen(){
     local target
-    local path_to_avoid="$HOME/\.|$HOME/Android|$HOME/ApkProjects|$HOME/snap|$HOME/Music|$HOME/Pictures|$HOME/Public|$HOME/Templates|$HOME/Videos|.git/|.idea/"
     local preview="[[ -d {} ]] && tree -CL 2 {} || bat --color=always --theme=Dracula --style=plain --line-range=:50 {}"
-    target="$(fd . "$HOME" --hidden | grep -Ev "${path_to_avoid}" | fzf --no-info --preview="${preview}" --border=rounded --prompt='Search: ' --pointer='➜' --delimiter='/' --with-nth='4..')"
+    target="$(fd . "$HOME" --hidden --ignore-file "$DOTFILES_DIR/bash/utils/.fzfopen_ignore" | fzf --no-info --reverse --exact --preview="${preview}" --border=rounded --prompt='Search: ' --pointer='➜' --delimiter='/' --with-nth='4..')"
 
     if [[ -d "${target}" ]]; then
         cd "${target}" || return
