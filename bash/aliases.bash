@@ -34,11 +34,7 @@ alias calcolo='cd "${HOME}/Workspaces/calcolo_numerico" && source venv/bin/activ
 alias workspaces='cd "$(fd . "$HOME/Workspaces" --hidden --type d --ignore-file "$DOTFILES_DIR/bash/utils/.fzfopen_ignore" | sort | fzf --no-sort --exact --reverse --prompt="Go to: " --delimiter="/" --with-nth="4.." --border=rounded --no-info --preview="ls -vF --color=always {}")"'
 
 # (e)dit file with nvim
-alias e='nvim'
-# vim can't use system clipboard in wayland, using nvim instead
-alias vim='nvim -u "${HOME}/.vimrc"'
-# edit configuration files
-alias evim='vim "${HOME}/.vimrc"'
+alias e='$EDITOR'
 
 # exit but with style
 alias :q='exit'
