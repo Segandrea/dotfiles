@@ -166,3 +166,12 @@ man() {
     LESS_TERMCAP_se=$'\e[0m' \
     command man "$@"
 }
+
+timer() {
+  local time
+  [[ -z "$1" ]] && time='1s' || time="$1"
+  local text
+  [[ -z "$2" ]] && text='Alarm' || text="$2"
+
+  (sleep "${time}" && notify-send "${text}" &)
+}
