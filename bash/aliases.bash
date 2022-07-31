@@ -35,6 +35,8 @@ alias workspaces='cd "$(fd . "$HOME/Workspaces" --hidden --type d --ignore-file 
 
 # (e)dit file with nvim
 alias e='$EDITOR'
+# shortcut to call helix
+alias hx='helix'
 
 # exit but with style
 alias :q='exit'
