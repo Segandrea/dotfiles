@@ -167,6 +167,7 @@ man() {
     command man "$@"
 }
 
+# set a timer: arg1 = time[h, m or s], arg2 = text
 timer() {
   local time
   [[ -z "$1" ]] && time='1s' || time="$1"
