@@ -26,6 +26,9 @@ export NVM_DIR="$HOME/.nvm"
 # limits recursive functions, see 'man bash'
 [[ -z "$FUNCNEST" ]] && export FUNCNEST=100
 
+# add doom-emacs binaries to path
+export PATH="$PATH:$HOME/.config/emacs/bin"
+
 # my most used directories
 export DOCUMENTS_DIR="$HOME/Documents"
 export DOWNLOADS_DIR="$HOME/Downloads"

@@ -17,6 +17,7 @@ declare -a pacman_packages=(
     "bluez-utils"
     "bzip2"
     "curl"
+    "emacs"
     "fd"
     "flatpak"
     "fzf"
