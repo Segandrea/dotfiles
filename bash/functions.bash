@@ -140,6 +140,13 @@ showfunctions(){
     grep -A 1 -e "^# .*" "$(realpath "${BASH_SOURCE[0]}")"
 }
 
+# Fzf to a directory from $HOME
+goto() {
+    local target
+    target="$(cd && { fd --type directory --strip-cwd-prefix --ignore-file "$DOTFILES_DIR/bash/utils/.fd_ignoredDirs" | sort | fzf --exact --no-info --reverse --border=rounded --preview='tree -CL 2 {}' --delimiter='/' --pointer='➜' --prompt='Go to: '; })" #
+    cd "$HOME/${target}" || return
+}
+
 # Fzf to a directory or edit a file from home
 fzfopen(){
     local target
