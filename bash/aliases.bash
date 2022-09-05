@@ -22,21 +22,13 @@ alias gittree='git log --all --graph --decorate --oneline'
 # use vimdiff to see differences in files
 alias gd='git difftool'
 
-# go to places
-alias documents='cd "$(fd . "$HOME/Documents" --hidden --type d --ignore-file "$DOTFILES_DIR/bash/utils/.fzfopen_ignore" | sort | fzf --no-sort --exact --reverse --prompt="Go to: " --delimiter="/" --with-nth="4.." --border=rounded --no-info --preview="ls -vF --color=always {}")"'
-alias downloads='cd "${HOME}/Downloads"'
-alias desktop='cd "${HOME}/Desktop"'
-alias pictures='cd "${HOME}/Pictures"'
-alias videos='cd "${HOME}/Videos"'
-alias configurations='cd "${HOME}/.config"'
-alias dotfiles='cd "${HOME}/Workspaces/dotfiles"'
-alias calcolo='cd "${HOME}/Workspaces/calcolo_numerico" && source venv/bin/activate'
-alias workspaces='cd "$(fd . "$HOME/Workspaces" --hidden --type d --ignore-file "$DOTFILES_DIR/bash/utils/.fzfopen_ignore" | sort | fzf --no-sort --exact --reverse --prompt="Go to: " --delimiter="/" --with-nth="4.." --border=rounded --no-info --preview="ls -vF --color=always {}")"'
-
 # (e)dit file with nvim
 alias e='$EDITOR'
 # shortcut to call helix
 alias hx='helix'
+
+# source .bashrc
+alias sourcebash='[[ -f "$HOME/.bashrc" ]] && source "$HOME/.bashrc"'
 
 # exit but with style
 alias :q='exit'
