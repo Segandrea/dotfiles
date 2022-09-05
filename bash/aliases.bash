@@ -87,8 +87,8 @@ spicetify restore backup apply'
 alias upgradeall='yay -Syu && flatpak update && rustup update'
 
 # connect and disconnect sony wf-c500
-alias btcs='bluetoothctl power on && bluetoothctl connect $(bluetoothctl paired-devices | grep -i "WF-C500" | sed "s/^Device \(.*\) WF-C500$/\1/")'
-alias btds='bluetoothctl disconnect $(bluetoothctl paired-devices | sed "s/^Device \(.*\) WF-C500$/\1/")'
+alias btcs='bluetoothctl power on && bluetoothctl connect $(bluetoothctl devices | grep -i "WF-C500" | sed "s/^Device \(.*\) WF-C500$/\1/")'
+alias btds='bluetoothctl disconnect $(bluetoothctl paired-devices | grep -i "WF-C500" | sed "s/^Device \(.*\) WF-C500$/\1/")'
 
 # dump and load  settings
 alias dconfdump='dconf dump / > DUMPEDSETTINGS.ini'
