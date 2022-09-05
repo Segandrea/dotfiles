@@ -119,22 +119,6 @@ extract(){
   fi
 }
 
-# Edit bashrc and eventually source it
-ebash(){
-    local do_source
-    local config_file="${HOME}/.bashrc"
-    "$EDITOR" "${config_file}"
-    read -rp "Do you want to source ${config_file}? [Y/n] " do_source
-    case "${do_source}" in
-        [nN][oO]|[nN])
-            echo "Not sourced"
-        ;;
-        *)
-            source "${config_file}"
-        ;;
-    esac
-}
-
 # List all custom functions
 showfunctions(){
     grep -A 1 -e "^# .*" "$(realpath "${BASH_SOURCE[0]}")"
