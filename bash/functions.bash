@@ -46,18 +46,24 @@ mkcd(){
 
 # cd then clean the screen and do la
 cla(){
-    cd "$1" && clear && ls -AF
+    cd -- "$1" && clear && ls -AF
 }
 
 # Bakcup or restore a file
-bnr(){
-    if [[ "$1" == *.bkp ]]; then
-        echo "Restoring from bakup"
-        cp "$1" "${1%.bkp}"
-    else
-        echo "Making backup"
-        cp "$1" "${1}.bkp"
-    fi
+toggle_backup(){
+    local target="${1/\//}"
+
+        # NB. if target and target.bkp both exist and are directories,
+        # this function will always copy the files from one of the two
+        # that are not in the other.
+        if [[ "${target}" == *.bkp ]]; then
+            echo "Restoring from bakup.."
+            cp -rTi -- "${target}" "${target%.bkp}"
+        else
+            echo "Making backup.."
+            cp -rTi -- "${target}" "${target}.bkp"
+        fi
+        echo "Done."
 }
 
 # Rm but asking if sure because rm -i sucks
@@ -71,7 +77,7 @@ ra(){
 
     case "${areyousure}" in
         [yY][eE][sS]|[yY]|"")
-            command rm -rf "$@"
+            command rm -rf -- "$@"
             ;;
         *)
             echo "Abort."
@@ -128,7 +134,7 @@ showfunctions(){
 goto() {
     local target
     target="$(cd && { fd --type directory --strip-cwd-prefix --ignore-file "$DOTFILES_DIR/bash/utils/.fd_ignoredDirs" | sort | fzf --exact --no-info --reverse --border=rounded --preview='tree -CL 2 {}' --delimiter='/' --pointer='➜' --prompt='Go to: '; })" #
-    cd "$HOME/${target}" || return
+    cd -- "$HOME/${target}" || return
 }
 
 # Fzf to a directory or edit a file from home
@@ -138,7 +144,7 @@ fzfopen(){
     target="$(fd . "$HOME" --hidden --ignore-file "$DOTFILES_DIR/bash/utils/.fzfopen_ignore" | fzf --no-info --reverse --exact --preview="${preview}" --border=rounded --prompt='Search: ' --pointer='➜' --delimiter='/' --with-nth='4..')"
 
     if [[ -d "${target}" ]]; then
-        cd "${target}" || return
+        cd -- "${target}" || return
     elif [[ -f "${target}" ]]; then
         nvim "${target}"
     fi
