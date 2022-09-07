@@ -83,5 +83,5 @@ alias btcs='bluetoothctl power on && bluetoothctl connect $(bluetoothctl devices
 alias btds='bluetoothctl disconnect $(bluetoothctl paired-devices | grep -i "WF-C500" | sed "s/^Device \(.*\) WF-C500$/\1/")'
 
 # dump and load  settings
-alias dconfdump='dconf dump / > DUMPEDSETTINGS.ini'
-alias dconfload='dconf load / < settings.ini'
+alias dconfdump='dconf dump / > dumped_settings.ini'
+alias dconfload='dconf load / < dumped_settings.ini'
