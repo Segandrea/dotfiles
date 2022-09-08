@@ -30,6 +30,9 @@ alias hx='helix'
 # source .bashrc
 alias sourcebash='[[ -f "$HOME/.bashrc" ]] && source "$HOME/.bashrc"'
 
+# activate venv (require venv to be called "venv")
+alias activate='[[ -f "venv/bin/activate" ]] && source "venv/bin/activate"'
+
 # exit but with style
 alias :q='exit'
 alias :wq='exit'
