@@ -85,6 +85,6 @@ alias upgradeall='yay -Syu && flatpak update && rustup update'
 alias btcs='bluetoothctl power on && bluetoothctl connect $(bluetoothctl devices | grep -i "WF-C500" | sed "s/^Device \(.*\) WF-C500$/\1/")'
 alias btds='bluetoothctl disconnect $(bluetoothctl paired-devices | grep -i "WF-C500" | sed "s/^Device \(.*\) WF-C500$/\1/")'
 
-# dump and load  settings
+# dump and load gnome settings
 alias dconfdump='dconf dump / > dumped_settings.ini'
 alias dconfload='dconf load / < dumped_settings.ini'
