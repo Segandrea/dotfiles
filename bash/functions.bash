@@ -164,12 +164,13 @@ man() {
     command man "$@"
 }
 
-# set a timer: arg1 = time[h, m or s], arg2 = text
+# set a timer: arg1 = "text", arg2 = time(eg. 3d 1h 32m 16.034s NB. unquoted)
 timer() {
-  local time
-  [[ -z "$1" ]] && time='1s' || time="$1"
   local text
-  [[ -z "$2" ]] && text='Alarm' || text="$2"
+  [[ -z "$1" ]] && text='Alarm' || text="$1"
+  local time
+  [[ -z "${*:2}" ]] && time='1s' || time="${*:2}"
 
-  (sleep "${time}" && notify-send "${text}" &)
+  # $time is unquoted so that it can expand as parameters
+  (sleep ${time} && notify-send "${text}" &)
 }
