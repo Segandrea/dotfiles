@@ -16,7 +16,7 @@ vim.g.maplocalleader = ' '
 vim.o.clipboard = 'unnamedplus'
 
 -- conceal text
-vim.o.conceallevel = 2
+vim.wo.conceallevel = 2
 
 -- highlight cursor line
 vim.wo.cursorline = true

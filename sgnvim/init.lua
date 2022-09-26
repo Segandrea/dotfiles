@@ -18,7 +18,6 @@ local packer_bootstrap = ensure_packer()
 -- [[ List of plugins ]]
 return require('packer').startup(function(use)
   -- TODO: add which-key, make it so it appears only after pressing '<space>'
-  -- TODO: add 'jakewvincent/mkdnflow.nvim' and configure NB: only for notes
   -- TODO: add 'nvim-ts-context-commentstring' and 'Commentary.nvim'
   -- TODO: add 'neogen' to generate automatically doc annotations
   -- TODO: add 'norcalli/nvim-colorizer.lua' to color hex
@@ -32,7 +31,7 @@ return require('packer').startup(function(use)
   -- TODO: add 'twilight.nvim'
   -- TODO: add 'AbbrevMan.nvim'
   -- TODO: add 'something to debug'
-  -- TODO: add
+  -- TODO: configure 'jakewvincent/mkdnflow.nvim'
   -- [[ Packer ]]
   use({'wbthomason/packer.nvim'})
 
@@ -116,6 +115,13 @@ return require('packer').startup(function(use)
   -- [[ Git signs ]]
   use({ 'lewis6991/gitsigns.nvim',
     config = function() require('sgn.gitsigns') end,
+  })
+
+  -- [[ Markdown wiki ]]
+  use({ 'jakewvincent/mkdnflow.nvim',
+    rocks = 'luautf8',
+    ft = 'markdown',
+    config = function() require('sgn.markdown') end
   })
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
