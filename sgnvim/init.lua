@@ -17,21 +17,6 @@ local packer_bootstrap = ensure_packer()
 
 -- [[ List of plugins ]]
 return require('packer').startup(function(use)
-  -- TODO: add which-key, make it so it appears only after pressing '<space>'
-  -- TODO: add 'nvim-ts-context-commentstring' and 'Commentary.nvim'
-  -- TODO: add 'neogen' to generate automatically doc annotations
-  -- TODO: add 'norcalli/nvim-colorizer.lua' to color hex
-  -- TODO: add 'ahmedkhalf/project.nvim' for better project managment
-  -- TODO: add 'carrot.nvim'
-  -- TODO: add 'nvim-surround'
-  -- TODO: add 'hlargs.nvim'
-  -- TODO: add 'venn.nvim'
-  -- TODO: add 'nabla.nvim'
-  -- TODO: add 'neorg'
-  -- TODO: add 'twilight.nvim'
-  -- TODO: add 'AbbrevMan.nvim'
-  -- TODO: add 'something to debug'
-  -- TODO: configure 'jakewvincent/mkdnflow.nvim'
   -- [[ Packer ]]
   use({'wbthomason/packer.nvim'})
 
@@ -115,6 +100,15 @@ return require('packer').startup(function(use)
   -- [[ Git signs ]]
   use({ 'lewis6991/gitsigns.nvim',
     config = function() require('sgn.gitsigns') end,
+  })
+
+  -- [[ Highlight hex/rgb/etc. colors ]]
+  use({ 'brenoprata10/nvim-highlight-colors',
+    config = function()
+      require('nvim-highlight-colors').setup({
+        enable_tailwind = true,
+      })
+    end,
   })
 
   -- [[ Markdown wiki ]]
