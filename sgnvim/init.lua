@@ -115,8 +115,9 @@ return require('packer').startup(function(use)
   use({ 'jakewvincent/mkdnflow.nvim',
     rocks = 'luautf8',
     ft = 'markdown',
-    config = function() require('sgn.markdown') end
+    config = function() require('sgn.markdown') end,
   })
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
