@@ -17,5 +17,4 @@ npairs.add_rule(Rule(' ', ' '):with_pair(
 
 -- for markdown
 npairs.add_rule(Rule("*", "*", "markdown"))
-npairs.add_rule(Rule("_", "_", "markdown"))
 npairs.add_rule(Rule("`", "`", "markdown"))
