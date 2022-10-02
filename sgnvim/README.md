@@ -16,9 +16,14 @@ This is a list of plugins:
  - `kylechui/nvim-surround`: add surrounding delimiter pairs with ease
  - `m-demare/hlargs.nvim`: color arg definition and usage in function
  - `jbyuki/nabla.nvim`: ascii render for math
- - `Pocco81/AbbrevMan.nvim`: manage abbreviations
  - `cljoly/telescope-repo.nvim`: automatically search for repos to use as project directories (automatic, maybe better than `project.nvim`)
  - `winston0410/range-highlight.nvim`: highlight ranges entered in command mode
+ - `mfussenegger/nvim-dap`: debug adapter protocol client
+ - `sakhnik/nvim-gdb`: wrapper for GDB, LLDB, PDB/PDB++ and BashDB
+ - `rcarriga/nvim-dap-ui`: ui for `nvim-dap`
+ - `Pocco81/dap-buddy.nvim`: manager for `nvim-dap`
+ - `Weissle/persistent-breakpoints.nvim`: make breakpoints persistent by saving them in a file
+ - `ofirgall/goto-breakpoints.nvim`: cycle between breakpoints
 
 * **To configure:**
  - `folke/which-key.nvim` (not installed): make it so it appears only after pressing <space>
@@ -41,4 +46,11 @@ This is a list of plugins:
  - `AcksID/nvim-neoclip.lua`: history of selected text navigable with telescope
  - `ahmedkhalf/project.nvim`: better project managment
  - `sunjon/Shade.nvim`: shade inactive windows (does it work with tmux?)
+ - `Chaitanyabsprip/present.nvim`: make a presentation with neovim
+ - `Pocco81/AbbrevMan.nvim`: manage abbreviations vs `abbreinder.nvim`
+ - `0styx0/abbreinder.nvim`: take abbreviations vs `AbbrevMan.nvim`
+ - `stevearc/dressing.nvim`: improve `vim.ui` interfaces
+ - `declancm/cinnamon.nvim`: smooth scrolling vs `neoscroll.nvim`
+ - `karb94/neoscroll.nvim`: smooth scrolling vs `cinnamon.nvim`
+ - `LudoPinelli/comment-box.nvim`: cuter comments with boxes and lines
  - something to debug
