@@ -79,7 +79,7 @@ cmp.setup({
     ['<C-N>'] = cmp.mapping.scroll_docs(-4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-a>'] = cmp.mapping.abort(),
-    ['<CR>'] = function(fallback)
+    ['<C-CR>'] = function(fallback)
       if cmp.visible() then
         cmp.confirm()
       else

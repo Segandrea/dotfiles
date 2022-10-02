@@ -85,7 +85,7 @@ ra(){
     esac
 }
 
-# Choose from inputted values
+# Choose from inputted values: array of args
 randomchoice(){
     declare -a choices=( "$@" )
     echo "${choices[$(shuf -i 0-$(($#-1)) -n1)]}"
@@ -127,7 +127,11 @@ extract(){
 
 # List all custom functions
 showfunctions(){
-    grep -A 1 -e "^# .*" "$(realpath "${BASH_SOURCE[0]}")"
+    if [[ -z "$1" ]]; then
+        grep -A 1 -e "^# .*" "$(realpath "${BASH_SOURCE[0]}")"
+    else
+        grep -A 1 -e "^# .*" "$(realpath "${BASH_SOURCE[0]}")" | grep -B 1 -A 1 -m 1 -i "$1"
+    fi
 }
 
 # Fzf to a directory from $HOME
@@ -166,7 +170,7 @@ man() {
     command man "$@"
 }
 
-# set a timer: arg1 = "text", arg2 = time(eg. 3d 1h 32m 16.034s NB. unquoted)
+# Set a timer: arg1 = "text", arg2 = time(eg. 3d 1h 32m 16.034s NB. unquoted)
 timer() {
   local text
   [[ -z "$1" ]] && text='Alarm' || text="$1"
