@@ -2,9 +2,9 @@
 
 #TODO:
 
-This is a list of plugins:
+* ***Must add sane mappings***
 
-* **To add:**
+* **Add:**
  - `ray-x/lsp_signature.nvim`: add function signature while typing
  - `folke/trouble.nvim`: prettify diagnostics, and other things
  - `folke/twilight.nvim`: dim inactive portions of code
@@ -25,11 +25,11 @@ This is a list of plugins:
  - `Weissle/persistent-breakpoints.nvim`: make breakpoints persistent by saving them in a file
  - `ofirgall/goto-breakpoints.nvim`: cycle between breakpoints
 
-* **To configure:**
+* **Configure:**
  - `folke/which-key.nvim` (not installed): make it so it appears only after pressing <space>
  - `jakewvincent/mkdnflow.nvim`: configure shortcuts
 
-* **To look at:**
+* **Look at:**
  - `lspsaga.nvim`: it could be cool
  - `sindrets/diffview.nvim`: useful for git but do i really need it?
  - `stevearc/aerial.nvim`: useful for code navigation but do i really need it?
