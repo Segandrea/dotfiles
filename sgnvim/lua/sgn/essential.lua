@@ -21,9 +21,17 @@ vim.wo.conceallevel = 2
 -- highlight cursor line
 vim.wo.cursorline = true
 
+-- indentation and whitespaces
+vim.o.smartindent = true
+vim.o.smarttab = true
+vim.bo.softtabstop = 2
+vim.bo.expandtab = true
+vim.bo.shiftwidth = 2
+vim.bo.tabstop = 2
+
 -- show trailing spaces
 vim.o.list = true
-vim.opt.listchars = { trail = '•' }
+vim.opt.listchars = { trail = '•', tab = '  ', extends = 'ﲖ', precedes = 'ﲕ' }
 
 -- scrolloff
 vim.o.scrolloff = 5
@@ -43,13 +51,6 @@ vim.o.laststatus = 0
 -- split in the right direction
 vim.o.splitbelow = true
 vim.o.splitright = true
-
--- indentation and whitespaces
-vim.o.smartindent = true
-vim.o.smarttab = true
-vim.bo.expandtab = true
-vim.bo.shiftwidth = 2
-vim.bo.tabstop = 2
 
 -- highlight on search
 vim.o.hlsearch = true
@@ -92,6 +93,9 @@ end
 -- get out of )]}'" by pressing tab in insert, use >, = and < in normal to indent
 -- NB: searching for better alternatives
 map('i', '<Tab>', '<Esc>la', options('Use tab to skip a character'))
+-- Ctrl+j and Ctrl+k won't do anything in insert mode so it can be used
+map('i', '<C-j>', '<Nop>', options())
+map('i', '<C-k>', '<Nop>', options())
 
 -- [[ Common normal mode mappings ]]
 -- center search (and highlight search)
@@ -104,16 +108,14 @@ map('n', '<', '<<', options('Indent to left'))
 map('n', '<Esc>', ':set<space>nohlsearch<cr><esc>', options('Deactivate highlight'))
 -- TODO: learn about jumplist and remove these
 -- add mark to go (b)ack after jump (and highlight search)
-map('n', '/', ':set<space>hlsearch<cr>mb/', options('Mark starting point, highlight and center next searched word'))
-map('n', '*', ':set<space>hlsearch<cr>mb*', options('Mark starting point, highlight and center next match'))
-map('n', '?', ':set<space>hlsearch<cr>mb?', options('Mark starting point, highlight and center prev searched word'))
-map('n', '#', ':set<space>hlsearch<cr>mb#', options('Mark starting point, highlight and center prev match'))
+map('n', '/', ':set<space>hlsearch<cr>mb/', options('Mark starting point and highlight next searched word'))
+map('n', '*', ':set<space>hlsearch<cr>mb*', options('Mark starting point and highlight next match'))
+map('n', '?', ':set<space>hlsearch<cr>mb?', options('Mark starting point and highlight prev searched word'))
+map('n', '#', ':set<space>hlsearch<cr>mb#', options('Mark starting point and highlight prev match'))
+-- use to go back to the position where you were when search started
+map('n', '<leader>gb', "'b", options('[G]o back to mark [b]'))
 -- Space won't make a move so it can be used as leader
 map('n', '<Space>', '<Nop>', options())
-map('v', '<Space>', '<Nop>', options())
--- Ctrl+j and Ctrl+k won't do anything in insert mode so it can be used
-map('i', '<C-j>', '<Nop>', options())
-map('i', '<C-k>', '<Nop>', options())
 -- Remap for dealing with word wrap
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true})
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true})
@@ -130,6 +132,8 @@ map('v', 'g<C-x>', 'g<C-x>gv', options('Decrement progressively and keep selecte
 -- keep selection while indenting
 map('v', '>', '>gv', options('Indent right and keep selected'))
 map('v', '<', '<gv', options('Indent left and keep selected'))
+-- Space won't make a move so it can be used as leader
+map('v', '<Space>', '<Nop>', options())
 -- }}}
 
 -- [[ Basic autocmds ]] {{{
