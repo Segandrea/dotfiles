@@ -1,8 +1,6 @@
 -- [[ Essential settings ]]
 require('sgn.essential')
 
--- TODO: require essential functions
-
 -- [[ Bootstrap packer ]]
 local ensure_packer = function()
   local fn = vim.fn
