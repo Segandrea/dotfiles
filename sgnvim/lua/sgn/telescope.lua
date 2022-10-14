@@ -47,4 +47,4 @@ map('n', '<leader>tm', builtin.man_pages, options('[t]elescope show [m]anpages')
 map('n', '<leader>tk', builtin.keymaps, options('[t]elescope show [k]eybindings'))
 
 -- requires 'project.nvim'
-map('n', '<leader>tw', ':Telescope projects<CR>', options('[t]elescope show [w]orkspaces'))
+map('n', '<leader>wl', ':Telescope projects<CR>', options('telescope show [w]orkspace [l]ist'))

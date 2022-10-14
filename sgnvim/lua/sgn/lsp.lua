@@ -44,8 +44,6 @@ lsp.on_attach(function(client, bufnr) -- FIXME: client should be used
   -- See `:help K` for why this keymap
   map('n', 'K', vim.lsp.buf.hover, options('Hover Documentation'))
   map('n', '<C-k>', vim.lsp.buf.signature_help, options('Signature Documentation'))
-  -- TODO: display this differently (?)
-  map('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, options('[W]orkspace [L]ist Folders'))
 end)
 
 -- TODO: change keymaps!!
