@@ -33,32 +33,6 @@ require("gitsigns").setup({
   },
   numhl = false,
   linehl = false,
-  -- TODO: change keymaps, maybe bind them outside the table with vim.keymap.set
-  keymaps = {
-    -- Default keymap options
-    noremap = true,
-    buffer = true,
-
-    ["n ]c"] = {
-      expr = true,
-      "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'",
-    },
-    ["n [c"] = {
-      expr = true,
-      "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'",
-    },
-
-    ["n <leader>gS"] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-    ["n <leader>gu"] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-    ["n <leader>gr"] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-    ["n <leader>gR"] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-    ["n <leader>gh"] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-    ["n <leader>gb"] = '<cmd>lua require"gitsigns".blame_line()<CR>',
-
-    -- Text objects
-    ["o ih"] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
-    ["x ih"] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
-  },
   watch_gitdir = { interval = 1000, follow_files = true },
   current_line_blame_opts = {
     delay = 1000,
@@ -71,3 +45,25 @@ require("gitsigns").setup({
     internal = true, -- If luajit is present
   },
 })
+
+-- [[ Mappings ]]
+local map = vim.keymap.set
+local options = function(description)
+  return { noremap = true, buffer = true, expr = true, silent = true, desc = description }
+end
+
+-- go to next git diff in file
+map('n', '<leader>dn', function()
+  if vim.wo.diff then return '<leader>dn' end
+  vim.schedule(function() require('gitsigns').next_hunk() end)
+  return '<Ignore>'
+end, options('Go to [d]iff [n]ext'))
+-- go to previous git diff in file
+map('n', '<leader>dp', function()
+  if vim.wo.diff then return '<leader>dp' end
+  vim.schedule(function() require('gitsigns').prev_hunk() end)
+  return '<Ignore>'
+end, options('Go to [d]iff [p]revious'))
+
+-- [[ Text object: hunk ]] NB. used with visual selection. Select in current diff
+map({'o', 'x'}, 'ih', require('gitsigns').select_hunk)

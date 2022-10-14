@@ -1,4 +1,8 @@
 -- [[ Configure Telescope ]]
+
+local builtin = require('telescope.builtin')
+local actions = require('telescope.actions')
+
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
@@ -6,6 +10,16 @@ require('telescope').setup {
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+        ['<C-p>'] = false,
+        ['<C-n>'] = false,
+        ['<C-j>'] = {
+          actions.move_selection_next, type = 'action',
+          opts = { nowait = true, silent = true },
+        },
+        ['<C-k>'] = {
+          actions.move_selection_previous, type = 'action',
+          opts = { nowait = true, silent = true },
+        },
       },
     },
   },
@@ -15,26 +29,17 @@ require('telescope').setup {
 pcall(require('telescope').load_extension, 'fzf')
 
 local map = vim.keymap.set
-local builtin = require('telescope.builtin')
 local options = function(description)
   return { noremap = true, silent = true, desc = description }
 end
--- See `:help telescope.builtin`
-map('n', '<leader>?', builtin.oldfiles, options('[?] Find recently opened files'))
-map('n', '<leader><space>', builtin.buffers, options('[ ] Find existing buffers'))
-map('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  builtin
-    .current_buffer_fuzzy_find(
-      require('telescope.themes').get_dropdown({
-        winblend = 10,
-        previewer = false,
-      })
-    )
-end, options('[/] Fuzzily search in current buffer]'))
 
-map('n', '<leader>sf', builtin.find_files, options('[S]earch [F]iles'))
-map('n', '<leader>sh', builtin.help_tags, options('[S]earch [H]elp'))
-map('n', '<leader>sw', builtin.grep_string, options('[S]earch current [W]ord'))
-map('n', '<leader>sg', builtin.live_grep, options('[S]earch by [G]rep'))
-map('n', '<leader>sd', builtin.diagnostics, options('[S]earch [D]iagnostics'))
+-- See `:help telescope.builtin`
+map('n', '<leader>to', builtin.oldfiles, options('[t]elescope show [o]ld files'))
+map('n', '<leader>tb', builtin.buffers, options('[t]elescope show open [b]uffers'))
+map('n', '<leader>tr', builtin.lsp_references, options('[t]elescope show [r]eferences'))
+map('n', '<leader>ts', builtin.lsp_document_symbols, options('[t]elescope show document [s]ymbols'))
+map('n', '<leader>tf', builtin.find_files, options('[t]elescope find [f]iles'))
+map('n', '<leader>th', builtin.help_tags, options('[t]elescope search vim [h]elp'))
+map('n', '<leader>tg', builtin.live_grep, options('[t]elescope [g]rep files'))
+map('n', '<leader>td', builtin.diagnostics, options('[t]elescope show [d]iagnostics'))
+map('n', '<leader>tm', builtin.man_pages, options('[t]elescope show [m]anpages'))

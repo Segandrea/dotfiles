@@ -1,6 +1,8 @@
 -- [[ Essential settings ]]
 require('sgn.essential')
 
+-- TODO: require essential functions
+
 -- [[ Bootstrap packer ]]
 local ensure_packer = function()
   local fn = vim.fn
@@ -60,9 +62,6 @@ return require('packer').startup(function(use)
     },
     config = function() require('sgn.telescope') end,
   })
-
-  -- [[ Autodetect indentation ]]
-  use({ 'tpope/vim-sleuth' }) -- Detect tabstop and shiftwidth automatically
 
   -- [[ Colorschemes ]]
   use({ 'dracula/vim',

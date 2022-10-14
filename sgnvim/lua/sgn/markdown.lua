@@ -1,4 +1,5 @@
 require("mkdnflow").setup({
+  perspective = { priority = 'current' },
   mappings = {
     MkdnNextLink = {'n', '<leader>nl'},
     MkdnPrevLink = {'n', '<leader>pl'},
@@ -7,5 +8,4 @@ require("mkdnflow").setup({
   },
 })
 
--- FIXME: the remap of tab in essential.lua is not working on markdown
--- probably is overwritten by some shortcuts of mkdnflow
+vim.api.nvim_create_autocmd('FileType', { pattern = 'markdown', command = 'set awa' })

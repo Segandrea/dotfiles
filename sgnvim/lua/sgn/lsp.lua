@@ -29,25 +29,21 @@ lsp.on_attach(function(client, bufnr) -- FIXME: client should be used
   end
 
   -- Diagnostic keymaps
-  map('n', '<leader>pd', vim.diagnostic.goto_prev,  options('Go to [p]rev [d]iagnostics'))
-  map('n', '<leader>nd', vim.diagnostic.goto_next,  options('Go to [n]ext [d]iagnostics'))
-  map('n', '<leader>fd', vim.diagnostic.open_float, options('Show [f]loating window with [d]iagnostics'))
+  map('n', '<leader>gnd', vim.diagnostic.goto_next, options('[g]o to [n]ext [d]iagnostics'))
+  map('n', '<leader>gpd', vim.diagnostic.goto_prev, options('[g]o to [p]rev [d]iagnostics'))
+  map('n', '<leader>ld', vim.diagnostic.open_float, options('[l]sp show with [d]iagnostics'))
   -- lsp keymaps
-  map('n', '<leader>rn', vim.lsp.buf.rename, options('[R]e[n]ame'))
-  map('n', '<leader>ca', vim.lsp.buf.code_action, options('[C]ode [A]ction'))
-  map('n', 'gd', vim.lsp.buf.definition, options('[G]oto [D]efinition'))
-  map('n', 'gi', vim.lsp.buf.implementation, options('[G]oto [I]mplementation'))
-  map('n', 'gD', vim.lsp.buf.declaration, options('[G]oto [D]eclaration'))
-  map('n', '<leader>D', vim.lsp.buf.type_definition, options('Type [D]efinition'))
-  map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, options('[W]orkspace [A]dd Folder'))
-  map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, options('[W]orkspace [R]emove Folder'))
+  map('n', '<leader>lr', vim.lsp.buf.rename, options('[l]sp [r]ename'))
+  map('n', '<leader>la', vim.lsp.buf.code_action, options('[l]sp [a]ction'))
+  map('n', '<leader>gd', vim.lsp.buf.definition, options('[g]o to [d]efinition'))
+  map('n', '<leader>gi', vim.lsp.buf.implementation, options('[g]o to [i]mplementation'))
+  map('n', '<leader>gD', vim.lsp.buf.declaration, options('[g]o to [D]eclaration'))
+  map('n', '<leader>gt', vim.lsp.buf.type_definition, options('[g]o to [t]ype definition'))
+  map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, options('[w]orkspace [a]dd Folder'))
+  map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, options('[w]orkspace [r]emove Folder'))
   -- See `:help K` for why this keymap
   map('n', 'K', vim.lsp.buf.hover, options('Hover Documentation'))
   map('n', '<C-k>', vim.lsp.buf.signature_help, options('Signature Documentation'))
-  -- keymaps using telescope
-  map('n', 'gr', require('telescope.builtin').lsp_references, options('[G]et lsp [R]eferences'))
-  map('n', '<leader>ds', require('telescope.builtin').lsp_document_symbols, options('[D]ocument [S]ymbols'))
-  map('n', '<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, options('[W]orkspace [S]ymbols'))
   -- TODO: display this differently (?)
   map('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, options('[W]orkspace [L]ist Folders'))
 end)
@@ -77,9 +73,8 @@ cmp.setup({
   mapping = {
     ['<C-n>'] = cmp.mapping.scroll_docs(4),
     ['<C-N>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-a>'] = cmp.mapping.abort(),
-    ['<C-CR>'] = function(fallback)
+    ['<C-Space>'] = function(fallback)
       if cmp.visible() then
         cmp.confirm()
       else

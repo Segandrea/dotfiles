@@ -12,14 +12,6 @@ require('nvim-treesitter.configs').setup {
   indent = { enable = true },
   incremental_selection = {
     enable = true,
-    keymaps = {
-      -- TODO: change shortcuts
-      init_selection = '<c-space>',
-      node_incremental = '<c-space>',
-      -- TODO: I'm not sure for this one.
-      scope_incremental = '<c-s>',
-      node_decremental = '<c-backspace>',
-    },
   },
   -- [[ nvim-ts-rainbow ]]
   rainbow = {
@@ -40,27 +32,7 @@ require('nvim-treesitter.configs').setup {
         ['ic'] = '@class.inner',
       },
     },
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      -- TODO: change shortcuts
-      goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
-      },
-      goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
-      },
-      goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
-      },
-      goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
-      },
-    },
+    -- TODO: change these keymaps
     swap = {
       enable = true,
       swap_next = {
@@ -75,4 +47,3 @@ require('nvim-treesitter.configs').setup {
     enable = true,
   },
 }
-
