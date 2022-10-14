@@ -117,7 +117,12 @@ return require('packer').startup(function(use)
 
   -- [[ Which-key ]]
   use({ 'folke/which-key.nvim',
-    config = function() require('sgn.whichkey') end
+    config = function() require('sgn.whichkey') end,
+  })
+
+  -- [[ Project management ]]
+  use({ 'ahmedkhalf/project.nvim',
+    config = function() require('project_nvim').setup() end,
   })
 
   -- Automatically set up your configuration after cloning packer.nvim

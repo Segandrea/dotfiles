@@ -27,6 +27,7 @@ require('telescope').setup {
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+pcall(require('telescope').load_extension, 'projects')
 
 local map = vim.keymap.set
 local options = function(description)
@@ -44,3 +45,6 @@ map('n', '<leader>tg', builtin.live_grep, options('[t]elescope [g]rep files'))
 map('n', '<leader>td', builtin.diagnostics, options('[t]elescope show [d]iagnostics'))
 map('n', '<leader>tm', builtin.man_pages, options('[t]elescope show [m]anpages'))
 map('n', '<leader>tk', builtin.keymaps, options('[t]elescope show [k]eybindings'))
+
+-- requires 'project.nvim'
+map('n', '<leader>tw', ':Telescope projects<CR>', options('[t]elescope show [w]orkspaces'))
