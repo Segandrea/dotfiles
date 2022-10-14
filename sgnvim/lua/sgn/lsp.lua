@@ -34,7 +34,7 @@ lsp.on_attach(function(client, bufnr) -- FIXME: client should be used
   map('n', '<leader>ld', vim.diagnostic.open_float, options('[l]sp show with [d]iagnostics'))
   -- lsp keymaps
   map('n', '<leader>lr', vim.lsp.buf.rename, options('[l]sp [r]ename'))
-  map('n', '<leader>la', vim.lsp.buf.code_action, options('[l]sp [a]ction'))
+  map('n', '<leader>lc', vim.lsp.buf.code_action, options('[l]sp [c]ode action'))
   map('n', '<leader>gd', vim.lsp.buf.definition, options('[g]o to [d]efinition'))
   map('n', '<leader>gi', vim.lsp.buf.implementation, options('[g]o to [i]mplementation'))
   map('n', '<leader>gD', vim.lsp.buf.declaration, options('[g]o to [D]eclaration'))
