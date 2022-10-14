@@ -1,4 +1,6 @@
-require('which-key').setup({
+local whichkey = require('which-key')
+
+whichkey.setup({
   plugins = {
     registers = false,
   },
@@ -12,4 +14,17 @@ require('which-key').setup({
   },
 })
 
--- TODO: make a directory for plugin keybindings and move them all there
+local presets = require("which-key.plugins.presets")
+presets.operators["v"] = nil
+presets.operators["d"] = nil
+presets.operators["y"] = nil
+presets.operators["c"] = nil
+
+-- Adding names for partial keybindings
+whichkey.register({
+  ['<leader>d'] = { name = '+diff' },
+  ['<leader>g'] = { name = '+goto' },
+  ['<leader>l'] = { name = '+lsp' },
+  ['<leader>t'] = { name = '+telescope' },
+  ['<leader>w'] = { name = '+workspaces' },
+})

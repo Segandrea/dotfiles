@@ -43,3 +43,4 @@ map('n', '<leader>th', builtin.help_tags, options('[t]elescope search vim [h]elp
 map('n', '<leader>tg', builtin.live_grep, options('[t]elescope [g]rep files'))
 map('n', '<leader>td', builtin.diagnostics, options('[t]elescope show [d]iagnostics'))
 map('n', '<leader>tm', builtin.man_pages, options('[t]elescope show [m]anpages'))
+map('n', '<leader>tk', builtin.keymaps, options('[t]elescope show [k]eybindings'))
