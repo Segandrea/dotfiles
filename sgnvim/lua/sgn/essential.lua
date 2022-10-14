@@ -81,6 +81,9 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- use gui colors instead of cterm
 vim.o.termguicolors = true
+
+-- decrease time before whichkey appearance
+vim.o.timeoutlen = 0
 -- }}}
 
 -- [[ Map shortcut ]] {{{
