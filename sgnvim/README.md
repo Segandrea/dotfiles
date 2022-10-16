@@ -5,8 +5,6 @@
 * ***Must add sane mappings***
 
 * **Add:**
- - `ray-x/lsp_signature.nvim`: add function signature while typing
- - `folke/trouble.nvim`: prettify diagnostics, and other things
  - `JoosepAlviste/nvim-ts-context-commentstring`: set the commentstring based on cursor location in file (useful with *Comment.nvim*)
  - `numToStr/Comment.nvim`: comment with treesitter support (look *nvim-ts-context-commentstring*)
  - `kylechui/nvim-surround`: add surrounding delimiter pairs with ease
@@ -21,6 +19,7 @@
  - `jakewvincent/mkdnflow.nvim`: configure shortcuts
 
 * **Look at:**
+ - `folke/trouble.nvim`: prettify diagnostics, and other things
  - `lspsaga.nvim`: it could be cool
  - `sindrets/diffview.nvim`: useful for git but do i really need it?
  - `stevearc/aerial.nvim`: useful for code navigation but do i really need it?

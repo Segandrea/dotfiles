@@ -119,14 +119,15 @@ return require('packer').startup(function(use)
   })
 
   -- [[ Markdown wiki ]]
-  use({ 'jakewvincent/mkdnflow.nvim',
-    requires = {
-      { 'jbyuki/carrot.nvim' },
-      { 'jbyuki/nabla.nvim' },
-    },
-    rocks = 'luautf8',
-    ft = 'markdown',
-    config = function() require('sgn.markdown') end,
+  use({
+    {
+      'jakewvincent/mkdnflow.nvim',
+      rocks = 'luautf8',
+      ft = 'markdown',
+      config = function() require('sgn.markdown') end,
+    }, -- markdown support
+    { 'jbyuki/carrot.nvim', ft = 'markdown' }, -- evaluate code in md files
+    { 'jbyuki/nabla.nvim', ft = 'markdown' }, -- render latex in md files
   })
 
   -- [[ Which-key ]]
