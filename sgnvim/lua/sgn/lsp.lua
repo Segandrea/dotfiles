@@ -22,7 +22,7 @@ lsp.nvim_workspace()
 -- [[ Mappings ]]
 -- TODO: change keymaps!!
 -- lsp mappings
-lsp.on_attach(function(client, bufnr) -- FIXME: client should be used
+lsp.on_attach(function(_, bufnr) -- first argument is "client", I don't need it
   local map = vim.keymap.set
   local options = function(description)
     return { buffer = bufnr, noremap = true, desc = description }
@@ -45,60 +45,6 @@ lsp.on_attach(function(client, bufnr) -- FIXME: client should be used
   map('n', 'K', vim.lsp.buf.hover, options('Hover Documentation'))
   map('n', '<C-k>', vim.lsp.buf.signature_help, options('Signature Documentation'))
 end)
-
--- TODO: change keymaps!!
--- cmp mappings
-local cmp = require('cmp')
-local luasnip = require('luasnip')
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  -- sources can be setted for filetypes think about markdown
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
-    { name = 'path' },
-    { name = 'nvim_lua' },
-  },
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  },
-  mapping = {
-    ['<C-n>'] = cmp.mapping.scroll_docs(4),
-    ['<C-N>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-a>'] = cmp.mapping.abort(),
-    ['<C-Space>'] = function(fallback)
-      if cmp.visible() then
-        cmp.confirm()
-      else
-        fallback()
-      end
-    end,
-    ['<C-j>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<C-k>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  },
-})
 
 -- needs to be the last command
 lsp.setup()
