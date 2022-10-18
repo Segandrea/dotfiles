@@ -127,7 +127,7 @@ return require('packer').startup(function(use)
       config = function() require('sgn.markdown') end,
     }, -- markdown support
     { 'jbyuki/carrot.nvim', ft = 'markdown' }, -- evaluate code in md files
-    { 'jbyuki/nabla.nvim', ft = 'markdown' }, -- render latex in md files
+    -- TODO: add mdeval.nvim
   })
 
   -- [[ Which-key ]]
@@ -155,6 +155,11 @@ return require('packer').startup(function(use)
   -- [[ Lsp lines ]]
   use({ 'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     config = function() require('lsp_lines').setup() end,
+  })
+
+  -- [[ Todo and fixme highlighter ]]
+  use({ 'folke/todo-comments.nvim',
+    config = function() require('todo-comments').setup() end,
   })
 
   -- Automatically set up your configuration after cloning packer.nvim

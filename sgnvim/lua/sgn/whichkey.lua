@@ -25,14 +25,8 @@ whichkey.register({
   ['<leader>d'] = { name = '+diff' },
   ['<leader>g'] = { name = '+goto' },
   ['<leader>l'] = { name = '+lsp' },
+  ['<leader>m'] = { name = '+markdown' },
   ['<leader>t'] = { name = '+telescope' },
   ['<leader>w'] = { name = '+workspaces' },
   ['<leader>z'] = { name = '+zen' },
 })
-
--- markdown specific keybindings
-if vim.bo.filetype == 'markdown' then
-  whichkey.register({
-    ['<leader>m'] = { name = '+markdown' },
-  })
-end
