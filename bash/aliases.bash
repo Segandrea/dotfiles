@@ -22,7 +22,7 @@ alias gittree='git log --all --graph --decorate --oneline'
 # use vimdiff to see differences in files
 alias gd='git difftool'
 # git status
-alias gs='git status'
+alias status='git status'
 
 # (e)dit file with nvim
 alias e='$EDITOR'
