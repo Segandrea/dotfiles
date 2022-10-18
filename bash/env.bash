@@ -12,22 +12,19 @@ shopt -s checkwinsize
 # append to history
 shopt -s histappend
 # don't put duplicate lines or lines starting with space in history
-export HISTCONTROL=ignoreboth
+export HISTCONTROL="ignoreboth"
 # use .bash_history as file for storing history
 export HISTFILE="$HOME/.bash_history"
 # use less as pager
-export PAGER=less
+export PAGER="less"
 # use vim as default editor
-export EDITOR=nvim
+export EDITOR="nvim"
 # use chrome as default browser
-export BROWSER=google-chrome
+export BROWSER="google-chrome"
 # nvm
 export NVM_DIR="$HOME/.nvm"
 # limits recursive functions, see 'man bash'
 [[ -z "$FUNCNEST" ]] && export FUNCNEST=100
-
-# add doom-emacs binaries to path
-export PATH="$PATH:$HOME/.config/emacs/bin"
 
 # my most used directories
 export DOCUMENTS_DIR="$HOME/Documents"
@@ -37,3 +34,4 @@ export PICTURES_DIR="$HOME/Pictures"
 export VIDEOS_DIR="$HOME/Videos"
 export WORKSPACES_DIR="$HOME/Workspaces"
 export DOTFILES_DIR="$WORKSPACES_DIR/dotfiles"
+export IGNORAMUS_DIR="$WORKSPACES_DIR/ignoramus"

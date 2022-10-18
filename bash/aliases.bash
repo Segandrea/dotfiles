@@ -21,23 +21,21 @@ alias psgrep='ps aux | grep'
 alias gittree='git log --all --graph --decorate --oneline'
 # use vimdiff to see differences in files
 alias gd='git difftool'
+# git status
+alias gs='git status'
 
 # (e)dit file with nvim
 alias e='$EDITOR'
-# shortcut to call helix
-alias hx='helix'
 
 # source .bashrc
 alias sourcebash='[[ -f "$HOME/.bashrc" ]] && source "$HOME/.bashrc"'
-
-# activate venv (require venv to be called "venv")
-alias activate='[[ -f "venv/bin/activate" ]] && source "venv/bin/activate"'
 
 # exit but with style
 alias :q='exit'
 alias :wq='exit'
 
 # calm and gentle, don't be angry
+alias buonanotte='poweroff'
 alias please='sudo $(history -p !!)'
 alias cd..='cd ..'
 alias cd...='cd ../..'
@@ -88,3 +86,6 @@ alias btds='bluetoothctl disconnect $(bluetoothctl paired-devices | grep -i "WF-
 # dump and load gnome settings
 alias dconfdump='dconf dump / > dumped_settings.ini'
 alias dconfload='dconf load / < dumped_settings.ini'
+
+# open ignoramus
+alias nora='[[ -d "$IGNORAMUS_DIR" ]] && "$EDITOR" "$IGNORAMUS_DIR/index.md"'
