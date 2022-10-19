@@ -2,7 +2,6 @@
 
 ## Add
 
-* `jubnzv/mdeval.nvim`: use this instead of _Carrot.nvim_
 * `JoosepAlviste/nvim-ts-context-commentstring`: set the commentstring based
  on cursor location in file (useful with _Comment.nvim_)
 * `numToStr/Comment.nvim`: comment with treesitter support (look _nvim-ts-context-commentstring_)
@@ -17,12 +16,9 @@
 
 ## Configure
 
-* `jakewvincent/mkdnflow.nvim`: configure shortcuts
-* `folke/todo-comments.nvim`: configure symbols and colors
-
 ## Look at
 
-* `frabjous/knap`: maybe it's better this + zathura instead of _nabla.nvim_
+* `abecodes/tabout.nvim`: use tab to exit from parenthesis and quotes
 * `folke/trouble.nvim`: prettify diagnostics, and other things
 * `lspsaga.nvim`: it could be cool
 * `sindrets/diffview.nvim`: useful for git but do i really need it?

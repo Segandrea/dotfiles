@@ -126,8 +126,12 @@ return require('packer').startup(function(use)
       ft = 'markdown',
       config = function() require('sgn.markdown') end,
     }, -- markdown support
-    { 'jbyuki/carrot.nvim', ft = 'markdown' }, -- evaluate code in md files
-    -- TODO: add mdeval.nvim
+    { 'jubnzv/mdeval.nvim', ft = 'markdown', }, -- evaluate code in md files
+    {
+      'iamcco/markdown-preview.nvim',
+      run = function() vim.fn["mkdp#util#install"]() end,
+      ft = 'markdown',
+    }, -- live render md in pdf reader
   })
 
   -- [[ Which-key ]]
@@ -159,7 +163,14 @@ return require('packer').startup(function(use)
 
   -- [[ Todo and fixme highlighter ]]
   use({ 'folke/todo-comments.nvim',
-    config = function() require('todo-comments').setup() end,
+    config = function() require('sgn.todo') end,
+  })
+
+  -- [[ Lsp loading progress ]]
+  use({ 'j-hui/fidget.nvim',
+    config = function()
+      require('fidget').setup({ text = { spinner = 'arc' }, })
+    end,
   })
 
   -- Automatically set up your configuration after cloning packer.nvim

@@ -16,9 +16,11 @@ whichkey.setup({
 
 local presets = require("which-key.plugins.presets")
 presets.operators["v"] = nil
+presets.operators["V"] = nil
 presets.operators["d"] = nil
 presets.operators["y"] = nil
 presets.operators["c"] = nil
+presets.operators["g"] = nil
 
 -- Adding names for partial keybindings
 whichkey.register({
