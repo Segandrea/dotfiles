@@ -2,25 +2,31 @@ local whichkey = require('which-key')
 
 whichkey.setup({
   plugins = {
+    marks = false,
     registers = false,
-  },
-  presets = {
-    operators = false,
-    motions = false,
-    text_objects = false,
+    presets = {
+      operators = false,
+      motions = false,
+      text_objects = false,
+      windows = false,
+      nav = false,
+      z = false,
+      g = false,
+    },
   },
   window = {
-    border = 'shadow',
+    border = 'double',
+    margin = { 0, 0, 0, 0 },
+    padding = { 1, 1, 1, 1 },
+  },
+  layout = {
+    align = 'center',
+  },
+  triggers_blacklist = {
+    n = { 'g' },
+    v = { 'i', 'a' },
   },
 })
-
-local presets = require("which-key.plugins.presets")
-presets.operators["v"] = nil
-presets.operators["V"] = nil
-presets.operators["d"] = nil
-presets.operators["y"] = nil
-presets.operators["c"] = nil
-presets.operators["g"] = nil
 
 -- Adding names for partial keybindings
 whichkey.register({

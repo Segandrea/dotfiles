@@ -84,6 +84,9 @@ vim.o.termguicolors = true
 
 -- decrease time before whichkey appearance
 vim.o.timeoutlen = 0
+
+-- hide the partial command in the line for commands
+vim.o.showcmd = false
 -- }}}
 
 -- [[ Map shortcut ]] {{{
