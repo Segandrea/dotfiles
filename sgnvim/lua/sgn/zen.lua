@@ -1,6 +1,8 @@
 require('twilight').setup()
 require('zen-mode').setup({
   window = {
+    backdrop = 1,
+    width = .85,
     options = {
       signcolumn = 'no',
       number = false,
