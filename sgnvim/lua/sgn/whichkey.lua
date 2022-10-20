@@ -31,4 +31,5 @@ whichkey.register({
   ['<leader>t'] = { name = '+telescope' },
   ['<leader>w'] = { name = '+workspaces' },
   ['<leader>z'] = { name = '+zen' },
+  ['<leader>?'] = { name = '+trouble?' },
 })

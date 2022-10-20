@@ -156,9 +156,10 @@ return require('packer').startup(function(use)
     config = function() require('hlargs') end,
   })
 
-  -- [[ Lsp lines ]]
-  use({ 'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-    config = function() require('lsp_lines').setup() end,
+  -- [[ Show nicer diagnostics ]]
+  use({ 'folke/trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function() require('sgn.trouble') end,
   })
 
   -- [[ Todo and fixme highlighter ]]

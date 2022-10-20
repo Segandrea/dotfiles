@@ -8,7 +8,7 @@ lsp.set_preferences({
   set_lsp_keymaps = false, -- modified
   manage_nvim_cmp = false, -- modified
   sign_icons = {
-    -- requires nerd fonts
+    -- requires nerd fonts, matches trouble.nvim
     error = '',
     warn = '',
     hint = '',
