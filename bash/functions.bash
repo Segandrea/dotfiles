@@ -193,11 +193,11 @@ bt() {
   local device_name
   local device_addr
   case "${opt}" in
-    [oO][fF][fF])
+    [pP][oO][wW][eE][rR][oO][fF][fF]|[oO][fF][fF])
       # Switch off
       bluetoothctl power off
     ;;
-    [dD][iI][sS][cC][oO][nN][nN][eE][cC][tT])
+    [dD][iI][sS][cC][oO][nN][nN][eE][cC][tT]|[dD][iI][sS][cC]|[dD])
       # Disconnect
       device="$(bluetoothctl devices Connected | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth=2 --prompt='Disconnect from: ' --pointer='➜')"
       if [[ -z "${device}" ]]; then
@@ -213,7 +213,8 @@ bt() {
       echo "Disconnecting ${device_name}"
       bluetoothctl disconnect "${device_addr}" > /dev/null && echo "Successfully disconnected" || echo "Disconnection failed"
     ;;
-    [rR][eE][mM][oO][vV][eE])
+    [rR][eE][mM][oO][vV][eE]|[rR][mM])
+      # Remove
       device="$(bluetoothctl devices Paired | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth=2 --prompt='Remove: ' --pointer='➜')"
       if [[ -z "${device}" ]]; then
         echo "Error: A device needs to be selected."
@@ -226,6 +227,22 @@ bt() {
         return
       fi
       bluetoothctl remove "${device_addr}" > /dev/null && echo "${device_name} correctly removed" || echo "Remotion failed"
+    ;;
+    [hH][eE][lL][pP]|[hH])
+      echo 'Usage: bt [OPTION]'
+      echo 'Wrapper for bluetoothctl'
+      echo 'Connect, pair, disconnect, remove devices and eventually poweroff bluetooth'
+      echo ''
+      echo 'Arguments are case insensitive'
+      echo ''
+      echo '  bt                   Invalid args or no args to connect'
+      echo '  bt disconnect        Disconnect a connected device'
+      echo '     disc'
+      echo '     d'
+      echo '  bt poweroff          Poweroff bluetooth'
+      echo '     off'
+      echo '  bt remove            Remove a paired device'
+      echo '     rm'
     ;;
     *)
       # Connect
