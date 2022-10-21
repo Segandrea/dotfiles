@@ -28,7 +28,7 @@ alias status='git status'
 alias e='$EDITOR'
 
 # source .bashrc
-alias sourcebash='[[ -f "$HOME/.bashrc" ]] && source "$HOME/.bashrc"'
+alias sbash='[[ -f "$HOME/.bashrc" ]] && source "$HOME/.bashrc"'
 
 # exit but with style
 alias :q='exit'
@@ -53,7 +53,7 @@ alias nmlist='nmcli -f "in-use,bssid,ssid,chan,rate,signal,security" device wifi
 alias nmconn='nmcli device wifi connect "$(nmcli d w rescan && nmcli -g "ssid" device wifi list | fzf --no-info --border=rounded --prompt="Connect to: " --pointer="➜")"'
 
 # fix for letting my drawing tablet go on second screen
-#TODO: write a wayland version
+# TODO: write a wayland version
 alias huion2screen='xinput map-to-output 22 HDMI-2'
 
 # clipboard shortcuts
@@ -78,10 +78,6 @@ spicetify restore backup apply'
 
 # upgrade from pacman, aur, flatpak and other packages
 alias upgradeall='yay -Syu && flatpak update && rustup update'
-
-# connect and disconnect sony wf-c500
-alias btcs='bluetoothctl power on && bluetoothctl connect $(bluetoothctl devices | grep -i "WF-C500" | sed "s/^Device \(.*\) WF-C500$/\1/")'
-alias btds='bluetoothctl disconnect $(bluetoothctl paired-devices | grep -i "WF-C500" | sed "s/^Device \(.*\) WF-C500$/\1/")'
 
 # dump and load gnome settings
 alias dconfdump='dconf dump / > dumped_settings.ini'

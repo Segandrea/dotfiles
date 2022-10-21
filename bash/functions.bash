@@ -138,7 +138,7 @@ showfunctions(){
 goto() {
     local target
     target="$(cd && { fd --type directory --strip-cwd-prefix --ignore-file "$DOTFILES_DIR/bash/utils/.fd_ignoredDirs" | sort | fzf --exact --no-info --reverse --border=rounded --preview='tree -CL 2 {}' --delimiter='/' --pointer='➜' --prompt='Go to: '; })" #
-    if [[ ! -z "${target}" ]]; then
+    if [[ -n "${target}" ]]; then
         cd -- "$HOME/${target}" || return
     fi
 }
@@ -179,4 +179,74 @@ timer() {
 
   # $time is unquoted so that it can expand as parameters
   (sleep ${time} && notify-send "${text}" &)
+}
+
+# Connect bluetooth: arg1 = "off|disconnect|remove" (optional)
+bt() {
+  local opt
+  opt="$1"
+  local device
+  local device_name
+  local device_addr
+  case "${opt}" in
+    [oO][fF][fF])
+      # Switch off
+      bluetoothctl power off
+    ;;
+    [dD][iI][sS][cC][oO][nN][nN][eE][cC][tT])
+      # Disconnect
+      device="$(bluetoothctl devices Connected | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth=2 --prompt='Disconnect from: ' --pointer='➜')"
+      if [[ -z "${device}" ]]; then
+        echo "Error: A device needs to be selected."
+        return
+      fi
+      device_name="${device/+([![:space:]])@([[:space:]])/}"
+      device_addr="${device//+([[:space:]])*([![:space:]])/}"
+      if [[ -z "${device_addr}" ]]; then
+        echo "Error retrieving device address."
+        return
+      fi
+      echo "Disconnecting ${device_name}"
+      bluetoothctl disconnect "${device_addr}" > /dev/null && echo "Successfully disconnected" || echo "Disconnection failed"
+    ;;
+    [rR][eE][mM][oO][vV][eE])
+      device="$(bluetoothctl devices Paired | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth=2 --prompt='Remove: ' --pointer='➜')"
+      if [[ -z "${device}" ]]; then
+        echo "Error: A device needs to be selected."
+        return
+      fi
+      device_name="${device/+([![:space:]])@([[:space:]])/}"
+      device_addr="${device//+([[:space:]])*([![:space:]])/}"
+      if [[ -z "${device_addr}" ]]; then
+        echo "Error retrieving device address."
+        return
+      fi
+      bluetoothctl remove "${device_addr}" > /dev/null && echo "${device_name} correctly removed" || echo "Remotion failed"
+    ;;
+    *)
+      # Connect
+      bluetoothctl power on
+      echo "Scanning..."
+      bluetoothctl --timeout 5 scan on > /dev/null
+      device="$(bluetoothctl devices | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth=2 --prompt='Connect to: ' --pointer='➜')"
+      if [[ -z "${device}" ]]; then
+        echo "Error: A device needs to be selected."
+        return
+      fi
+      device_name="${device/+([![:space:]])@([[:space:]])/}"
+      device_addr="${device//+([[:space:]])*([![:space:]])/}"
+      if [[ -z "${device_addr}" ]]; then
+        echo "Error retrieving device address."
+        return
+      fi
+      bluetoothctl agent NoInputNoOutput
+      if ! bluetoothctl devices Paired | grep -q "${device}"; then
+        echo "Pairing with ${device_name}..."
+        bluetoothctl pair "${device_addr}" > /dev/null && echo "Device ${device_name} paired" || echo "Pairing failed"
+        bluetoothctl trust "${device_addr}" > /dev/null && echo "Device ${device_name} trusted" || echo "Device ${device_name} can't be trusted"
+      fi
+      echo "Connecting to ${device_name}..."
+      bluetoothctl connect "${device_addr}" > /dev/null && echo "Successfully connected" || echo "Connection failed"
+    ;;
+  esac
 }
