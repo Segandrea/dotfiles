@@ -34,8 +34,6 @@ local map = vim.keymap.set
 local options = function(description)
   return { noremap = true, silent = true, desc = description }
 end
- 
-map('n', '<leader>?w', ':TroubleToggle workspace_diagnostics<CR>', options('problems[?] [w]here?'))
-map('n', '<leader>??', ':TroubleToggle document_diagnostics<CR>', options('problems[??]'))
-map('n', '<leader>?n', function() trouble.next({skip_groups = true, jump = true}) end, options('problems[?] [n]ext'))
-map('n', '<leader>?n', function() trouble.previous({skip_groups = true, jump = true}) end, options('problems[?] [p]revious'))
+
+map('n', '<leader>w?', ':TroubleToggle workspace_diagnostics<CR>', options('problems[?] [w]here?'))
+map('n', '<leader>?', ':TroubleToggle document_diagnostics<CR>', options('problems[??]'))
