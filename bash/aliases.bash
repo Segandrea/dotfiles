@@ -1,3 +1,6 @@
+# The following directive deactivates shellcheck's warning for missing shebang
+# shellcheck disable=SC2148
+
 # Add color to ls with (F)iletype indicators (eg. / for directories, @ for links, = for sockets) and following a natural sorting order (v)
 alias ls='ls -vF --color=auto'
 # (l)ist informations on (A)ll files but . and .. in a (h)uman readable way
@@ -21,8 +24,6 @@ alias psgrep='ps aux | grep'
 alias gittree='git log --all --graph --decorate --oneline'
 # use vimdiff to see differences in files
 alias gd='git difftool'
-# git status
-alias status='git status'
 
 # (e)dit file with nvim
 alias e='$EDITOR'

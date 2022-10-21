@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+# The following directive deactivates shellcheck's warning for missing shebang
+# shellcheck disable=SC2148
 
 ##
 # environment configuration

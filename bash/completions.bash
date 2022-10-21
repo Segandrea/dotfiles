@@ -1,4 +1,8 @@
-#!/usr/bin/env bash
+# The following directive deactivates shellcheck's warning for missing shebang
+# shellcheck disable=SC2148
+#
+# The following deactivates the warning for not following a sourced file
+# shellcheck disable=SC1091
 
 # Path of the completion directory
 completion_path="$(dirname "$(realpath "${BASH_SOURCE[0]}")")/completions"
@@ -11,7 +15,7 @@ completion_path="$(dirname "$(realpath "${BASH_SOURCE[0]}")")/completions"
 ##
 # Environmental paths
 # This loads nvm bash_completion
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
 
 ##
 # Configuration path

@@ -1,3 +1,9 @@
+# The following directive deactivates shellcheck's warning for missing shebang
+# shellcheck disable=SC2148
+#
+# The following deactivates the warning for not following a sourced file
+# shellcheck disable=SC1091
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 [[ "$(whoami)" = "root" ]] && return
@@ -35,4 +41,4 @@ if [[ -x "$(command -v tmux)" && -z "$TMUX" ]]; then
     fi
 fi
 # Load nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
