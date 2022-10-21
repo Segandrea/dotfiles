@@ -174,11 +174,12 @@ man() {
 timer() {
   local text
   [[ -z "$1" ]] && text='Alarm' || text="$1"
-  local time
-  [[ -z "${*:2}" ]] && time='1s' || time="${*:2}"
+  declare -a time
+  #[[ -z "${*:2}" ]] && time='1s' || time="${*:2}"
+  [[ -z "${*:2}" ]] && time=('1s') || time=("${@:2}")
 
   # $time is unquoted so that it can expand as parameters
-  (sleep ${time} && notify-send "${text}" &)
+  (sleep "${time[@]}" && notify-send "${text}" &)
 }
 
 # Connect bluetooth: arg1 = "off|disconnect|remove" (optional)
