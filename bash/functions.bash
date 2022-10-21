@@ -178,7 +178,6 @@ timer() {
   local text
   [[ -z "$1" ]] && text='Alarm' || text="$1"
   declare -a time
-  #[[ -z "${*:2}" ]] && time='1s' || time="${*:2}"
   [[ -z "${*:2}" ]] && time=('1s') || time=("${@:2}")
 
   # $time is unquoted so that it can expand as parameters
@@ -243,9 +242,11 @@ bt() {
       echo '     off'
       echo '  bt remove            Remove a paired device'
       echo '     rm'
+      echo '  bt scan              Scan and then connect'
+      echo '     s'
     ;;
-    *)
-      # Connect
+    [sS][cC][aA][nN]|[sS])
+      # Scan and Connect
       bluetoothctl power on
       echo "Scanning..."
       bluetoothctl --timeout 5 scan on > /dev/null
@@ -266,6 +267,25 @@ bt() {
         bluetoothctl pair "${device_addr}" > /dev/null && echo "Device ${device_name} paired" || echo "Pairing failed"
         bluetoothctl trust "${device_addr}" > /dev/null && echo "Device ${device_name} trusted" || echo "Device ${device_name} can't be trusted"
       fi
+      echo "Connecting to ${device_name}..."
+      bluetoothctl connect "${device_addr}" > /dev/null && echo "Successfully connected" || echo "Connection failed"
+    ;;
+    *)
+      # Connect to a known device
+      bluetoothctl power on
+      echo "Scanning..."
+      device="$(bluetoothctl devices Paired | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth=2 --prompt='Connect to: ' --pointer='➜')"
+      if [[ -z "${device}" ]]; then
+        echo "Error: A device needs to be selected."
+        return
+      fi
+      device_name="${device/+([![:space:]])@([[:space:]])/}"
+      device_addr="${device//+([[:space:]])*([![:space:]])/}"
+      if [[ -z "${device_addr}" ]]; then
+        echo "Error retrieving device address."
+        return
+      fi
+      bluetoothctl agent NoInputNoOutput
       echo "Connecting to ${device_name}..."
       bluetoothctl connect "${device_addr}" > /dev/null && echo "Successfully connected" || echo "Connection failed"
     ;;
