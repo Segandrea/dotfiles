@@ -27,6 +27,9 @@ export NVM_DIR="$HOME/.nvm"
 # limits recursive functions, see 'man bash'
 [[ -z "$FUNCNEST" ]] && export FUNCNEST=100
 
+# fzf highlight choice with background color (unseeable)
+export FZF_DEFAULT_OPTS='--color=bg+:#282a36'
+
 # my most used directories
 export DOCUMENTS_DIR="$HOME/Documents"
 export DOWNLOADS_DIR="$HOME/Downloads"
