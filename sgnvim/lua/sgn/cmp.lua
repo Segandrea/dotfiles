@@ -9,15 +9,12 @@ cmp.setup({
   },
   -- sources can be setted for filetypes think about markdown
   sources = {
+    { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    { name = 'buffer' },
     { name = 'path' },
-    { name = 'nvim_lua' },
-  },
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    { name = 'latex_symbols' },
+    { name = 'buffer', keyword_length = 5 },
   },
   -- cmp and luasnip mappings
   mapping = {
@@ -40,6 +37,20 @@ cmp.setup({
       mode = 'symbol_text',
       maxwidth = 50,
       ellipsis_char = '...',
+      with_text = true,
+      menu = {
+        nvim_lua      = '[Api]',
+        nvim_lsp      = '[Lsp]',
+        luasnip       = '[Snip]',
+        path          = '[Path]',
+        buffer        = '[Buf]',
+        latex_symbols = '[LaTeX]',
+        tmux          = '[Tmux]',
+      },
     }),
+  },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
   },
 })
