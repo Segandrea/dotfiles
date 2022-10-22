@@ -1,4 +1,39 @@
-require("gitsigns").setup({
+local gs = require('gitsigns')
+-- [[ Mappings ]]
+local function on_attach(bufnr)
+  local map = vim.keymap.set
+  local options = function(description)
+    return { noremap = true, buffer = bufnr, silent = true, desc = description }
+  end
+
+  -- go to next git diff in file
+  map('n', '<leader>gnd', function()
+    -- required to have the binding usable when there is no diff
+    if vim.wo.diff then return '<leader>gnd' end
+    vim.schedule(function() gs.next_hunk() end)
+    return '<Ignore>'
+  end, options('[g]o to [n]ext [d]iff'))
+  -- go to previous git diff in file
+  map('n', '<leader>gpd', function()
+    -- required to have the binding usable when there is no diff
+    if vim.wo.diff then return '<leader>gpd' end
+    vim.schedule(function() gs.prev_hunk() end)
+    return '<Ignore>'
+  end, options('[g]o to [p]revious [d]iff'))
+  -- reset diffs on current line
+  map('n', '<leader>Grl', gs.reset_hunk, options('[G]it [r]eset [l]ine'))
+  -- reset diffs on current buffer
+  map('n', '<leader>Grb', gs.reset_buffer, options('[G]it [r]eset [b]uffer'))
+  -- toggle git blame of the buffer
+  map('n', '<leader>Gbb', function() gs.blame_line({ full = true }) end, options('[G]it [b]lame [b]uffer'))
+  -- toggle git blame of the line
+  map('n', '<leader>Gbl', gs.blame_line, options('[G]it [b]lame [l]ine'))
+
+  -- [[ Text object: hunk ]] NB. used with visual selection. Select in current diff
+  map({'o', 'x'}, 'ih', gs.select_hunk)
+end
+
+gs.setup({
   signs = {
     add = {
       hl = "GitSignsAdd",
@@ -14,7 +49,7 @@ require("gitsigns").setup({
     },
     delete = {
       hl = "GitSignsDelete",
-      text = "_",
+      text = "-",
       numhl = "GitSignsDeleteNr",
       linehl = "GitSignsDeleteLn",
     },
@@ -31,6 +66,7 @@ require("gitsigns").setup({
       linehl = "GitSignsChangeLn",
     },
   },
+  on_attach = on_attach,
   numhl = false,
   linehl = false,
   watch_gitdir = { interval = 1000, follow_files = true },
@@ -45,25 +81,3 @@ require("gitsigns").setup({
     internal = true, -- If luajit is present
   },
 })
-
--- [[ Mappings ]]
-local map = vim.keymap.set
-local options = function(description)
-  return { noremap = true, buffer = true, expr = true, silent = true, desc = description }
-end
-
--- go to next git diff in file
-map('n', '<leader>dn', function()
-  if vim.wo.diff then return '<leader>dn' end
-  vim.schedule(function() require('gitsigns').next_hunk() end)
-  return '<Ignore>'
-end, options('Go to [d]iff [n]ext'))
--- go to previous git diff in file
-map('n', '<leader>dp', function()
-  if vim.wo.diff then return '<leader>dp' end
-  vim.schedule(function() require('gitsigns').prev_hunk() end)
-  return '<Ignore>'
-end, options('Go to [d]iff [p]revious'))
-
--- [[ Text object: hunk ]] NB. used with visual selection. Select in current diff
-map({'o', 'x'}, 'ih', require('gitsigns').select_hunk)
