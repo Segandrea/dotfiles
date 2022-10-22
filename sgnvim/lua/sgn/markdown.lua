@@ -52,23 +52,23 @@ local options = function(description)
 end
 
 -- Eval codeblocks (MdEval)
-map('n', '<leader>me', ':MdEval<cr>', options('[m]arkdown [e]val'))
+map('n', '<leader>me', ':MdEval<cr>', options('[e]val code'))
 
 -- Make table (MkdnFlow)
-map('n', '<leader>mt', ':MkdnTable 1 1 noh<CR>', options('[m]ake [t]able'))
+map('n', '<leader>mt', ':MkdnTable 1 1 noh<CR>', options('[t]able new'))
 -- Format table
-map('n', '<leader>mf', ':MkdnTableFormat<CR>', options('[m]arkdown [f]ormat table'))
+map('n', '<leader>mf', ':MkdnTableFormat<CR>', options('[f]ormat table'))
 -- Remap mkdnflow default bindings adding description
-map('n', '<leader>ml', ':MkdnNextLink<CR>', options('[m]arkdown next [l]ink'))
-map('n', '<leader>mL', ':MkdnPrevLink<CR>', options('[m]arkdown prev [L]ink'))
-map('n', '<leader>mh', ':MkdnNextHeading<CR>', options('[m]arkdown next [h]eading'))
-map('n', '<leader>mH', ':MkdnPrevHeading<CR>', options('[m]arkdown prev [H]eading'))
-map('n', '<leader>ms', ':MkdnMoveSource<CR>', options('[m]arkdown rename [s]ource'))
-map({ 'n', 'v' }, '<leader>mb', ':MkdnToggleToDo<CR>', options('[m]arkdown toggle check[b]ox'))
-map('n', '<leader>mr', ':MkdnTableNewRowBelow<CR>', options('[m]arkdown table [r]ow below'))
-map('n', '<leader>mR', ':MkdnTableNewRowAbove<CR>', options('[m]arkdown table [R]ow above'))
-map('n', '<leader>mc', ':MkdnTableNewColAfter<CR>', options('[m]arkdown table [c]ol after'))
-map('n', '<leader>mC', ':MkdnTableNewColAfter<CR>', options('[m]arkdown table [C]ol before'))
+map('n', '<leader>mnl', ':MkdnNextLink<CR>', options('[l]ink'))
+map('n', '<leader>mpl', ':MkdnPrevLink<CR>', options('[L]ink'))
+map('n', '<leader>mnh', ':MkdnNextHeading<CR>', options('[h]eading'))
+map('n', '<leader>mph', ':MkdnPrevHeading<CR>', options('[H]eading'))
+map('n', '<leader>ms', ':MkdnMoveSource<CR>', options('[s]ource rename'))
+map({ 'n', 'v' }, '<leader>mb', ':MkdnToggleToDo<CR>', options('[b]ox toggle'))
+map('n', '<leader>mr', ':MkdnTableNewRowBelow<CR>', options('[r]ow below'))
+map('n', '<leader>mR', ':MkdnTableNewRowAbove<CR>', options('[R]ow above'))
+map('n', '<leader>mc', ':MkdnTableNewColAfter<CR>', options('[c]ol after'))
+map('n', '<leader>mC', ':MkdnTableNewColAfter<CR>', options('[C]ol before'))
 
 -- Preview in pdf reader
-map('n', '<leader>mp', ':MarkdownPreviewToggle<CR>', options('[m]arkdown [p]review'))
+map('n', '<leader>mw', ':MarkdownPreviewToggle<CR>', options('[p]review'))

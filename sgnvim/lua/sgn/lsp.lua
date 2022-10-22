@@ -20,7 +20,6 @@ lsp.set_preferences({
 lsp.nvim_workspace()
 
 -- [[ Mappings ]]
--- TODO: change keymaps!!
 -- lsp mappings
 lsp.on_attach(function(_, bufnr) -- first argument is "client", I don't need it
   local map = vim.keymap.set
@@ -29,18 +28,18 @@ lsp.on_attach(function(_, bufnr) -- first argument is "client", I don't need it
   end
 
   -- Diagnostic keymaps
-  map('n', '<leader>gnd', vim.diagnostic.goto_next, options('[g]o to [n]ext [d]iagnostics'))
-  map('n', '<leader>gpd', vim.diagnostic.goto_prev, options('[g]o to [p]rev [d]iagnostics'))
-  map('n', '<leader>ld', vim.diagnostic.open_float, options('[l]sp show with [d]iagnostics'))
+  map('n', '<leader>gnp', vim.diagnostic.goto_next, options('[d]iagnostics'))
+  map('n', '<leader>gpp', vim.diagnostic.goto_prev, options('[d]iagnostics'))
+  map('n', '<leader>ls', vim.diagnostic.open_float, options('[s]how diagnostics'))
   -- lsp keymaps
-  map('n', '<leader>lr', vim.lsp.buf.rename, options('[l]sp [r]ename'))
-  map('n', '<leader>lc', vim.lsp.buf.code_action, options('[l]sp [c]ode action'))
-  map('n', '<leader>gd', vim.lsp.buf.definition, options('[g]o to [d]efinition'))
-  map('n', '<leader>gi', vim.lsp.buf.implementation, options('[g]o to [i]mplementation'))
-  map('n', '<leader>gD', vim.lsp.buf.declaration, options('[g]o to [D]eclaration'))
-  map('n', '<leader>gt', vim.lsp.buf.type_definition, options('[g]o to [t]ype definition'))
-  map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, options('[w]orkspace [a]dd Folder'))
-  map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, options('[w]orkspace [r]emove Folder'))
+  map('n', '<leader>lr', vim.lsp.buf.rename, options('[r]ename'))
+  map('n', '<leader>lc', vim.lsp.buf.code_action, options('[c]ode action'))
+  map('n', '<leader>gd', vim.lsp.buf.definition, options('[d]efinition'))
+  map('n', '<leader>gi', vim.lsp.buf.implementation, options('[i]mplementation'))
+  map('n', '<leader>gD', vim.lsp.buf.declaration, options('[D]eclaration'))
+  map('n', '<leader>gt', vim.lsp.buf.type_definition, options('[t]ype definition'))
+  map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, options('[a]dd Folder'))
+  map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, options('[r]emove Folder'))
   -- See `:help K` for why this keymap
   map('n', 'K', vim.lsp.buf.hover, options('Hover Documentation'))
   map('n', '<C-k>', vim.lsp.buf.signature_help, options('Signature Documentation'))

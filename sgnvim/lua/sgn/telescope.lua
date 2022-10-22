@@ -35,16 +35,16 @@ local options = function(description)
 end
 
 -- See `:help telescope.builtin`
-map('n', '<leader>to', builtin.oldfiles, options('[t]elescope show [o]ld files'))
-map('n', '<leader>tb', builtin.buffers, options('[t]elescope show open [b]uffers'))
-map('n', '<leader>tr', builtin.lsp_references, options('[t]elescope show [r]eferences'))
-map('n', '<leader>ts', builtin.lsp_document_symbols, options('[t]elescope show document [s]ymbols'))
-map('n', '<leader>tf', builtin.find_files, options('[t]elescope find [f]iles'))
-map('n', '<leader>th', builtin.help_tags, options('[t]elescope search vim [h]elp'))
-map('n', '<leader>tg', builtin.live_grep, options('[t]elescope [g]rep files'))
-map('n', '<leader>td', builtin.diagnostics, options('[t]elescope show [d]iagnostics'))
-map('n', '<leader>tm', builtin.man_pages, options('[t]elescope show [m]anpages'))
-map('n', '<leader>tk', builtin.keymaps, options('[t]elescope show [k]eybindings'))
+map('n', '<leader>to', builtin.oldfiles, options('[o]ld files'))
+map('n', '<leader>tb', builtin.buffers, options('[b]uffers'))
+map('n', '<leader>tr', builtin.lsp_references, options('[r]eferences'))
+map('n', '<leader>ts', builtin.lsp_document_symbols, options('[s]ymbols'))
+map('n', '<leader>tf', builtin.find_files, options('[f]ind files'))
+map('n', '<leader>th', builtin.help_tags, options('[h]elp tags'))
+map('n', '<leader>tg', builtin.live_grep, options('[g]rep files'))
+map('n', '<leader>td', builtin.diagnostics, options('[d]iagnostics'))
+map('n', '<leader>tm', builtin.man_pages, options('[m]anpages'))
+map('n', '<leader>tk', builtin.keymaps, options('[k]eybindings'))
 
 -- requires 'project.nvim'
-map('n', '<leader>wl', ':Telescope projects<CR>', options('telescope show [w]orkspace [l]ist'))
+map('n', '<leader>wl', ':Telescope projects<CR>', options('[l]ist'))

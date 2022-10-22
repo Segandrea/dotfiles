@@ -35,5 +35,5 @@ local options = function(description)
   return { noremap = true, silent = true, desc = description }
 end
 
-map('n', '<leader>w?', ':TroubleToggle workspace_diagnostics<CR>', options('problems[?] [w]here?'))
-map('n', '<leader>?', ':TroubleToggle document_diagnostics<CR>', options('problems[??]'))
+map('n', '<leader>wd', ':TroubleToggle workspace_diagnostics<CR>', options('[d]iagnostics'))
+map('n', '<leader>?', ':TroubleToggle document_diagnostics<CR>', options('trouble[?]'))

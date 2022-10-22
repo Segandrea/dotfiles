@@ -32,16 +32,24 @@ whichkey.setup({
 whichkey.register({
   ['<leader>g'] = {
     name = '+[g]oto',
-    n = { name = '+[n]ext' },
-    p = { name = '+[p]rev' },
+    n = '+[n]ext',
+    p = '+[p]rev',
   },
   ['<leader>G'] = {
     name = '+[G]it',
     b = '+[b]lame',
     r = '+[r]eset',
   },
-  ['<leader>l'] = { name = '+[l]sp' },
-  ['<leader>m'] = { name = '+[m]arkdown' },
+  ['<leader>l'] = {
+    name = '+[l]sp',
+    a = '[a]rgument swap forward',
+    A = '[A]rgument swap backward',
+  },
+  ['<leader>m'] = {
+    name = '+[m]arkdown',
+    n = '+[n]ext',
+    p = '+[p]rev',
+  },
   ['<leader>t'] = { name = '+[t]elescope' },
   ['<leader>w'] = { name = '+[w]orkspaces' },
   ['<leader>z'] = { name = '+[z]en' },

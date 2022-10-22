@@ -119,7 +119,7 @@ map('n', '*', ':set<space>hlsearch<cr>mb*', options('Mark starting point and hig
 map('n', '?', ':set<space>hlsearch<cr>mb?', options('Mark starting point and highlight prev searched word'))
 map('n', '#', ':set<space>hlsearch<cr>mb#', options('Mark starting point and highlight prev match'))
 -- use to go back to the position where you were when search started
-map('n', '<leader>gb', "'b", options('[G]o back to mark [b]'))
+map('n', '<leader>gb', "'b", options('[b]ack'))
 -- Space won't make a move so it can be used as leader
 map('n', '<Space>', '<Nop>', options())
 -- Remap for dealing with word wrap
