@@ -79,8 +79,7 @@ return require('packer').startup(function(use)
         requires = { 'nvim-lua/plenary.nvim' },
         config = function() require('sgn.null-ls') end,
       },
-      -- Autocompletion
-      {
+      { -- Autocompletion
         'hrsh7th/nvim-cmp',
         requires = {
           { 'onsails/lspkind.nvim' },
@@ -89,9 +88,11 @@ return require('packer').startup(function(use)
           { 'saadparwaiz1/cmp_luasnip' },
           { 'hrsh7th/cmp-nvim-lsp' },
           { 'hrsh7th/cmp-nvim-lua' },
-          -- Snippets
-          { 'L3MON4D3/LuaSnip' },
-          { 'rafamadriz/friendly-snippets' },
+          { -- Snippets
+            'L3MON4D3/LuaSnip',
+            requires = { 'rafamadriz/friendly-snippets' },
+            config = function() require('sgn.snippets') end,
+          },
         },
         config = function() require('sgn.cmp') end,
       },

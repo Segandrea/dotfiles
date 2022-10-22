@@ -99,6 +99,8 @@ end
 -- get out of )]}'" by pressing tab in insert, use >, = and < in normal to indent
 -- NB: searching for better alternatives
 map('i', '<Tab>', '<Right>', options('Use tab to skip a character'))
+-- S-tab should not tab
+map('i', '<S-Tab>', '<Nop>', options())
 -- Ctrl+j and Ctrl+k won't do anything in insert mode so it can be used
 map('i', '<C-j>', '<Nop>', options())
 map('i', '<C-k>', '<Nop>', options())
