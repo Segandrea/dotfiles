@@ -192,13 +192,13 @@ bt() {
   local device_name
   local device_addr
   case "${opt}" in
-    [pP][oO][wW][eE][rR][oO][fF][fF]|[oO][fF][fF])
+    [pP][oO][wW][eE][rR][oO][fF][fF]|[oO][fF][fF]|[oO])
       # Switch off
       bluetoothctl power off
     ;;
     [dD][iI][sS][cC][oO][nN][nN][eE][cC][tT]|[dD][iI][sS][cC]|[dD])
       # Disconnect
-      device="$(bluetoothctl devices Connected | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth=2 --prompt='Disconnect from: ' --pointer='➜')"
+      device="$(bluetoothctl devices Connected | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth='2..' --prompt='Disconnect from: ' --pointer='➜')"
       if [[ -z "${device}" ]]; then
         echo "Error: A device needs to be selected."
         return
@@ -212,9 +212,9 @@ bt() {
       echo "Disconnecting ${device_name}"
       bluetoothctl disconnect "${device_addr}" > /dev/null && echo "Successfully disconnected" || echo "Disconnection failed"
     ;;
-    [rR][eE][mM][oO][vV][eE]|[rR][mM])
+    [rR][eE][mM][oO][vV][eE]|[rR][mM]|[rR])
       # Remove
-      device="$(bluetoothctl devices Paired | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth=2 --prompt='Remove: ' --pointer='➜')"
+      device="$(bluetoothctl devices Paired | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth='2..' --prompt='Remove: ' --pointer='➜')"
       if [[ -z "${device}" ]]; then
         echo "Error: A device needs to be selected."
         return
@@ -240,8 +240,10 @@ bt() {
       echo '     d'
       echo '  bt poweroff          Poweroff bluetooth'
       echo '     off'
+      echo '     o'
       echo '  bt remove            Remove a paired device'
       echo '     rm'
+      echo '     r'
       echo '  bt scan              Scan and then connect'
       echo '     s'
     ;;
@@ -250,7 +252,7 @@ bt() {
       bluetoothctl power on
       echo "Scanning..."
       bluetoothctl --timeout 5 scan on > /dev/null
-      device="$(bluetoothctl devices | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth=2 --prompt='Connect to: ' --pointer='➜')"
+      device="$(bluetoothctl devices | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth='2..' --prompt='Connect to: ' --pointer='➜')"
       if [[ -z "${device}" ]]; then
         echo "Error: A device needs to be selected."
         return
@@ -273,8 +275,7 @@ bt() {
     *)
       # Connect to a known device
       bluetoothctl power on
-      echo "Scanning..."
-      device="$(bluetoothctl devices Paired | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth=2 --prompt='Connect to: ' --pointer='➜')"
+      device="$(bluetoothctl devices Paired | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth='2..' --prompt='Connect to: ' --pointer='➜')"
       if [[ -z "${device}" ]]; then
         echo "Error: A device needs to be selected."
         return
