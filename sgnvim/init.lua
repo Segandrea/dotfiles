@@ -138,10 +138,11 @@ return require('packer').startup(function(use)
 
   -- [[ Neorg support ]]
   use({ 'nvim-neorg/neorg',
-    ft = 'neorg',
-    after = { 'nvim-treesitter' },
+    ft = 'norg',
     run = ':Neorg sync-parsers',
+    after = 'nvim-treesitter',
     config = function() require('sgn.neorg') end,
+    requires = 'nvim-lua/plenary.nvim',
   })
 
   -- [[ Which-key ]]

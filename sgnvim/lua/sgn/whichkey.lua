@@ -64,3 +64,16 @@ autocmd('FileType', { pattern = 'markdown', callback = function()
     },
   })
 end})
+
+-- Neorg
+autocmd('FileType', { pattern = 'norg', callback = function()
+  -- TODO: work on keymaps
+  whichkey.register({
+    ['<leader>m'] = {
+      name = '+[m]neorg(?)',
+    },
+    ['<leader>n'] = {
+      name = '+[n]eorg(?)',
+    },
+  })
+end})
