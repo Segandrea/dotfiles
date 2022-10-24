@@ -45,13 +45,22 @@ whichkey.register({
     a = '[a]rgument swap forward',
     A = '[A]rgument swap backward',
   },
-  ['<leader>m'] = {
-    name = '+[m]arkdown',
-    n = '+[n]ext',
-    p = '+[p]rev',
-  },
   ['<leader>t'] = { name = '+[t]elescope' },
   ['<leader>w'] = { name = '+[w]orkspaces' },
   ['<leader>z'] = { name = '+[z]en' },
   ['<leader>?'] = { name = '+trouble[?]' },
 })
+
+-- [[ Define mappings only for specific filetypes ]]
+local autocmd = vim.api.nvim_create_autocmd
+
+-- Markdown
+autocmd('FileType', { pattern = 'markdown', callback = function()
+  whichkey.register({
+    ['<leader>m'] = {
+      name = '+[m]arkdown',
+      n = '+[n]ext',
+      p = '+[p]rev',
+    },
+  })
+end})

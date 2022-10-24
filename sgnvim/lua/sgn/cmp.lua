@@ -22,13 +22,13 @@ cmp.setup({
     ['<C-N>'] = cmp.mapping.scroll_docs(-4),
     ['<C-a>'] = cmp.mapping.abort(),
     -- confirm completion
-    ['<C-Space>'] = function(fallback) if cmp.visible() then cmp.confirm() else fallback() end end,
-    ['<C-Return>'] = function(fallback) if cmp.visible() then cmp.confirm() else fallback() end end,
+    ['<C-Space>']  = cmp.mapping(function(fallback) if cmp.visible() then cmp.confirm() else fallback() end end, { 'i', 's' }),
+    -- FIXME: C-CR not working: ['<C-CR>'] = cmp.mapping(function(fallback) if cmp.visible() then cmp.confirm() else fallback() end end, { 'i', 's' }),
     -- select completion from menu
     ['<C-j>'] = cmp.mapping(function(fallback) if cmp.visible() then cmp.select_next_item() elseif luasnip.expand_or_jumpable() then luasnip.expand_or_jump() else fallback() end end, { 'i', 's' }),
     ['<C-k>'] = cmp.mapping(function(fallback) if cmp.visible() then cmp.select_prev_item() elseif luasnip.jumpable(-1) then luasnip.jump(-1) else fallback() end end, { 'i', 's' }),
     -- jump between luasnip snippet placeholders
-    ['<Tab>'] = cmp.mapping(function(fallback) if luasnip.expand_or_jumpable() then luasnip.expand_or_jump() else fallback() end end, { 'i', 's' }),
+    ['<Tab>']   = cmp.mapping(function(fallback) if luasnip.expand_or_jumpable() then luasnip.expand_or_jump() else fallback() end end, { 'i', 's' }),
     ['<S-Tab>'] = cmp.mapping(function(fallback) if luasnip.jumpable(-1) then luasnip.jump(-1) else fallback() end end, { 'i', 's' }),
   },
   -- 'onsails/lspkind.nvim' configuration
