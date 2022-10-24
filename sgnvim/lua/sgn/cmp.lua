@@ -14,6 +14,7 @@ cmp.setup({
     { name = 'luasnip' },
     { name = 'path' },
     { name = 'latex_symbols' },
+    { name = 'neorg' },
     { name = 'buffer', keyword_length = 5 },
   },
   -- cmp and luasnip mappings

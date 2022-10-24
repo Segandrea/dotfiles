@@ -134,7 +134,7 @@ _G.packer_plugins = {
     url = "https://github.com/m-demare/hlargs.nvim"
   },
   ["indent-blankline.nvim"] = {
-    config = { "\27LJ\2\nd\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\25show_current_context\2\tchar\b┊\nsetup\21indent_blankline\frequire\0" },
+    config = { "\27LJ\2\nd\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\tchar\b┊\25show_current_context\2\nsetup\21indent_blankline\frequire\0" },
     loaded = true,
     path = "/home/segandrea/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
@@ -182,6 +182,15 @@ _G.packer_plugins = {
     path = "/home/segandrea/.local/share/nvim/site/pack/packer/opt/mkdnflow.nvim",
     url = "https://github.com/jakewvincent/mkdnflow.nvim"
   },
+  neorg = {
+    config = { "\27LJ\2\n)\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\14sgn.neorg\frequire\0" },
+    load_after = {},
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/home/segandrea/.local/share/nvim/site/pack/packer/opt/neorg",
+    url = "https://github.com/nvim-neorg/neorg"
+  },
   ["null-ls.nvim"] = {
     config = { "\27LJ\2\n+\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\16sgn.null-ls\frequire\0" },
     loaded = true,
@@ -212,8 +221,10 @@ _G.packer_plugins = {
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
+    after = { "neorg" },
     config = { "\27LJ\2\n.\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\19sgn.treesitter\frequire\0" },
     loaded = true,
+    only_config = true,
     path = "/home/segandrea/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
@@ -310,14 +321,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: which-key.nvim
-time([[Config for which-key.nvim]], true)
-try_loadstring("\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17sgn.whichkey\frequire\0", "config", "which-key.nvim")
-time([[Config for which-key.nvim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18sgn.autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
+-- Config for: indent-blankline.nvim
+time([[Config for indent-blankline.nvim]], true)
+try_loadstring("\27LJ\2\nd\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\tchar\b┊\25show_current_context\2\nsetup\21indent_blankline\frequire\0", "config", "indent-blankline.nvim")
+time([[Config for indent-blankline.nvim]], false)
+-- Config for: null-ls.nvim
+time([[Config for null-ls.nvim]], true)
+try_loadstring("\27LJ\2\n+\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\16sgn.null-ls\frequire\0", "config", "null-ls.nvim")
+time([[Config for null-ls.nvim]], false)
 -- Config for: zen-mode.nvim
 time([[Config for zen-mode.nvim]], true)
 try_loadstring("\27LJ\2\n'\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\fsgn.zen\frequire\0", "config", "zen-mode.nvim")
@@ -326,30 +337,18 @@ time([[Config for zen-mode.nvim]], false)
 time([[Config for nvim-cmp]], true)
 try_loadstring("\27LJ\2\n'\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\fsgn.cmp\frequire\0", "config", "nvim-cmp")
 time([[Config for nvim-cmp]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-try_loadstring("\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17sgn.snippets\frequire\0", "config", "LuaSnip")
-time([[Config for LuaSnip]], false)
--- Config for: hlargs.nvim
-time([[Config for hlargs.nvim]], true)
-try_loadstring("\27LJ\2\n&\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\vhlargs\frequire\0", "config", "hlargs.nvim")
-time([[Config for hlargs.nvim]], false)
--- Config for: nvim-highlight-colors
-time([[Config for nvim-highlight-colors]], true)
-try_loadstring("\27LJ\2\n[\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\20enable_tailwind\2\nsetup\26nvim-highlight-colors\frequire\0", "config", "nvim-highlight-colors")
-time([[Config for nvim-highlight-colors]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18sgn.telescope\frequire\0", "config", "telescope.nvim")
-time([[Config for telescope.nvim]], false)
+-- Config for: lsp-zero.nvim
+time([[Config for lsp-zero.nvim]], true)
+try_loadstring("\27LJ\2\n'\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\fsgn.lsp\frequire\0", "config", "lsp-zero.nvim")
+time([[Config for lsp-zero.nvim]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 try_loadstring("\27LJ\2\n.\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\19sgn.treesitter\frequire\0", "config", "nvim-treesitter")
 time([[Config for nvim-treesitter]], false)
--- Config for: dracula
-time([[Config for dracula]], true)
-try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\24colorscheme dracula\bcmd\bvim\0", "config", "dracula")
-time([[Config for dracula]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18sgn.telescope\frequire\0", "config", "telescope.nvim")
+time([[Config for telescope.nvim]], false)
 -- Config for: tmux.nvim
 time([[Config for tmux.nvim]], true)
 try_loadstring("\27LJ\2\n(\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\rsgn.tmux\frequire\0", "config", "tmux.nvim")
@@ -366,22 +365,34 @@ time([[Config for trouble.nvim]], false)
 time([[Config for gitsigns.nvim]], true)
 try_loadstring("\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17sgn.gitsigns\frequire\0", "config", "gitsigns.nvim")
 time([[Config for gitsigns.nvim]], false)
--- Config for: indent-blankline.nvim
-time([[Config for indent-blankline.nvim]], true)
-try_loadstring("\27LJ\2\nd\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\25show_current_context\2\tchar\b┊\nsetup\21indent_blankline\frequire\0", "config", "indent-blankline.nvim")
-time([[Config for indent-blankline.nvim]], false)
--- Config for: null-ls.nvim
-time([[Config for null-ls.nvim]], true)
-try_loadstring("\27LJ\2\n+\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\16sgn.null-ls\frequire\0", "config", "null-ls.nvim")
-time([[Config for null-ls.nvim]], false)
+-- Config for: dracula
+time([[Config for dracula]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\24colorscheme dracula\bcmd\bvim\0", "config", "dracula")
+time([[Config for dracula]], false)
+-- Config for: hlargs.nvim
+time([[Config for hlargs.nvim]], true)
+try_loadstring("\27LJ\2\n&\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\vhlargs\frequire\0", "config", "hlargs.nvim")
+time([[Config for hlargs.nvim]], false)
+-- Config for: nvim-highlight-colors
+time([[Config for nvim-highlight-colors]], true)
+try_loadstring("\27LJ\2\n[\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\20enable_tailwind\2\nsetup\26nvim-highlight-colors\frequire\0", "config", "nvim-highlight-colors")
+time([[Config for nvim-highlight-colors]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+try_loadstring("\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17sgn.snippets\frequire\0", "config", "LuaSnip")
+time([[Config for LuaSnip]], false)
 -- Config for: project.nvim
 time([[Config for project.nvim]], true)
 try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17project_nvim\frequire\0", "config", "project.nvim")
 time([[Config for project.nvim]], false)
--- Config for: lsp-zero.nvim
-time([[Config for lsp-zero.nvim]], true)
-try_loadstring("\27LJ\2\n'\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\fsgn.lsp\frequire\0", "config", "lsp-zero.nvim")
-time([[Config for lsp-zero.nvim]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+try_loadstring("\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17sgn.whichkey\frequire\0", "config", "which-key.nvim")
+time([[Config for which-key.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18sgn.autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
 -- Conditional loads
 time([[Conditional loading of telescope-fzf-native.nvim]], true)
   require("packer.load")({"telescope-fzf-native.nvim"}, {}, _G.packer_plugins)
@@ -390,8 +401,14 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'markdown-preview.nvim', 'mdeval.nvim', 'mkdnflow.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType neorg ++once lua require("packer.load")({'neorg'}, { ft = "neorg" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'mdeval.nvim', 'markdown-preview.nvim', 'mkdnflow.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
+vim.cmd [[augroup filetypedetect]]
+time([[Sourcing ftdetect script at: /home/segandrea/.local/share/nvim/site/pack/packer/opt/neorg/ftdetect/norg.vim]], true)
+vim.cmd [[source /home/segandrea/.local/share/nvim/site/pack/packer/opt/neorg/ftdetect/norg.vim]]
+time([[Sourcing ftdetect script at: /home/segandrea/.local/share/nvim/site/pack/packer/opt/neorg/ftdetect/norg.vim]], false)
 vim.cmd("augroup END")
 
 _G._packer.inside_compile = false

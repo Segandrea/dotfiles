@@ -120,7 +120,7 @@ return require('packer').startup(function(use)
     end,
   })
 
-  -- [[ Markdown wiki ]]
+  -- [[ Markdown ]]
   use({
     {
       'jakewvincent/mkdnflow.nvim',
@@ -134,6 +134,14 @@ return require('packer').startup(function(use)
       run = function() vim.fn["mkdp#util#install"]() end,
       ft = 'markdown',
     }, -- live render md in pdf reader
+  })
+
+  -- [[ Neorg support ]]
+  use({ 'nvim-neorg/neorg',
+    ft = 'neorg',
+    after = { 'nvim-treesitter' },
+    run = ':Neorg sync-parsers',
+    config = function() require('sgn.neorg') end,
   })
 
   -- [[ Which-key ]]
