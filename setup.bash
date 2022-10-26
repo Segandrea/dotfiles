@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# vim: foldmethod=marker
 
 set -e
 
@@ -458,3 +457,5 @@ main() {
 # }}}
 
 main
+
+# vim: foldmethod=marker

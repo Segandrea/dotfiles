@@ -1,47 +1,145 @@
 # Dotfiles for endeavourOS
 
-## Disclaimer: Subject to changes, little documentation.
-> Use at your own risk, these dotfiles will change without notice and the documentation won't be the best.
-> Suggestions and constructive criticism are always welcome.
+## WARN: Subject to changes, poorly documented and may break
 
-## Bash
-Bash configuration is splitted in different files:
-* `bash/aliases.bash` -> contains aliases
-* `bash/functions.bash` -> contains useful functions
-* `bash/env.bash` -> contains environmental variables and configurations
-* `bash/completions.bash` -> sources completion scripts
-* `bash/completion/` -> contains completion script for programs that are not included in the package `bash-completion`
-* `.inputrc` -> contains readline configurations
-* `.bashrc` -> sources other bash files and activate utilities like [Starsip Prompt](https://starship.rs/) and [Tmux](https://github.com/tmux/tmux/wiki)
+> Use as your own risk, these dot files will change without notice and the
+> documentating READMEs won't probably be updated as often.
+> It's better to just look at files for reference if you're not me.
+> However, if there is some constructive criticism or improving suggetsion,
+> it's more than welcome. Have fun!
 
-## Vim
-A small `.vimrc` that requires no plugins.
+## Structure
+
+```tree
+.
+├── alacritty/
+│   └── alacritty.yml
+├── bash/
+│   ├── aliases.bash
+│   ├── completions
+│   ├── completions.bash
+│   ├── env.bash
+│   ├── functions.bash
+│   └── utils
+├── .bashrc
+├── fonts/
+│   ├── all-the-icons.ttf
+│   ├── file-icons.ttf
+│   ├── fontawesome.ttf
+│   ├── .gitkeep
+│   ├── Hasklig
+│   ├── material-design-icons.ttf
+│   ├── octicons.ttf
+│   ├── .uuid
+│   └── weathericons.ttf
+├── .gitignore
+├── .inputrc
+├── README.md
+├── settings.ini
+├── setup.bash
+├── sgnvim/
+│   ├── init.lua
+│   ├── lua
+│   ├── plugin
+│   └── to_do.md
+├── starship.toml
+├── tmux/
+│   ├── .gitkeep
+│   ├── plugins
+│   └── tmux.conf
+└── .vimrc
+
+18 directories, 33 files
+```
 
 ## Alacritty
-Alacritty terminal configuration uses [Hasklig](https://www.programmingfonts.org/#hasklig) fonts and includes the colors of the [Dracula](https://draculatheme.com/alacritty) colorscheme.
+
+Alacritty terminal configuration, uses:
+
+* [Hasklig](https://www.programmingfonts.org/#hasklig) nerdfonts.
+* [Dracula](https://draculatheme.com/alacritty) colorscheme.
+
+## Bash
+
+* `.bashrc`: Sources some bash files, enables some utilites.
+* `.inputrc` -> Contains readline configurations
+* `bash/`:
+  * `bash/aliases.bash`: Contains bash aliases, sourced by `.bashrc`
+  * `bash/functions.bash`: Contains bash functions, sourced by `.bashrc`
+  * `bash/env.bash`: Contains env variables, sourced by `.bashrc`
+  * `bash/completions.bash`: Sources completion scripts, sourced by `.bashrc`
+    * `bash/completion/`: Contains completion script, all sourced by `completions.bash`
 
 ## Fonts
-It's a directory used to install fonts by the `setup.bash` script.
 
-## Settings
-`settings.ini` is a configuration file for dconf to restore my gnome settings (_I will probably change Desktop environment in the future_)
+It's a directory used to install fonts by the `setup.bash` script.
+Fonts that I use:
+
+* [Hasklig](https://www.programmingfonts.org/#hasklig) nerdfonts.
+
+## Gnome settings
+
+`settings.ini` is a configuration file for dconf to restore my gnome settings
+**Warning**: this file may disappear, it works but it's a little broken.
+Some plugins are not working very well because of some gnome updates.
+Also I will probably change Desktop Environment or start using SwayWM/Hyprland.
+
+## Setup script
+
+### Warning
+
+> This script is malfunctioning due to an excessive number of changes.
+> It should be refactored and fixed but probably won't because I will
+> probably change distro.
+
+`setup.bash` is a script that:
+
+1. Sets some `git` configuration options.
+2. Installs packages from `pacman` package manager.
+3. Installs language-dependent packages from specific package managers.
+4. Installs packages from `aur` using `yay` package manager.
+5. Enables `snap` package manager (**NB: will probably become full flatpak**).
+6. Enables `flatpak` package manager.
+7. Installs `git` repos.
+8. Links configuration files to the paths they should be.
+9. Installs `snap` packages.
+10. Installs `flatpak` packages.
+11. Executes a script to fix some problems with keychron k2v2 keyboard.
+12. Does other small things: Enables `bluetooth`, Installs `fonts`,
+ Installs `grub themes`, Applies `dconf configurations`.
+13. `reboot` the system.
+
+## Sgnvim
+
+`sgnvim/` contains the configuration files for Neovim.
+Requires neovim 0.8+ and is almost all in lua.
+> This will often change, probably it is the less stable part of this repository.
+> It also is still a WIP.
+
+It is configured to:
+
+* Use `treesitter`
+* Work using `LSPs`
+* Interoperate with `tmux`
+* Have an appealing but `unbloated UI`
+* Show some small `git` related infos.
+* Be a decent `markdown` editor (also a good `neorg` editor).
 
 ## Starship
-Configuration for the [Starsip Prompt](https://starship.rs/)
+
+`starship.toml` contains the configuration for the [Starsip Prompt](https://starship.rs/)
+> Currently installed with snap, but that is causing some problems.
 
 ## Tmux
-Configuration of tmux, uses [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) to install plugins:
+
+Configuration of tmux, uses [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm)
+to install plugins:
+
 * [Dracula Theme](https://draculatheme.com/tmux)
 * [Tmux-yank](https://github.com/tmux-plugins/tmux-yank)
 * [Tmux-sensible](https://github.com/tmux-plugins/tmux-sensible)
 * Other plugins will probably be added in future.
 
-## Setup script
-A setup script for:
-* Git configuration and installation of repos
-* Installing packages from official sources
-* Enabling and installing `flatpak` and `snap`
-* Installing specific stuff from other sources
-* Linking configuration files in the `$HOME` directory
-* Eventually setting up some other stuff
-* This script will probably change a lot over time.
+## Vim
+
+A small `.vimrc` that requires no plugins.
