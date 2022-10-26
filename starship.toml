@@ -1,13 +1,20 @@
 # don't add a newline after prompt
 add_newline = false
 
+# show cmd duration only after some time
+[cmd_duration]
+min_time = 10_000
+
 # prompt starting char
 [character]
 success_symbol = "[❱](bold green)"
 error_symbol = "[❱](bold red)"
 
 [aws]
-symbol = "  "
+symbol = " "
+
+[c]
+symbol = " "
 
 [conda]
 symbol = " "
@@ -32,6 +39,9 @@ symbol = " "
 
 [golang]
 symbol = " "
+
+[haskell]
+symbol = " "
 
 [hg_branch]
 symbol = " "
