@@ -184,3 +184,4 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
+-- vim: foldmethod=indent foldminlines=0 foldlevel=1

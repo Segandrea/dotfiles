@@ -1,5 +1,19 @@
 -- TODO: confiugre DAP (using lspzero or calling mason?)
 -- NB: 'jbyuki/one-small-step-for-vimkind' may be needed for DAP 
+
+-- Mason needs to be configured before lspzero
+require('mason').setup({
+  ui = {
+    border = 'rounded',
+    -- requires nerdfonts
+    icons = {
+      package_installed = '',
+      package_pending = '',
+      package_uninstalled = '',
+    }
+  }
+})
+
 -- Lspzero enable
 local lsp = require('lsp-zero')
 
@@ -47,3 +61,8 @@ end)
 
 -- needs to be the last command
 lsp.setup()
+
+-- Show lsp message in virtual text
+vim.diagnostic.config({
+  virtual_text = { prefix = '' },
+})
