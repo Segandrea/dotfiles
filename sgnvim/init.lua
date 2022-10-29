@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
 
   -- [[ Treesitter ]]
   use({ 'nvim-treesitter/nvim-treesitter',
+    config = function() require('sgn.treesitter') end,
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects', -- treesitter text objects
       'nvim-treesitter/nvim-treesitter-context', -- show function of context
@@ -30,7 +31,6 @@ return require('packer').startup(function(use)
       'p00f/nvim-ts-rainbow', -- coloured parenthesis
     },
     run = ':TSUpdate',
-    config = function() require('sgn.treesitter') end,
   })
 
   -- [[ TMUX navigation ]]
@@ -50,6 +50,7 @@ return require('packer').startup(function(use)
 
   -- [[ Telescope ]]
   use({ 'nvim-telescope/telescope.nvim',
+    config = function() require('sgn.telescope') end,
     branch = '0.1.x',
     requires = {
       { 'nvim-lua/plenary.nvim' },
@@ -59,17 +60,17 @@ return require('packer').startup(function(use)
         cond = vim.fn.executable "make" == 1
       },
     },
-    config = function() require('sgn.telescope') end,
   })
 
   -- [[ Colorschemes ]]
   use({ 'dracula/vim',
-    as = 'dracula',
     config = function() vim.cmd('colorscheme dracula') end,
+    as = 'dracula',
   })
 
   -- [[ Lsp ]]
   use({ 'VonHeikemen/lsp-zero.nvim',
+    config = function() require('sgn.lsp') end,
     requires = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
@@ -99,7 +100,6 @@ return require('packer').startup(function(use)
         config = function() require('sgn.cmp') end,
       },
     },
-    config = function() require('sgn.lsp') end,
   })
 
   -- [[ Autopairs ]]
@@ -139,10 +139,10 @@ return require('packer').startup(function(use)
 
   -- [[ Neorg support ]]
   use({ 'nvim-neorg/neorg',
+    config = function() require('sgn.neorg') end,
     ft = 'norg',
     run = ':Neorg sync-parsers',
     after = 'nvim-treesitter',
-    config = function() require('sgn.neorg') end,
     requires = 'nvim-lua/plenary.nvim',
   })
 
@@ -158,20 +158,20 @@ return require('packer').startup(function(use)
 
   -- [[ Zen ]]
   use({ 'folke/zen-mode.nvim',
-    requires = { 'folke/twilight.nvim', },
     config = function() require('sgn.zen') end,
+    requires = { 'folke/twilight.nvim', },
   })
 
   -- [[ Highlight arguments ]]
   use({ 'm-demare/hlargs.nvim',
-    requires = { 'nvim-treesitter/nvim-treesitter', },
     config = function() require('hlargs') end,
+    requires = { 'nvim-treesitter/nvim-treesitter', },
   })
 
   -- [[ Show nicer diagnostics ]]
   use({ 'folke/trouble.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
     config = function() require('sgn.trouble') end,
+    requires = 'kyazdani42/nvim-web-devicons',
   })
 
   -- [[ Todo and fixme highlighter ]]
@@ -184,8 +184,21 @@ return require('packer').startup(function(use)
     config = function() require('sgn.comment') end
   })
 
+  -- [[ Tab bar ]]
+  use({ 'romgrk/barbar.nvim',
+    config = function() require('sgn.buftabbar') end,
+    requires = { 'kyazdani42/nvim-web-devicons' },
+  })
+
+  -- [[ Tree navigator ]]
+  use({ 'nvim-tree/nvim-tree.lua',
+    config = function() require('sgn.tree') end,
+    requires = { 'kyazdani42/nvim-web-devicons' },
+  })
+
   -- [[ Editorconfig support ]]
   use({ 'gpanders/editorconfig.nvim' })
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

@@ -40,6 +40,7 @@ whichkey.register({
 -- [[ NORMAL ]]
 -- Adding names for partial keybindings
 whichkey.register({
+  ['<leader>b'] = { name = '+[b]uffer' },
   ['<leader>c'] = {
     name = '+[c]omment',
     a = '[a]ppend at eol',
@@ -48,6 +49,7 @@ whichkey.register({
     j = '[j] below',
     k = '[k] above',
   },
+  ['<leader>f'] = { name = '+[f]ile tree' },
   ['<leader>g'] = {
     name = '+[g]oto',
     n = '+[n]ext',
