@@ -18,7 +18,8 @@ vim.o.clipboard = 'unnamedplus'
 -- conceal text
 vim.wo.conceallevel = 2
 
--- highlight cursor line
+-- highlight cursor line number
+vim.wo.culopt = 'number'
 vim.wo.cursorline = true
 
 -- indentation and whitespaces
