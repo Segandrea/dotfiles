@@ -1,5 +1,81 @@
 # don't add a newline after prompt
 add_newline = false
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$haskell\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$jobs\
+$time\
+$cmd_duration\
+$battery\
+$line_break\
+$status\
+$container\
+$shell\
+$character"""
 
 # show cmd duration only after some time
 [cmd_duration]
@@ -10,6 +86,43 @@ min_time = 10_000
 success_symbol = "[❱](bold green)"
 error_symbol = "[❱](bold red)"
 
+# clock
+[time]
+disabled = false
+format = "at [$time](bold fg:#ffa500) "
+time_format = "%H:%M"
+
+# Battery
+[battery]
+charging_symbol = " "
+unknown_symbol = " "
+format = "with [$percentage $symbol]($style)"
+
+[[battery.display]]
+threshold = 10
+style = "bold red"
+discharging_symbol = " "
+charging_symbol = " "
+
+[[battery.display]]
+threshold = 30
+style = "bold fg:#ffa500"
+discharging_symbol = " "
+charging_symbol = " "
+
+[[battery.display]]
+threshold = 75
+style = "bold green"
+discharging_symbol = " "
+charging_symbol = " "
+
+[[battery.display]]
+threshold = 100
+style = "bold green"
+discharging_symbol = " "
+charging_symbol = " "
+
+# language symbols
 [aws]
 symbol = " "
 
