@@ -123,6 +123,9 @@ map('n', '?', ':set<space>hlsearch<cr>mb?', options('Mark starting point and hig
 map('n', '#', ':set<space>hlsearch<cr>mb#', options('Mark starting point and highlight prev match'))
 -- use to go back to the position where you were when search started
 map('n', '<leader>gb', "'b", options('[b]ack'))
+-- go to next/previous fold
+map('n', '<leader>gnf', 'zj', options('[f]old'))
+map('n', '<leader>gpf', 'zk', options('[f]old'))
 -- Space won't make a move so it can be used as leader
 map('n', '<Space>', '<Nop>', options())
 -- Remap for dealing with word wrap
