@@ -2,9 +2,6 @@
 
 ## Add
 
-* `JoosepAlviste/nvim-ts-context-commentstring`: set the commentstring based
- on cursor location in file (useful with _Comment.nvim_)
-* `numToStr/Comment.nvim`: comment with treesitter support (look _nvim-ts-context-commentstring_)
 * `kylechui/nvim-surround`: add surrounding delimiter pairs with ease
 * `mfussenegger/nvim-dap`: debug adapter protocol client
 * `sakhnik/nvim-gdb`: wrapper for GDB, LLDB, PDB/PDB++ and BashDB
@@ -19,14 +16,7 @@
 ## Look at
 
 * `abecodes/tabout.nvim`: use tab to exit from parenthesis and quotes
-* `folke/trouble.nvim`: prettify diagnostics, and other things
-* `lspsaga.nvim`: it could be cool
 * `sindrets/diffview.nvim`: useful for git but do i really need it?
-* `stevearc/aerial.nvim`: useful for code navigation but do i really need it?
-* `ray-x/navigator.nvim`: should be useful to read code
-* `jose-elias-alvarez/null-ls.nvim`: better diagnostics/code actions maybe?
-* `andrewferrier/textobj-diagnostic.nvim`: make textobj form code with errors
-* `jbyuki/venn.nvim`: draw ascii diagrams but do i really need it?
 * `simrat39/rust-tools.nvim`: Tools for rust dev with lsp
 * `ray-x/web-tools.nvim`: local dev server with live reload (?)
 * `Chaitanyabsprip/present.nvim`: make a presentation with neovim
@@ -34,4 +24,3 @@
 * `0styx0/abbreinder.nvim`: take abbreviations vs `AbbrevMan.nvim`
 * `stevearc/dressing.nvim`: improve `vim.ui` interfaces
 * `LudoPinelli/comment-box.nvim`: cuter comments with boxes and lines
-* something to debug

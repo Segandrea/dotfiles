@@ -184,6 +184,8 @@ return require('packer').startup(function(use)
     config = function() require('sgn.comment') end
   })
 
+  -- [[ Editorconfig support ]]
+  use({ 'gpanders/editorconfig.nvim' })
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
