@@ -25,6 +25,7 @@ return require('packer').startup(function(use)
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects', -- treesitter text objects
       'nvim-treesitter/nvim-treesitter-context', -- show function of context
+      'JoosepAlviste/nvim-ts-context-commentstring', -- use tree sitter to set commentstring
       'windwp/nvim-ts-autotag', -- autoclose html tags
       'p00f/nvim-ts-rainbow', -- coloured parenthesis
     },
@@ -176,6 +177,11 @@ return require('packer').startup(function(use)
   -- [[ Todo and fixme highlighter ]]
   use({ 'folke/todo-comments.nvim',
     config = function() require('sgn.todo') end,
+  })
+
+  -- [[ Comment ]]
+  use({ 'numToStr/Comment.nvim',
+    config = function() require('sgn.comment') end
   })
 
   -- Automatically set up your configuration after cloning packer.nvim

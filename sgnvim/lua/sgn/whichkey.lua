@@ -28,8 +28,26 @@ whichkey.setup({
   },
 })
 
+-- [[ VISUAL ]]
+whichkey.register({
+  ['<leader>c'] = {
+    name = '+[c]omment',
+    b = '[b]lock toggle',
+    l = '[l]ine toggle',
+  },
+}, { mode = 'v' })
+
+-- [[ NORMAL ]]
 -- Adding names for partial keybindings
 whichkey.register({
+  ['<leader>c'] = {
+    name = '+[c]omment',
+    a = '[a]ppend at eol',
+    b = '[b]lock toggle',
+    l = '[l]ine toggle',
+    j = '[j] below',
+    k = '[k] above',
+  },
   ['<leader>g'] = {
     name = '+[g]oto',
     n = '+[n]ext',

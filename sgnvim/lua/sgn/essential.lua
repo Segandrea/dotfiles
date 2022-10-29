@@ -158,7 +158,7 @@ autocmd('TextYankPost', {
 })
 
 -- Change formatoptions when opening a buffer (removed 'o')
-autocmd('BufReadPre', { pattern = '*', command = 'set formatoptions=jcrql' })
+autocmd('FileType', { pattern = '*', command = 'setlocal formatoptions-=o' })
 -- Center view when entering insert mode
 autocmd('InsertEnter', { pattern = '*', command = 'norm zz' })
 -- Switch off highlighting when entering insert mode
