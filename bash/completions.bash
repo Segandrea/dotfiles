@@ -19,5 +19,7 @@ completion_path="$(dirname "$(realpath "${BASH_SOURCE[0]}")")/completions"
 
 ##
 # Configuration path
-# bash completion for tmux
+# Bash completion for tmux
 [[ -f "${completion_path}/tmux_completion.bash" ]] && source "${completion_path}/tmux_completion.bash"
+# Bash completion for angular (ng)
+[[ -f "${completion_path}/angular_completion.bash" ]] && source "${completion_path}/angular_completion.bash" || echo "run: ng completion script > ${completion_path}/angular_completion.bash"
