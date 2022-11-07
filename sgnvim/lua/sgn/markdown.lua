@@ -40,7 +40,11 @@ require("mkdnflow").setup({
     MkdnUnfoldSection = false, -- unfold current section
   },
 })
-vim.api.nvim_create_autocmd('FileType', { pattern = 'markdown', command = 'set awa' })
+-- [[ Useful options for markdown ]]
+vim.o.autowriteall = true
+vim.wo.number = false
+vim.wo.relativenumber = false
+-- TODO: change formatoptions to make markdown autowrap (maybe with autocmd?)
 
 -- [[ Markdown-preview config ]]
 vim.b.mkdp_auto_start = 1

@@ -43,8 +43,9 @@ vim.o.encoding = 'utf-8'
 vim.o.fileencoding = 'utf-8'
 
 -- folding
-vim.o.foldenable = true
-vim.o.foldlevel = 99
+vim.wo.foldmethod = 'indent'
+vim.wo.foldenable = true
+vim.wo.foldlevel = 99
 
 -- do not show status
 vim.o.laststatus = 0
@@ -162,7 +163,7 @@ autocmd('TextYankPost', {
 })
 
 -- Change formatoptions when opening a buffer (removed 'o')
-autocmd('FileType', { pattern = '*', command = 'setlocal formatoptions-=o' })
+autocmd('FileType', { pattern = '*', command = 'setlocal formatoptions-=or' })
 -- Center view when entering insert mode
 autocmd('InsertEnter', { pattern = '*', command = 'norm zz' })
 -- Switch off highlighting when entering insert mode
