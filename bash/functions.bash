@@ -291,4 +291,11 @@ bt() {
   esac
 }
 
+# Get help with tldr
+gethelp() {
+  local target
+  target="$(tldr -l | sed -e "s/\[\|\]\|'//g" -e "s/, /\n/g" | fzf --no-info --preview='tldr {}' --prompt='tl;dr of help: ' --pointer='➜')"
+  [[ -n "${target}" ]] && tmux neww "tldr ${target}; exec bash" && return
+}
+
 # vim: foldmethod=indent foldminlines=0 foldlevel=0

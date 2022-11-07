@@ -7,5 +7,9 @@
 # The keybindings defined here only work inside bash shell
 
 # Bind Ctrl+g to `goto()`
-bind -m vi-insert '"\C-g":"goto && clear \n"'
-bind -m vi-command '"\C-g":"i goto && clear \n"' # 'i' is to enter insert
+bind -m vi-insert '"\C-g":"goto && clear\n"'
+bind -m vi-command '"\C-g":"igoto && clear\n"' # 'i' is to enter insert
+
+# Bind Ctrl+h to `gethelp()`
+bind -m vi-insert '"\C-h":"gethelp && clear\n"'
+bind -m vi-command '"\C-h":"igethelp && clear\n"'
