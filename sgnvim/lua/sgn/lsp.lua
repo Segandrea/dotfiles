@@ -59,7 +59,7 @@ lsp.on_attach(function(_, bufnr) -- first argument is "client", I don't need it
   map('n', '<C-k>', vim.lsp.buf.signature_help, options('Signature Documentation'))
 end)
 
--- needs to be the last command
+-- needs to be the last command after lsp configuration
 lsp.setup()
 
 -- Show lsp message in virtual text
