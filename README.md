@@ -48,8 +48,6 @@
 │   ├── plugins
 │   └── tmux.conf
 └── .vimrc
-
-18 directories, 33 files
 ```
 
 ## Alacritty

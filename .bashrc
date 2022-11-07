@@ -42,9 +42,6 @@ if [[ -x "$(command -v tmux)" && -z "$TMUX" ]]; then
         tmux new
     fi
 fi
+
 # Load nvm
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
