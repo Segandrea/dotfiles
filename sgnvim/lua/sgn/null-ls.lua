@@ -1,14 +1,23 @@
 local nls = require('null-ls')
+
+local diagnostics = nls.builtins.diagnostics
+local formatting = nls.builtins.formatting
+local code_actions = nls.builtins.code_actions
+-- local hover = nls.builtins.hover
+-- local completion = nls.builtins.completion
+
 nls.setup({
   sources = {
     -- [[ Formatting ]]
-    nls.builtins.formatting.prettier, -- webdev + md, yml
+    formatting.prettier, -- webdev + md, yml
     -- [[ Diagnostic ]]
-    nls.builtins.diagnostics.eslint, -- webdev
+    diagnostics.eslint, -- webdev
+    diagnostics.markdownlint.with({
+      extra_args = { '-c', vim.fn.expand("$XDG_CONFIG_HOME/markdownlint/.markdownlint.yaml") },
+    }), -- markdown only
     -- TODO: maybe vale is better for markdown + tex
-    nls.builtins.diagnostics.markdownlint, -- markdown only
     -- [[ Code actions ]]
-    nls.builtins.code_actions.shellcheck, -- sh
-    nls.builtins.code_actions.eslint, -- webdev
+    code_actions.shellcheck, -- sh
+    code_actions.eslint, -- webdev
   },
 })

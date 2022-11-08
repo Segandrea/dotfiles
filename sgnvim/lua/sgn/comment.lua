@@ -21,7 +21,7 @@ local options = function(description)
   return { noremap = true, silent = true, desc = description }
 end
 
--- toggle line comment in VISUAL mode
-map('x', '<leader>cl', '<Plug>(comment_toggle_linewise_visual)', options('[l]ine'))
+-- toggle line comment in VISUAL mode (NB: NO NEED FOR NOW)
+--map('x', '<leader>cl', '<Plug>(comment_toggle_linewise_visual)', options('[l]ine'))
 -- toggle block comment in VISUAL mode
 map('x', '<leader>cb', '<Plug>(comment_toggle_blockwise_visual)', options('[b]lock'))

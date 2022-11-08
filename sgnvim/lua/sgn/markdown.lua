@@ -44,6 +44,15 @@ require("mkdnflow").setup({
 vim.o.autowriteall = true
 vim.wo.number = false
 vim.wo.relativenumber = false
+vim.bo.textwidth = 80
+vim.wo.colorcolumn = '80'
+
+-- [[ Autocmd for variables that are changed from the plugin ]]
+local autocmd = vim.api.nvim_create_autocmd
+
+-- set formatoptions to autowrap at 80 chars in a smart way
+autocmd({ 'VimEnter', 'BufReadPost' }, { pattern = '*.md', callback = function() vim.opt.formatoptions = 'tnb1]jp' end })
+
 -- TODO: change formatoptions to make markdown autowrap (maybe with autocmd?)
 
 -- [[ Markdown-preview config ]]
@@ -59,20 +68,22 @@ end
 map('n', '<leader>me', ':MdEval<cr>', options('[e]val code'))
 
 -- Make table (MkdnFlow)
-map('n', '<leader>mt', ':MkdnTable 1 1 noh<CR>', options('[t]able new'))
+map('n', '<leader>mt', ':MkdnTable 2 2 noh<CR>', options('[t]able new'))
 -- Format table
 map('n', '<leader>mf', ':MkdnTableFormat<CR>', options('[f]ormat table'))
 -- Remap mkdnflow default bindings adding description
-map('n', '<leader>mnl', ':MkdnNextLink<CR>', options('[l]ink'))
-map('n', '<leader>mpl', ':MkdnPrevLink<CR>', options('[L]ink'))
-map('n', '<leader>mnh', ':MkdnNextHeading<CR>', options('[h]eading'))
-map('n', '<leader>mph', ':MkdnPrevHeading<CR>', options('[H]eading'))
+map('n', '<leader>gnl', ':MkdnNextLink<CR>', options('[l]ink'))
+map('n', '<leader>gpl', ':MkdnPrevLink<CR>', options('[L]ink'))
+map('n', '<leader>gnh', ':MkdnNextHeading<CR>', options('[h]eading'))
+map('n', '<leader>gph', ':MkdnPrevHeading<CR>', options('[H]eading'))
 map('n', '<leader>ms', ':MkdnMoveSource<CR>', options('[s]ource rename'))
-map({ 'n', 'v' }, '<leader>mb', ':MkdnToggleToDo<CR>', options('[b]ox toggle'))
+map({ 'n', 'v' }, '<leader>mx', ':MkdnToggleToDo<CR>', options('toggle checkbo[x]'))
 map('n', '<leader>mr', ':MkdnTableNewRowBelow<CR>', options('[r]ow below'))
 map('n', '<leader>mR', ':MkdnTableNewRowAbove<CR>', options('[R]ow above'))
 map('n', '<leader>mc', ':MkdnTableNewColAfter<CR>', options('[c]ol after'))
 map('n', '<leader>mC', ':MkdnTableNewColAfter<CR>', options('[C]ol before'))
+map('n', '<leader>mo', 'o- [ ] ', options('[o]pen list item'))
+map('n', '<leader>mO', 'O- [ ] ', options('[O]pen list item'))
 
 -- Preview in pdf reader
 map('n', '<leader>mw', ':MarkdownPreviewToggle<CR>', options('[p]review'))

@@ -163,7 +163,7 @@ autocmd('TextYankPost', {
 })
 
 -- Change formatoptions when opening a buffer (removed 'o')
-autocmd('FileType', { pattern = '*', command = 'setlocal formatoptions-=or' })
+autocmd('VimEnter', { pattern = '*', callback = function() vim.bo.formatoptions = 'jcql' end })
 -- Center view when entering insert mode
 autocmd('InsertEnter', { pattern = '*', command = 'norm zz' })
 -- Switch off highlighting when entering insert mode

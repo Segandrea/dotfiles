@@ -86,3 +86,5 @@ alias dconfload='dconf load / < dumped_settings.ini'
 
 # open ignoramus
 alias nora='[[ -d "$IGNORAMUS_DIR" ]] && cd "$IGNORAMUS_DIR" && "$EDITOR" "$IGNORAMUS_DIR/index.md" && cd "$OLDPWD"'
+# my todo list
+alias todo='tmux popup -E -w 80% -h 80% -b rounded "$EDITOR $DESKTOP_DIR/todo.md"'
