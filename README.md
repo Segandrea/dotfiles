@@ -1,5 +1,14 @@
 # Dotfiles for endeavourOS
 
+## Requirements
+
+Uses `stow` to make symlinks.
+To link all configurations, from the root directory of dotfiles, do
+
+```bash
+stow --target="$HOME" *
+```
+
 ## WARN: Subject to changes, poorly documented and may break
 
 > Use as your own risk, these dot files will change without notice and the

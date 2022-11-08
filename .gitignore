@@ -1,5 +1,4 @@
-tmux/plugins/
-fonts/*
-!fonts/.gitkeep
+**/tmux/plugins/
+**/fonts/*
 Cyberpunk-GRUB-Theme/
 packer_compiled.lua
