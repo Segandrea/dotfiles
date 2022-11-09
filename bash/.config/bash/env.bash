@@ -32,6 +32,12 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # fzf highlight choice with background color (unseeable)
 export FZF_DEFAULT_OPTS='--color=bg+:#282a36'
 
+# User XDG Base Directory Specifications
+export XDG_CACHE_HOME="$HOME/.cache"       # analogous to /var/cache/
+export XDG_CONFIG_HOME="$HOME/.config"     # analogous to /etc/
+export XDG_DATA_HOME="$HOME/.local/share"  # analogous to /usr/share/
+export XDG_STATE_HOME="$HOME/.local/state" # analogous to /var/lib/
+
 # my most used directories
 export DOCUMENTS_DIR="$HOME/Documents"
 export DOWNLOADS_DIR="$HOME/Downloads"
