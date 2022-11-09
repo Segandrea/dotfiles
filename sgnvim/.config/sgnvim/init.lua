@@ -20,8 +20,13 @@ return require('packer').startup(function(use)
   -- [[ Packer ]]
   use({ 'wbthomason/packer.nvim' })
 
+  -- [[ Startup speedup ]]
+  use({ 'lewis6991/impatient.nvim', })
+  require('impatient') -- Needs to be called as fast as possible after loading
+
   -- [[ Treesitter ]]
   use({ 'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
     config = function() require('sgn.treesitter') end,
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects', -- treesitter text objects
@@ -30,7 +35,6 @@ return require('packer').startup(function(use)
       'windwp/nvim-ts-autotag', -- autoclose html tags
       'p00f/nvim-ts-rainbow', -- coloured parenthesis
     },
-    run = ':TSUpdate',
   })
 
   -- [[ TMUX navigation ]]
@@ -129,7 +133,10 @@ return require('packer').startup(function(use)
       ft = 'markdown',
       config = function() require('sgn.markdown') end,
     }, -- markdown support
-    { 'jubnzv/mdeval.nvim', ft = 'markdown', }, -- evaluate code in md files
+    {
+      'jubnzv/mdeval.nvim',
+      ft = 'markdown',
+    }, -- evaluate code in md files
     {
       'iamcco/markdown-preview.nvim',
       run = function() vim.fn["mkdp#util#install"]() end,
@@ -141,7 +148,6 @@ return require('packer').startup(function(use)
   use({ 'nvim-neorg/neorg',
     config = function() require('sgn.neorg') end,
     ft = 'norg',
-    run = ':Neorg sync-parsers',
     after = 'nvim-treesitter',
     requires = 'nvim-lua/plenary.nvim',
   })
@@ -181,7 +187,7 @@ return require('packer').startup(function(use)
 
   -- [[ Comment ]]
   use({ 'numToStr/Comment.nvim',
-    config = function() require('sgn.comment') end
+    config = function() require('sgn.comment') end,
   })
 
   -- [[ Tab bar ]]
