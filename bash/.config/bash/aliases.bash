@@ -44,7 +44,8 @@ alias sl='ls'
 alias al='la'
 alias eco='echo'
 alias quit='exit'
-alias cls='clear'
+alias clear='clear -x'
+alias cls='clear -x'
 
 # compile c with @daddinuz flames
 alias ddc='gcc -std=c17 -Wall -Wextra -Wpedantic -Werror'
