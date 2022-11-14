@@ -34,6 +34,9 @@ vim.bo.tabstop = 2
 vim.o.list = true
 vim.opt.listchars = { trail = '•', tab = '  ', extends = 'ﲖ', precedes = 'ﲕ' }
 
+-- hide ~ at the end of the buffer (eob)
+vim.o.fillchars = 'eob: '
+
 -- scrolloff
 vim.o.scrolloff = 5
 vim.o.sidescroll = 3

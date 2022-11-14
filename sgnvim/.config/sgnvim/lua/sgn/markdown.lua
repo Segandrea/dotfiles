@@ -46,6 +46,7 @@ vim.wo.number = false
 vim.wo.relativenumber = false
 vim.bo.textwidth = 80
 vim.wo.colorcolumn = '80'
+vim.wo.signcolumn = 'no'
 
 -- [[ Autocmd for variables that are changed from the plugin ]]
 local autocmd = vim.api.nvim_create_autocmd
