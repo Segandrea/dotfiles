@@ -1,6 +1,7 @@
 # don't add a newline after prompt
 add_newline = false
 format = """
+$custom\
 $username\
 $hostname\
 $localip\
@@ -65,7 +66,6 @@ $openstack\
 $azure\
 $env_var\
 $crystal\
-$custom\
 $sudo\
 $jobs\
 $time\
@@ -78,11 +78,11 @@ $shell\
 $character"""
 
 # show tmux index/number of windows
-#[custom.foo]
-#command = "tmux display-message -p '#{e|+:#{window_index},1} of #{session_windows}'"
-#when = "[[ -n ${TMUX} && $(tmux display-message -p '#{session_windows}') -gt 1 ]]"
-#style = "bold green"
-#format = "[缾$output]($style) "
+[custom.foo]
+command = "tmux display-message -p '#{e|+:#{window_index},1} of #{session_windows}'"
+when = "[[ -n ${TMUX} && $(tmux display-message -p '#{session_windows}') -gt 1 ]]"
+style = "bold green"
+format = "[缾$output]($style) in "
 
 # show cmd duration only after some time
 [cmd_duration]
