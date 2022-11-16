@@ -7,7 +7,7 @@ info="$(tput setaf 4)Info:$(tput sgr 0)"                # blue info
 
 if [[ -x "$(command -v stow)" ]]; then
   echo "${info} Linking files with stow"
-  stow --target="$HOME" -S alacritty/ bash/ fonts/ sgnvim/ starship/ tmux/ vim/ && echo "${succ} configuration stowed" || echo "${error} failed to stow configuration"
+  stow --target="$HOME" -S alacritty/ bash/ fonts/ markdownlint/ sgnvim/ starship/ tmux/ vim/ && echo "${succ} configuration stowed" || echo "${error} failed to stow configuration"
 else
   echo "${error} Stow not found"
   exit
