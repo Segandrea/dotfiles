@@ -12,8 +12,8 @@
 ##                                                                            ##
 ################################################################################
 
-# The following directive deactivates shellcheck's warning for missing shebang
-# shellcheck disable=SC2148
+## The following directive deactivates shellcheck's warning for missing shebang
+## shellcheck disable=SC2148
 
 # Ping google with time
 gping() {
@@ -130,7 +130,7 @@ extract() {
 # List all custom functions
 showfunctions() {
   if [[ -z "$1" ]]; then
-    grep -A 1 -e "^# .*" "$(realpath "${BASH_SOURCE[0]}")"
+    grep -A 1 -e "^# .*" "$(realpath "${BASH_SOURCE[0]}")" --color=always | less
   else
     grep -A 1 -e "^# .*" "$(realpath "${BASH_SOURCE[0]}")" | grep -B 1 -A 1 -m 1 -i "$1"
   fi
@@ -285,4 +285,4 @@ gethelp() {
   [[ -n "${target}" ]] && tmux neww "tldr ${target}; exec bash" && return
 }
 
-# vim: foldmethod=indent foldminlines=0 foldlevel=0
+## vim: foldmethod=indent foldminlines=0 foldlevel=0
