@@ -139,7 +139,7 @@ showfunctions() {
 # Fzf to a directory from $HOME
 goto() {
   local target
-  target="$(cd && { fd --type directory --follow --hidden --strip-cwd-prefix --ignore-file "$XDG_CONFIG_HOME/bash/utils/.fd_goto_ignored_dirs" | sort | fzf --exact --no-info --reverse --preview='tree -CL 2 {}' --delimiter='/' --pointer='➜' --prompt='Go to: '; })" #
+  target="$(cd && { fd --type directory --follow --hidden --strip-cwd-prefix --ignore-file "$XDG_CONFIG_HOME/bash/ignorefiles/.fd_goto_ignored_dirs" | sort | fzf --exact --no-info --reverse --preview='tree -CL 2 {}' --delimiter='/' --pointer='➜' --prompt='Go to: '; })" #
   if [[ -n "${target}" ]]; then
     cd -- "$HOME/${target}" || return
   fi
