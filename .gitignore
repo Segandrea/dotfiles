@@ -2,3 +2,4 @@
 **/fonts/*
 Cyberpunk-GRUB-Theme/
 packer_compiled.lua
+.luarc.json

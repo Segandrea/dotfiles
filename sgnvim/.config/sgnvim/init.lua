@@ -80,6 +80,11 @@ return require('packer').startup(function(use)
       { 'neovim/nvim-lspconfig' },
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
+      { -- configure sumneko to give better suggestion for anything plugin related
+        'folke/neodev.nvim',
+        config = function() require('neodev').setup() end,
+        ft = 'lua',
+      },
       { -- Inject lsp things like formatting from tools external to nvim
         'jose-elias-alvarez/null-ls.nvim',
         requires = { 'nvim-lua/plenary.nvim' },

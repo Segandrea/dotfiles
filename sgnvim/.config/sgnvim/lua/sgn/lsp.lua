@@ -1,5 +1,5 @@
 -- TODO: confiugre DAP (using lspzero or calling mason?)
--- NB: 'jbyuki/one-small-step-for-vimkind' may be needed for DAP 
+-- INFO: 'jbyuki/one-small-step-for-vimkind' may be needed for DAP
 
 -- Mason needs to be configured before lspzero
 require('mason').setup({
@@ -33,9 +33,7 @@ lsp.set_preferences({
 -- support for lua config
 lsp.nvim_workspace()
 
--- [[ Mappings ]]
--- lsp mappings
-lsp.on_attach(function(_, bufnr) -- first argument is "client", I don't need it
+local on_attach = function(_, bufnr) -- first argument is "client", I don't need it
   local map = vim.keymap.set
   local options = function(description)
     return { buffer = bufnr, noremap = true, desc = description }
@@ -57,11 +55,16 @@ lsp.on_attach(function(_, bufnr) -- first argument is "client", I don't need it
   -- See `:help K` for why this keymap
   map('n', 'K', vim.lsp.buf.hover, options('Hover Documentation'))
   map('n', '<C-k>', vim.lsp.buf.signature_help, options('Signature Documentation'))
-end)
+end
+
+-- [[ Mappings ]]
+-- lsp mappings
+lsp.on_attach(on_attach)
 
 -- needs to be the last command after lsp configuration
 lsp.setup()
 
+-- [[ Diagnostics virtual text ]]
 -- Show lsp message in virtual text
 vim.diagnostic.config({
   virtual_text = { prefix = '' },
