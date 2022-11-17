@@ -132,21 +132,21 @@ return require('packer').startup(function(use)
 
   -- [[ Markdown ]]
   use({
-    {
+    { -- markdown support
       'jakewvincent/mkdnflow.nvim',
       rocks = 'luautf8',
       ft = 'markdown',
       config = function() require('sgn.markdown') end,
-    }, -- markdown support
-    {
+    },
+    { -- evaluate code in md files
       'jubnzv/mdeval.nvim',
       ft = 'markdown',
-    }, -- evaluate code in md files
-    {
+    },
+    { -- live render md in pdf reader
       'iamcco/markdown-preview.nvim',
       run = function() vim.fn["mkdp#util#install"]() end,
       ft = 'markdown',
-    }, -- live render md in pdf reader
+    },
   })
 
   -- [[ Neorg support ]]
