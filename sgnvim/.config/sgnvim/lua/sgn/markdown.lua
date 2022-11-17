@@ -74,9 +74,9 @@ map('n', '<leader>mt', ':MkdnTable 2 2 noh<CR>', options('[t]able new'))
 map('n', '<leader>mf', ':MkdnTableFormat<CR>', options('[f]ormat table'))
 -- Remap mkdnflow default bindings adding description
 map('n', '<leader>gnl', ':MkdnNextLink<CR>', options('[l]ink'))
-map('n', '<leader>gpl', ':MkdnPrevLink<CR>', options('[L]ink'))
+map('n', '<leader>gpl', ':MkdnPrevLink<CR>', options('[l]ink'))
 map('n', '<leader>gnh', ':MkdnNextHeading<CR>', options('[h]eading'))
-map('n', '<leader>gph', ':MkdnPrevHeading<CR>', options('[H]eading'))
+map('n', '<leader>gph', ':MkdnPrevHeading<CR>', options('[h]eading'))
 map('n', '<leader>ms', ':MkdnMoveSource<CR>', options('[s]ource rename'))
 map({ 'n', 'v' }, '<leader>mx', ':MkdnToggleToDo<CR>', options('toggle checkbo[x]'))
 map('n', '<leader>mr', ':MkdnTableNewRowBelow<CR>', options('[r]ow below'))
@@ -87,4 +87,4 @@ map('n', '<leader>mo', 'o- [ ] ', options('[o]pen list item'))
 map('n', '<leader>mO', 'O- [ ] ', options('[O]pen list item'))
 
 -- Preview in pdf reader
-map('n', '<leader>mw', ':MarkdownPreviewToggle<CR>', options('[p]review'))
+map('n', '<leader>mp', ':MarkdownPreviewToggle<CR>', options('[p]review'))

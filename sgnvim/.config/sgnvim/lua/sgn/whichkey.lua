@@ -77,11 +77,7 @@ local autocmd = vim.api.nvim_create_autocmd
 -- Markdown
 autocmd('FileType', { pattern = 'markdown', callback = function()
   whichkey.register({
-    ['<leader>m'] = {
-      name = '+[m]arkdown',
-      n = '+[n]ext',
-      p = '+[p]rev',
-    },
+    ['<leader>m'] = { name = '+[m]arkdown', },
   })
 end})
 
