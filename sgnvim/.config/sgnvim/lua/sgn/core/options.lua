@@ -1,3 +1,7 @@
+-- Core options for the configuration
+-- Will probably be overwritten by plugins
+
+-- See `:help vim.o`
 local o = {
   clipboard = 'unnamedplus',                           -- Use system clipboard
   smarttab = true,                                     -- Insert as many blanks as 'tabstop'
@@ -23,6 +27,7 @@ local o = {
   titlestring = '%t',                                  -- Show filename as 'title' (see o.title)
 }
 
+-- See `:help vim.wo`
 local wo = {
   list = true,                                         -- Enable List mode to show characters instead of blanks (see o.listchars)
   wrap = false,                                        -- Display lines that are too long on the next line
@@ -38,6 +43,7 @@ local wo = {
   signcolumn = 'yes',                                  -- Show symbols in the column before the line numbers
 }
 
+-- See `:help vim.bo`
 local bo = {
   softtabstop = 2,                                     -- Number of spaces to use instead of tabs when pressing <tab> or <bs>
   expandtab = true,                                    -- In Insert mode use spaces instead of tabs
