@@ -32,7 +32,7 @@ return require('packer').startup(function(use)
     {
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
-      config = function() require('sgn.treesitter') end,
+      config = function() require('sgn.plugin.treesitter') end,
       requires = {
         'nvim-treesitter/nvim-treesitter-textobjects', -- treesitter text objects
         'nvim-treesitter/nvim-treesitter-context',     -- show function of context
@@ -45,11 +45,11 @@ return require('packer').startup(function(use)
     -- Navigation {{{
     { -- seamless TMUX navigation
       'aserowy/tmux.nvim',
-      config = function() require('sgn.tmux') end,
+      config = function() require('sgn.plugin.tmux') end,
     },
     { -- Telescope
       'nvim-telescope/telescope.nvim',
-      config = function() require('sgn.telescope') end,
+      config = function() require('sgn.plugin.telescope') end,
       branch = '0.1.x',
       requires = {
         { 'nvim-lua/plenary.nvim' },
@@ -62,14 +62,14 @@ return require('packer').startup(function(use)
     },
     { -- Tree navigator
       'nvim-tree/nvim-tree.lua',
-      config = function() require('sgn.tree') end,
+      config = function() require('sgn.plugin.nvim-tree') end,
       requires = { 'kyazdani42/nvim-web-devicons' },
     }, -- }}}
 
     -- Lsp {{{
     { -- Lsp-Zero to automatize lsp configuration
       'VonHeikemen/lsp-zero.nvim',
-      config = function() require('sgn.lsp') end,
+      config = function() require('sgn.plugin.lsp-zero') end,
       requires = {
         -- LSP Support {{{
         { 'neovim/nvim-lspconfig' },
@@ -84,7 +84,7 @@ return require('packer').startup(function(use)
         { -- Inject lsp things like formatting from tools external to nvim
           'jose-elias-alvarez/null-ls.nvim',
           requires = { 'nvim-lua/plenary.nvim' },
-          config = function() require('sgn.null-ls') end,
+          config = function() require('sgn.plugin.null-ls') end,
         },
         { -- Improve project structure management
           'ahmedkhalf/project.nvim',
@@ -93,7 +93,7 @@ return require('packer').startup(function(use)
         -- Completion {{{
         { -- Autocompletion
           'hrsh7th/nvim-cmp',
-          config = function() require('sgn.cmp') end,
+          config = function() require('sgn.plugin.nvim-cmp') end,
           requires = {
             { 'onsails/lspkind.nvim' },
             { 'hrsh7th/cmp-buffer' },
@@ -104,7 +104,7 @@ return require('packer').startup(function(use)
             { 'kdheepak/cmp-latex-symbols' },
             { -- Snippets
               'L3MON4D3/LuaSnip',
-              config = function() require('sgn.snippets') end,
+              config = function() require('sgn.plugin.luasnip') end,
               requires = { 'rafamadriz/friendly-snippets' },
             },
           },
@@ -126,7 +126,7 @@ return require('packer').startup(function(use)
     },
     { -- Zen
       'folke/zen-mode.nvim',
-      config = function() require('sgn.zen') end,
+      config = function() require('sgn.plugin.zen-mode') end,
       requires = { 'folke/twilight.nvim', },
     },
     { -- Highlight arguments
@@ -136,12 +136,12 @@ return require('packer').startup(function(use)
     },
     { -- Show nicer diagnostics
       'folke/trouble.nvim',
-      config = function() require('sgn.trouble') end,
+      config = function() require('sgn.plugin.trouble') end,
       requires = 'kyazdani42/nvim-web-devicons',
     },
     { -- Todo and fixme highlighter
       'folke/todo-comments.nvim',
-      config = function() require('sgn.todo') end,
+      config = function() require('sgn.plugin.todo-comments') end,
     },
     { -- Highlight hex/rgb/etc. colors
       'brenoprata10/nvim-highlight-colors',
@@ -155,32 +155,32 @@ return require('packer').startup(function(use)
     -- Ease of use {{{
     { -- Comment
       'numToStr/Comment.nvim',
-      config = function() require('sgn.comment') end,
+      config = function() require('sgn.plugin.comment') end,
     },
     { -- Tab bar
       'romgrk/barbar.nvim',
-      config = function() require('sgn.buftabbar') end,
+      config = function() require('sgn.plugin.barbar') end,
       requires = { 'kyazdani42/nvim-web-devicons' },
     },
     -- Editorconfig support
     { 'gpanders/editorconfig.nvim' },
     { -- Autopairs
       'windwp/nvim-autopairs',
-      config = function() require('sgn.autopairs') end,
+      config = function() require('sgn.plugin.nvim-autopairs') end,
     },
     { -- Git signs
       'lewis6991/gitsigns.nvim',
-      config = function() require('sgn.gitsigns') end,
+      config = function() require('sgn.plugin.gitsigns') end,
     },
     { -- Which-key
       'folke/which-key.nvim',
-      config = function() require('sgn.whichkey') end,
+      config = function() require('sgn.plugin.whichkey') end,
     }, -- }}}
 
     -- Markdown {{{
     { -- Markdown
       'jakewvincent/mkdnflow.nvim',
-      config = function() require('sgn.markdown') end,
+      config = function() require('sgn.plugin.mkdnflow') end,
       rocks = 'luautf8',
       ft = 'markdown',
       requires = {
@@ -192,7 +192,7 @@ return require('packer').startup(function(use)
     -- Neorg {{{
     { -- Neorg support
       'nvim-neorg/neorg',
-      config = function() require('sgn.neorg') end,
+      config = function() require('sgn.plugin.neorg') end,
       ft = 'norg',
       after = 'nvim-treesitter',
       requires = 'nvim-lua/plenary.nvim',
