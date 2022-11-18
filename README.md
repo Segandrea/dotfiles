@@ -6,7 +6,7 @@ Uses `stow` to make symlinks.
 To link all configurations, from the root directory of dotfiles, do
 
 ```bash
-stow --target="$HOME" *
+bash stow.bash
 ```
 
 ## WARN: Subject to changes, poorly documented and may break
@@ -17,7 +17,7 @@ stow --target="$HOME" *
 > However, if there is some constructive criticism or improving suggetsion,
 > it's more than welcome. Have fun!
 
-## Structure
+## Structure (Actually now is different)
 
 ```tree
 .
@@ -71,11 +71,11 @@ Alacritty terminal configuration, uses:
 * `.bashrc`: Sources some bash files, enables some utilites.
 * `.inputrc` -> Contains readline configurations
 * `bash/`:
-  * `bash/aliases.bash`: Contains bash aliases, sourced by `.bashrc`
-  * `bash/functions.bash`: Contains bash functions, sourced by `.bashrc`
-  * `bash/env.bash`: Contains env variables, sourced by `.bashrc`
-  * `bash/completions.bash`: Sources completion scripts, sourced by `.bashrc`
-    * `bash/completion/`: Contains completion script, all sourced by `completions.bash`
+  - `bash/aliases.bash`: Contains bash aliases, sourced by `.bashrc`
+  - `bash/functions.bash`: Contains bash functions, sourced by `.bashrc`
+  - `bash/env.bash`: Contains env variables, sourced by `.bashrc`
+  - `bash/completion/`: Contains completion script, all sourced by `completions.bash`
+  - `bash/completions.bash`: Sources completion scripts, sourced by `.bashrc`
 
 ## Fonts
 
