@@ -1,5 +1,5 @@
 -- [[ Essential settings ]]
-require('sgn.essential')
+require('sgn.core')
 
 -- [[ Bootstrap packer ]]
 local ensure_packer = function()
