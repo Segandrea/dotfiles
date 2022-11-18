@@ -17,12 +17,15 @@ local packer_bootstrap = ensure_packer()
 
 -- [[ List of plugins ]]
 return require('packer').startup(function(use)
-  -- [[ Packer ]]
-  use({ 'wbthomason/packer.nvim' })
 
-  -- [[ Startup speedup ]]
-  use({ 'lewis6991/impatient.nvim', })
-  require('impatient') -- Needs to be called as fast as possible after loading
+  -- [[ Packer and Impatient ]]
+  use({
+    { 'wbthomason/packer.nvim' },   -- Packer can think about himself
+    { 'lewis6991/impatient.nvim' }, -- Impatient speeds up neovim startup
+  })
+
+  -- Calling it here reduces the startup time
+  require('impatient')
 
   -- [[ Treesitter ]]
   use({ 'nvim-treesitter/nvim-treesitter',
