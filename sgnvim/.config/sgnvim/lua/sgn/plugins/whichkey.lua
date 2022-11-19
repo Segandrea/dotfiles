@@ -70,26 +70,3 @@ whichkey.register({
   ['<leader>z'] = { name = '+[z]en' },
   ['<leader>?'] = { name = '+trouble[?]' },
 })
-
--- [[ Define mappings only for specific filetypes ]]
-local autocmd = vim.api.nvim_create_autocmd
-
--- Markdown
-autocmd('FileType', { pattern = 'markdown', callback = function()
-  whichkey.register({
-    ['<leader>m'] = { name = '+[m]arkdown', },
-  })
-end})
-
--- Neorg
-autocmd('FileType', { pattern = 'norg', callback = function()
-  -- TODO: work on keymaps
-  whichkey.register({
-    ['<leader>m'] = {
-      name = '+[m]neorg(?)',
-    },
-    ['<leader>n'] = {
-      name = '+[n]eorg(?)',
-    },
-  })
-end})

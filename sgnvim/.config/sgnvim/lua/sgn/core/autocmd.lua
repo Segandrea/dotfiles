@@ -1,11 +1,13 @@
 -- Core autocmds for the configuration
 -- Will probably be overwritten by plugins
 
--- see `:help vim.api.nvim_create_autocmd`
-local autocmd = vim.api.nvim_create_autocmd
+-- Shorteing vim common functions
+local autocmd = vim.api.nvim_create_autocmd -- see `:help vim.api.nvim_create_autocmd`
+local augroup = vim.api.nvim_create_augroup -- see `:help vim.api.nvim_create_augroup`
+local line = vim.fn.line                    -- see `:help line()` and `:help vim.fn`
 
 -- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup( 'YankHighlight', { clear = true })
+local highlight_group = augroup( 'YankHighlight', { clear = true } )
 autocmd('TextYankPost', {
   -- See `:help vim.highlight.on_yank()`
   callback = function() vim.highlight.on_yank() end,
@@ -13,11 +15,25 @@ autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- Change formatoptions when opening a buffer (removed 'o')
-autocmd('VimEnter', { pattern = '*', callback = function() vim.bo.formatoptions = 'jcql' end })
--- Center view when entering insert mode
-autocmd('InsertEnter', { pattern = '*', command = 'norm zz' })
--- Switch off highlighting when entering insert mode
-autocmd('InsertEnter', { pattern = '*', command = 'set nohlsearch' })
+-- Do things entering insert mode
+local insert_enter_group = augroup( 'InsertModeEnter', { clear = true } )
+autocmd('InsertEnter', {
+  callback = function()
+    vim.o.hlsearch = false -- disable highlight
+    vim.cmd('norm zz')     -- center the view
+  end,
+  pattern = '*',
+  group = insert_enter_group,
+})
+
 -- Save last editing position
-autocmd('BufReadPost', { pattern = '*', command = [[if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | execute "normal! g`\"" | endif]] })
+local save_position_group = augroup( 'SavePosition', { clear = true } )
+autocmd('BufReadPost', {
+  callback = function()
+    if line([['"]]) >= 1 and line([['"]]) <= line("$") then
+      vim.cmd([[normal! g`"]])
+    end
+  end,
+  pattern = '*',
+  group = save_position_group,
+})

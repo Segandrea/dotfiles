@@ -4,7 +4,6 @@ require("mkdnflow").setup({
   mappings = {
     -- leaving enabled only those not displayed by whichkey,
     -- remapping the other below.
-
     MkdnEnter = {{'i', 'n', 'v'}, '<CR>'}, -- make/follow link and fold headings
     MkdnTab = false, -- jump in next cell or indent list item
     MkdnSTab = false, -- jump in prev cell or deindent list item
@@ -40,21 +39,6 @@ require("mkdnflow").setup({
     MkdnUnfoldSection = false, -- unfold current section
   },
 })
--- [[ Useful options for markdown ]]
-vim.o.autowriteall = true
-vim.wo.number = false
-vim.wo.relativenumber = false
-vim.bo.textwidth = 80
-vim.wo.colorcolumn = '80'
-vim.wo.signcolumn = 'no'
-
--- [[ Autocmd for variables that are changed from the plugin ]]
-local autocmd = vim.api.nvim_create_autocmd
-
--- set formatoptions to autowrap at 80 chars in a smart way
-autocmd({ 'VimEnter', 'BufReadPost' }, { pattern = '*.md', callback = function() vim.opt.formatoptions = 'tnb1]jp' end })
-
--- TODO: change formatoptions to make markdown autowrap (maybe with autocmd?)
 
 -- [[ Markdown-preview config ]]
 vim.b.mkdp_auto_start = 1
