@@ -3,7 +3,6 @@ require('sgn.core')
 
 -- TODO: packer bootstrap
 -- TODO: packer autoinstall plugins when saving this file
--- TODO: packer improve lazyloading of plugins
 
 -- [[ List of plugins ]]
 return require('packer').startup(function(use)
@@ -24,11 +23,11 @@ return require('packer').startup(function(use)
       run = ':TSUpdate',
       config = function() require('sgn.plugins.treesitter') end,
       requires = {
-        'nvim-treesitter/nvim-treesitter-textobjects', -- treesitter text objects
-        'nvim-treesitter/nvim-treesitter-context',     -- show function of context
-        'JoosepAlviste/nvim-ts-context-commentstring', -- use tree sitter to set commentstring
-        'windwp/nvim-ts-autotag',                      -- autoclose html tags
-        'p00f/nvim-ts-rainbow',                        -- coloured parenthesis
+        { 'nvim-treesitter/nvim-treesitter-textobjects' }, -- treesitter text objects
+        { 'nvim-treesitter/nvim-treesitter-context' },     -- show function of context
+        { 'JoosepAlviste/nvim-ts-context-commentstring' }, -- use tree sitter to set commentstring
+        { 'windwp/nvim-ts-autotag' },                      -- autoclose html tags
+        { 'p00f/nvim-ts-rainbow' },                        -- coloured parenthesis
       },
     }, -- }}}
 
@@ -149,6 +148,7 @@ return require('packer').startup(function(use)
     },
     { -- Tab bar
       'romgrk/barbar.nvim',
+      as = 'barbar',
       config = function() require('sgn.plugins.barbar') end,
       requires = { 'kyazdani42/nvim-web-devicons' },
     },
