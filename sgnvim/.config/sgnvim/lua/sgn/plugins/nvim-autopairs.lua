@@ -8,6 +8,7 @@ npairs.setup({
 })
 
 -- [[ Custom rules ]]
+-- TODO: improve
 npairs.add_rule(Rule(' ', ' '):with_pair(
   function (opts)
     local pair = opts.line:sub(opts.col - 1, opts.col)

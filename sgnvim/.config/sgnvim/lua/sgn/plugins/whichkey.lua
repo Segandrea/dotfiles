@@ -30,6 +30,7 @@ whichkey.setup({
 
 -- [[ VISUAL ]]
 whichkey.register({
+  ['<leader>a'] = { name = '+[a]lign', },
   ['<leader>c'] = {
     name = '+[c]omment',
     b = '[b]lock toggle',

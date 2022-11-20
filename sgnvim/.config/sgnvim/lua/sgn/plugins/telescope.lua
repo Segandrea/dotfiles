@@ -29,22 +29,20 @@ require('telescope').setup {
 pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, 'projects')
 
-local map = vim.keymap.set
-local options = function(description)
-  return { noremap = true, silent = true, desc = description }
-end
+local map = require('sgn.core.mapper').map
 
--- See `:help telescope.builtin`
-map('n', '<leader>to', builtin.oldfiles, options('[o]ld files'))
-map('n', '<leader>tb', builtin.buffers, options('[b]uffers'))
-map('n', '<leader>tr', builtin.lsp_references, options('[r]eferences'))
-map('n', '<leader>ts', builtin.lsp_document_symbols, options('[s]ymbols'))
-map('n', '<leader>tf', builtin.find_files, options('[f]ind files'))
-map('n', '<leader>th', builtin.help_tags, options('[h]elp tags'))
-map('n', '<leader>tg', builtin.live_grep, options('[g]rep files'))
-map('n', '<leader>td', builtin.diagnostics, options('[d]iagnostics'))
-map('n', '<leader>tm', builtin.man_pages, options('[m]anpages'))
-map('n', '<leader>tk', builtin.keymaps, options('[k]eybindings'))
-
--- requires 'project.nvim'
-map('n', '<leader>wl', ':Telescope projects<CR>', options('[l]ist'))
+map({
+  -- See `:help telescope.builtin`
+  { mode = 'n', key = '<leader>to', act = builtin.oldfiles, desc = '[o]ld files' },
+  { mode = 'n', key = '<leader>tb', act = builtin.buffers, desc = '[b]uffers' },
+  { mode = 'n', key = '<leader>tr', act = builtin.lsp_references, desc = '[r]eferences' },
+  { mode = 'n', key = '<leader>ts', act = builtin.lsp_document_symbols, desc = '[s]ymbols' },
+  { mode = 'n', key = '<leader>tf', act = builtin.find_files, desc = '[f]ind files' },
+  { mode = 'n', key = '<leader>th', act = builtin.help_tags, desc = '[h]elp tags' },
+  { mode = 'n', key = '<leader>tg', act = builtin.live_grep, desc = '[g]rep files' },
+  { mode = 'n', key = '<leader>td', act = builtin.diagnostics, desc = '[d]iagnostics' },
+  { mode = 'n', key = '<leader>tm', act = builtin.man_pages, desc = '[m]anpages' },
+  { mode = 'n', key = '<leader>tk', act = builtin.keymaps, desc = '[k]eybindings' },
+  -- requires 'project.nvim'
+  { mode = 'n', key = '<leader>wl', act = ':Telescope projects<CR>', desc = '[l]ist' },
+})

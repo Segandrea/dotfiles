@@ -44,31 +44,27 @@ require("mkdnflow").setup({
 vim.b.mkdp_auto_start = 1
 
 -- [[ Plugins mappings ]]
-local map = vim.keymap.set
-local options = function(description)
-  return { noremap = true, silent = true, desc = description }
-end
-
--- Eval codeblocks (MdEval)
-map('n', '<leader>me', ':MdEval<cr>', options('[e]val code'))
-
--- Make table (MkdnFlow)
-map('n', '<leader>mt', ':MkdnTable 2 2 noh<CR>', options('[t]able new'))
--- Format table
-map('n', '<leader>mf', ':MkdnTableFormat<CR>', options('[f]ormat table'))
--- Remap mkdnflow default bindings adding description
-map('n', '<leader>gnl', ':MkdnNextLink<CR>', options('[l]ink'))
-map('n', '<leader>gpl', ':MkdnPrevLink<CR>', options('[l]ink'))
-map('n', '<leader>gnh', ':MkdnNextHeading<CR>', options('[h]eading'))
-map('n', '<leader>gph', ':MkdnPrevHeading<CR>', options('[h]eading'))
-map('n', '<leader>ms', ':MkdnMoveSource<CR>', options('[s]ource rename'))
-map({ 'n', 'v' }, '<leader>mx', ':MkdnToggleToDo<CR>', options('toggle checkbo[x]'))
-map('n', '<leader>mr', ':MkdnTableNewRowBelow<CR>', options('[r]ow below'))
-map('n', '<leader>mR', ':MkdnTableNewRowAbove<CR>', options('[R]ow above'))
-map('n', '<leader>mc', ':MkdnTableNewColAfter<CR>', options('[c]ol after'))
-map('n', '<leader>mC', ':MkdnTableNewColAfter<CR>', options('[C]ol before'))
-map('n', '<leader>mo', 'o- [ ] ', options('[o]pen list item'))
-map('n', '<leader>mO', 'O- [ ] ', options('[O]pen list item'))
-
--- Preview in pdf reader
-map('n', '<leader>mp', ':MarkdownPreviewToggle<CR>', options('[p]review'))
+local map = require('sgn.core.mapper').map
+map({
+  -- Eval codeblocks (MdEval)
+  { mode = 'n',          key = '<leader>me',  act = ':MdEval<cr>',                desc = '[e]val code' },
+  -- Make table (MkdnFlow)
+  { mode = 'n',          key = '<leader>mt',  act = ':MkdnTable 2 2 noh<CR>',     desc = '[t]able new' },
+  -- Format table
+  { mode = 'n',          key = '<leader>mf',  act = ':MkdnTableFormat<CR>',       desc = '[f]ormat table' },
+  -- Remap mkdnflow default bindings adding description
+  { mode = 'n',          key = '<leader>gnl', act = ':MkdnNextLink<CR>',          desc = '[l]ink' },
+  { mode = 'n',          key = '<leader>gpl', act = ':MkdnPrevLink<CR>',          desc = '[l]ink' },
+  { mode = 'n',          key = '<leader>gnh', act = ':MkdnNextHeading<CR>',       desc = '[h]eading' },
+  { mode = 'n',          key = '<leader>gph', act = ':MkdnPrevHeading<CR>',       desc = '[h]eading' },
+  { mode = 'n',          key = '<leader>ms',  act = ':MkdnMoveSource<CR>',        desc = '[s]ource rename' },
+  { mode = { 'n', 'v' }, key = '<leader>mx',  act = ':MkdnToggleToDo<CR>',        desc = 'toggle checkbo[x]' },
+  { mode = 'n',          key = '<leader>mr',  act = ':MkdnTableNewRowBelow<CR>',  desc = '[r]ow below' },
+  { mode = 'n',          key = '<leader>mR',  act = ':MkdnTableNewRowAbove<CR>',  desc = '[R]ow above' },
+  { mode = 'n',          key = '<leader>mc',  act = ':MkdnTableNewColAfter<CR>',  desc = '[c]ol after' },
+  { mode = 'n',          key = '<leader>mC',  act = ':MkdnTableNewColBefore<CR>', desc = '[C]ol before' },
+  { mode = 'n',          key = '<leader>mo',  act = 'o- [ ] ',                    desc = '[o]pen list item' },
+  { mode = 'n',          key = '<leader>mO',  act = 'O- [ ] ',                    desc = '[O]pen list item' },
+  -- Preview in pdf reader
+  { mode = 'n',          key = '<leader>mp',  act = ':MarkdownPreviewToggle<CR>', desc = '[p]review' },
+})

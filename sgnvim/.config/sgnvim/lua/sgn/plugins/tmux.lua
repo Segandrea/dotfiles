@@ -23,72 +23,62 @@ require('tmux').setup({
 })
 
 --[[ Mappings ]]
-
-local map = vim.keymap.set
-local options = function(description)
-  return { noremap = true, silent = true, desc = description }
-end
-
--- go left
-map('i', '<M-h>', require("tmux").move_left, options('Go left'))
-map('n', '<M-h>', require("tmux").move_left, options('Go left'))
-map('v', '<M-h>', require("tmux").move_left, options('Go left'))
-map('i', '<M-Left>', require("tmux").move_left, options('Go left'))
-map('n', '<M-Left>', require("tmux").move_left, options('Go left'))
-map('v', '<M-Left>', require("tmux").move_left, options('Go left'))
-
--- go above
-map('i', '<M-k>', require("tmux").move_top, options('Go above'))
-map('n', '<M-k>', require("tmux").move_top, options('Go above'))
-map('v', '<M-k>', require("tmux").move_top, options('Go above'))
-map('i', '<M-Up>', require("tmux").move_top, options('Go above'))
-map('n', '<M-Up>', require("tmux").move_top, options('Go above'))
-map('v', '<M-Up>', require("tmux").move_top, options('Go above'))
-
--- go below
-map('i', '<M-j>', require("tmux").move_bottom, options('Go below'))
-map('n', '<M-j>', require("tmux").move_bottom, options('Go below'))
-map('v', '<M-j>', require("tmux").move_bottom, options('Go below'))
-map('i', '<M-Down>', require("tmux").move_bottom, options('Go below'))
-map('n', '<M-Down>', require("tmux").move_bottom, options('Go below'))
-map('v', '<M-Down>', require("tmux").move_bottom, options('Go below'))
-
--- go right
-map('i', '<M-l>', require("tmux").move_right, options('Go right'))
-map('n', '<M-l>', require("tmux").move_right, options('Go right'))
-map('v', '<M-l>', require("tmux").move_right, options('Go right'))
-map('i', '<M-Right>', require("tmux").move_right, options('Go right'))
-map('n', '<M-Right>', require("tmux").move_right, options('Go right'))
-map('v', '<M-Right>', require("tmux").move_right, options('Go right'))
-
--- resize left
-map('i', '<M-S-h>', require("tmux").resize_left, options('Resize left'))
-map('n', '<M-S-h>', require("tmux").resize_left, options('Resize left'))
-map('v', '<M-S-h>', require("tmux").resize_left, options('Resize left'))
-map('i', '<M-S-Left>', require("tmux").resize_left, options('Resize left'))
-map('n', '<M-S-Left>', require("tmux").resize_left, options('Resize left'))
-map('v', '<M-S-Left>', require("tmux").resize_left, options('Resize left'))
-
--- resize top
-map('i', '<M-S-k>', require("tmux").resize_top, options('Resize top'))
-map('n', '<M-S-k>', require("tmux").resize_top, options('Resize top'))
-map('v', '<M-S-k>', require("tmux").resize_top, options('Resize top'))
-map('i', '<M-S-Up>', require("tmux").resize_top, options('Resize top'))
-map('n', '<M-S-Up>', require("tmux").resize_top, options('Resize top'))
-map('v', '<M-S-Up>', require("tmux").resize_top, options('Resize top'))
-
--- resize bottom
-map('i', '<M-S-j>', require("tmux").resize_bottom, options('Resize bottom'))
-map('n', '<M-S-j>', require("tmux").resize_bottom, options('Resize bottom'))
-map('v', '<M-S-j>', require("tmux").resize_bottom, options('Resize bottom'))
-map('i', '<M-S-Down>', require("tmux").resize_bottom, options('Resize bottom'))
-map('n', '<M-S-Down>', require("tmux").resize_bottom, options('Resize bottom'))
-map('v', '<M-S-Down>', require("tmux").resize_bottom, options('Resize bottom'))
-
--- resize right
-map('i', '<M-S-l>', require("tmux").resize_right, options('Resize right'))
-map('n', '<M-S-l>', require("tmux").resize_right, options('Resize right'))
-map('v', '<M-S-l>', require("tmux").resize_right, options('Resize right'))
-map('i', '<M-S-Right>', require("tmux").resize_right, options('Resize right'))
-map('n', '<M-S-Right>', require("tmux").resize_right, options('Resize right'))
-map('v', '<M-S-Right>', require("tmux").resize_right, options('Resize right'))
+local map = require('sgn.core.mapper').map
+map({
+  -- go left
+  { mode = 'i', key = '<M-h>', act = require("tmux").move_left, desc = 'Go left' },
+  { mode = 'n', key = '<M-h>', act = require("tmux").move_left, desc = 'Go left' },
+  { mode = 'v', key = '<M-h>', act = require("tmux").move_left, desc = 'Go left' },
+  { mode = 'i', key = '<M-Left>', act = require("tmux").move_left, desc = 'Go left' },
+  { mode = 'n', key = '<M-Left>', act = require("tmux").move_left, desc = 'Go left' },
+  { mode = 'v', key = '<M-Left>', act = require("tmux").move_left, desc = 'Go left' },
+  -- go above
+  { mode = 'i', key = '<M-k>', act = require("tmux").move_top, desc = 'Go above' },
+  { mode = 'n', key = '<M-k>', act = require("tmux").move_top, desc = 'Go above' },
+  { mode = 'v', key = '<M-k>', act = require("tmux").move_top, desc = 'Go above' },
+  { mode = 'i', key = '<M-Up>', act = require("tmux").move_top, desc = 'Go above' },
+  { mode = 'n', key = '<M-Up>', act = require("tmux").move_top, desc = 'Go above' },
+  { mode = 'v', key = '<M-Up>', act = require("tmux").move_top, desc = 'Go above' },
+  -- go below
+  { mode = 'i', key = '<M-j>', act = require("tmux").move_bottom, desc = 'Go below' },
+  { mode = 'n', key = '<M-j>', act = require("tmux").move_bottom, desc = 'Go below' },
+  { mode = 'v', key = '<M-j>', act = require("tmux").move_bottom, desc = 'Go below' },
+  { mode = 'i', key = '<M-Down>', act = require("tmux").move_bottom, desc = 'Go below' },
+  { mode = 'n', key = '<M-Down>', act = require("tmux").move_bottom, desc = 'Go below' },
+  { mode = 'v', key = '<M-Down>', act = require("tmux").move_bottom, desc = 'Go below' },
+  -- go right
+  { mode = 'i', key = '<M-l>', act = require("tmux").move_right, desc = 'Go right' },
+  { mode = 'n', key = '<M-l>', act = require("tmux").move_right, desc = 'Go right' },
+  { mode = 'v', key = '<M-l>', act = require("tmux").move_right, desc = 'Go right' },
+  { mode = 'i', key = '<M-Right>', act = require("tmux").move_right, desc = 'Go right' },
+  { mode = 'n', key = '<M-Right>', act = require("tmux").move_right, desc = 'Go right' },
+  { mode = 'v', key = '<M-Right>', act = require("tmux").move_right, desc = 'Go right' },
+  -- resize left
+  { mode = 'i', key = '<M-S-h>', act = require("tmux").resize_left, desc = 'Resize left' },
+  { mode = 'n', key = '<M-S-h>', act = require("tmux").resize_left, desc = 'Resize left' },
+  { mode = 'v', key = '<M-S-h>', act = require("tmux").resize_left, desc = 'Resize left' },
+  { mode = 'i', key = '<M-S-Left>', act = require("tmux").resize_left, desc = 'Resize left' },
+  { mode = 'n', key = '<M-S-Left>', act = require("tmux").resize_left, desc = 'Resize left' },
+  { mode = 'v', key = '<M-S-Left>', act = require("tmux").resize_left, desc = 'Resize left' },
+  -- resize top
+  { mode = 'i', key = '<M-S-k>', act = require("tmux").resize_top, desc = 'Resize top' },
+  { mode = 'n', key = '<M-S-k>', act = require("tmux").resize_top, desc = 'Resize top' },
+  { mode = 'v', key = '<M-S-k>', act = require("tmux").resize_top, desc = 'Resize top' },
+  { mode = 'i', key = '<M-S-Up>', act = require("tmux").resize_top, desc = 'Resize top' },
+  { mode = 'n', key = '<M-S-Up>', act = require("tmux").resize_top, desc = 'Resize top' },
+  { mode = 'v', key = '<M-S-Up>', act = require("tmux").resize_top, desc = 'Resize top' },
+  -- resize bottom
+  { mode = 'i', key = '<M-S-j>', act = require("tmux").resize_bottom, desc = 'Resize bottom' },
+  { mode = 'n', key = '<M-S-j>', act = require("tmux").resize_bottom, desc = 'Resize bottom' },
+  { mode = 'v', key = '<M-S-j>', act = require("tmux").resize_bottom, desc = 'Resize bottom' },
+  { mode = 'i', key = '<M-S-Down>', act = require("tmux").resize_bottom, desc = 'Resize bottom' },
+  { mode = 'n', key = '<M-S-Down>', act = require("tmux").resize_bottom, desc = 'Resize bottom' },
+  { mode = 'v', key = '<M-S-Down>', act = require("tmux").resize_bottom, desc = 'Resize bottom' },
+  -- resize right
+  { mode = 'i', key = '<M-S-l>', act = require("tmux").resize_right, desc = 'Resize right' },
+  { mode = 'n', key = '<M-S-l>', act = require("tmux").resize_right, desc = 'Resize right' },
+  { mode = 'v', key = '<M-S-l>', act = require("tmux").resize_right, desc = 'Resize right' },
+  { mode = 'i', key = '<M-S-Right>', act = require("tmux").resize_right, desc = 'Resize right' },
+  { mode = 'n', key = '<M-S-Right>', act = require("tmux").resize_right, desc = 'Resize right' },
+  { mode = 'v', key = '<M-S-Right>', act = require("tmux").resize_right, desc = 'Resize right' },
+})

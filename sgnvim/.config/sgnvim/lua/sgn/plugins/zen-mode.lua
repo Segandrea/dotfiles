@@ -18,10 +18,9 @@ require('zen-mode').setup({
   },
 })
 
-local map = vim.keymap.set
-local options = function(description)
-  return { noremap = true, silent = true, desc = description }
-end
-
-map('n', '<leader>zt', require('twilight').toggle, options('[t]wilight'))
-map('n', '<leader>zz', require('zen-mode').toggle, options('[z]en mode'))
+-- [[ Mappings ]]
+local map = require('sgn.core.mapper').map
+map({
+  { mode = 'n', key = '<leader>zt', act = require('twilight').toggle, desc = '[t]wilight', },
+  { mode = 'n', key = '<leader>zz', act = require('zen-mode').toggle, desc = '[z]en mode', },
+})

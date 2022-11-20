@@ -6,14 +6,13 @@ require('bufferline').setup({
 })
 
 -- [[ Mappings ]]
-local map = vim.keymap.set
-local options = function(description)
-  return { noremap = true, silent = true, desc = description }
-end
+local map = require('sgn.core.mapper').map
 
-map('n', '<leader>gpb', '<Cmd>BufferPrevious<CR>', options('[b]uffer'))
-map('n', '<leader>gnb', '<Cmd>BufferNext<CR>', options('[b]uffer'))
-map('n', '<leader>bM', '<Cmd>BufferMovePrevious<CR>', options('[M]ove back'))
-map('n', '<leader>bm', '<Cmd>BufferMoveNext<CR>', options('[m]ove forward'))
-map('n', '<leader>bp', '<Cmd>BufferPin<CR>', options('[p]in'))
-map('n', '<leader>bq', '<Cmd>BufferClose<CR>', options('[q]uit'))
+map({
+  { mode = 'n', key = '<leader>gpb', act = '<Cmd>BufferPrevious<CR>',     desc = '[b]uffer'       },
+  { mode = 'n', key = '<leader>gnb', act = '<Cmd>BufferNext<CR>',         desc = '[b]uffer'       },
+  { mode = 'n', key = '<leader>bM',  act = '<Cmd>BufferMovePrevious<CR>', desc = '[M]ove back'    },
+  { mode = 'n', key = '<leader>bm',  act = '<Cmd>BufferMoveNext<CR>',     desc = '[m]ove forward' },
+  { mode = 'n', key = '<leader>bp',  act = '<Cmd>BufferPin<CR>',          desc = '[p]in'          },
+  { mode = 'n', key = '<leader>bq',  act = '<Cmd>BufferClose<CR>',        desc = '[q]uit'         },
+})

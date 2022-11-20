@@ -16,12 +16,11 @@ require('Comment').setup({
 })
 
 -- [[ Custom mapping for visual mode ]]
-local map = vim.keymap.set
-local options = function(description)
-  return { noremap = true, silent = true, desc = description }
-end
+local map = require('sgn.core.mapper').map
 
--- toggle line comment in VISUAL mode (NB: NO NEED FOR NOW)
---map('x', '<leader>cl', '<Plug>(comment_toggle_linewise_visual)', options('[l]ine'))
--- toggle block comment in VISUAL mode
-map('x', '<leader>cb', '<Plug>(comment_toggle_blockwise_visual)', options('[b]lock'))
+map({
+  -- toggle line comment in VISUAL mode
+  { mode = 'x', key = '<leader>cl', act = '<Plug>(comment_toggle_linewise_visual)',  desc = '[l]ine'  },
+  -- toggle block comment in VISUAL mode
+  { mode = 'x', key = '<leader>cb', act = '<Plug>(comment_toggle_blockwise_visual)', desc = '[b]lock' },
+})

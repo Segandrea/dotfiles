@@ -1,36 +1,42 @@
 local gs = require('gitsigns')
 -- [[ Mappings ]]
 local function on_attach(bufnr)
-  local map = vim.keymap.set
-  local options = function(description)
-    return { noremap = true, buffer = bufnr, silent = true, desc = description }
-  end
+  local map = require('sgn.core.mapper').map
+  map({
+   { -- go to next git diff in file
+      mode = 'n',
+      key = '<leader>gnd',
+      act = function()
+        if vim.wo.diff then return '<leader>gnd' end
+        vim.schedule(function() gs.next_hunk() end)
+        return '<Ignore>'
+      end,
+      desc = '[d]iff',
+      buffer = bufnr,
+    },
+   { -- go to previous git diff in file
+      mode = 'n',
+      key = '<leader>gpd',
+      act = function()
+        if vim.wo.diff then return '<leader>gpd' end
+        vim.schedule(function() gs.prev_hunk() end)
+        return '<Ignore>'
+      end,
+      desc = '[d]iff',
+      buffer = bufnr,
+    },
+    -- reset diffs on current line
+    { mode = 'n', key = '<leader>Grl', act = gs.reset_hunk, desc = '[l]ine', buffer = bufnr, },
+    -- reset diffs on current buffer
+    { mode = 'n', key = '<leader>Grb', act = gs.reset_buffer, desc = '[b]uffer', buffer = bufnr, },
+    -- toggle git blame of the buffer
+    { mode = 'n', key = '<leader>Gbb', act = function() gs.blame_line({ full = true }) end, desc = '[b]uffer', buffer = bufnr, },
+    -- toggle git blame of the line
+    { mode = 'n', key = '<leader>Gbl', act = gs.blame_line, desc = '[l]ine', buffer = bufnr, },
 
-  -- go to next git diff in file
-  map('n', '<leader>gnd', function()
-    -- required to have the binding usable when there is no diff
-    if vim.wo.diff then return '<leader>gnd' end
-    vim.schedule(function() gs.next_hunk() end)
-    return '<Ignore>'
-  end, options('[d]iff'))
-  -- go to previous git diff in file
-  map('n', '<leader>gpd', function()
-    -- required to have the binding usable when there is no diff
-    if vim.wo.diff then return '<leader>gpd' end
-    vim.schedule(function() gs.prev_hunk() end)
-    return '<Ignore>'
-  end, options('[d]iff'))
-  -- reset diffs on current line
-  map('n', '<leader>Grl', gs.reset_hunk, options('[l]ine'))
-  -- reset diffs on current buffer
-  map('n', '<leader>Grb', gs.reset_buffer, options('[b]uffer'))
-  -- toggle git blame of the buffer
-  map('n', '<leader>Gbb', function() gs.blame_line({ full = true }) end, options('[b]uffer'))
-  -- toggle git blame of the line
-  map('n', '<leader>Gbl', gs.blame_line, options('[l]ine'))
-
-  -- [[ Text object: hunk ]] NB. used with visual selection. Select in current diff
-  map({'o', 'x'}, 'ih', gs.select_hunk)
+    -- [[ Text object: hunk ]] NB. used with visual selection. Select in current diff
+    { mode = { 'o', 'x' }, key = 'ih', act = gs.select_hunk, desc = 'Object: git hunk' },
+  })
 end
 
 gs.setup({

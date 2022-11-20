@@ -34,27 +34,70 @@ lsp.set_preferences({
 lsp.nvim_workspace()
 
 local on_attach = function(_, bufnr) -- first argument is "client", I don't need it
-  local map = vim.keymap.set
-  local options = function(description)
-    return { buffer = bufnr, noremap = true, desc = description }
-  end
-
-  -- Diagnostic keymaps
-  map('n', '<leader>gnp', vim.diagnostic.goto_next, options('[d]iagnostics'))
-  map('n', '<leader>gpp', vim.diagnostic.goto_prev, options('[d]iagnostics'))
-  map('n', '<leader>ls', vim.diagnostic.open_float, options('[s]how diagnostics'))
-  -- lsp keymaps
-  map('n', '<leader>lr', vim.lsp.buf.rename, options('[r]ename'))
-  map('n', '<leader>lc', vim.lsp.buf.code_action, options('[c]ode action'))
-  map('n', '<leader>gd', vim.lsp.buf.definition, options('[d]efinition'))
-  map('n', '<leader>gi', vim.lsp.buf.implementation, options('[i]mplementation'))
-  map('n', '<leader>gD', vim.lsp.buf.declaration, options('[D]eclaration'))
-  map('n', '<leader>gt', vim.lsp.buf.type_definition, options('[t]ype definition'))
-  map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, options('[a]dd Folder'))
-  map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, options('[r]emove Folder'))
-  -- See `:help K` for why this keymap
-  map('n', 'K', vim.lsp.buf.hover, options('Hover Documentation'))
-  map('n', '<C-k>', vim.lsp.buf.signature_help, options('Signature Documentation'))
+  local map = require('sgn.core.mapper').map
+  map({
+    -- Diagnostic keymaps
+    {
+      desc = '[d]iagnostics',
+      mode = 'n', key = '<leader>gnp', act = vim.diagnostic.goto_next, buffer = bufnr,
+    },
+    {
+      desc = '[d]iagnostics',
+      mode = 'n', key = '<leader>gpp', act = vim.diagnostic.goto_prev, buffer = bufnr,
+    },
+    {
+      desc = '[s]how diagnostics',
+      mode = 'n', key = '<leader>ls', act = vim.diagnostic.open_float, buffer = bufnr,
+    },
+    -- lsp keymaps
+    {
+      desc = '[r]ename',
+      mode = 'n', key = '<leader>lr', act = vim.lsp.buf.rename, buffer = bufnr,
+    },
+    {
+      desc = '[c]ode action',
+      mode = 'n', key = '<leader>lc', act = vim.lsp.buf.code_action, buffer = bufnr,
+    },
+    {
+      desc = '[d]efinition',
+      mode = 'n', key = '<leader>gd', act = vim.lsp.buf.definition, buffer = bufnr,
+    },
+    {
+      desc = '[i]mplementation',
+      mode = 'n', key = '<leader>gi', act = vim.lsp.buf.implementation, buffer = bufnr,
+    },
+    {
+      desc = '[D]eclaration',
+      mode = 'n', key = '<leader>gD', act = vim.lsp.buf.declaration, buffer = bufnr,
+    },
+    {
+      desc = '[t]ype definition',
+      mode = 'n', key = '<leader>gt', act = vim.lsp.buf.type_definition, buffer = bufnr,
+    },
+    {
+      desc = '[a]dd Folder',
+      mode = 'n', key = '<leader>wa', act = vim.lsp.buf.add_workspace_folder, buffer = bufnr,
+    },
+    {
+      desc = '[r]emove Folder',
+      mode = 'n', key = '<leader>wr', act = vim.lsp.buf.remove_workspace_folder, buffer = bufnr,
+    },
+    {
+      desc = '[f]ormat',
+      mode = 'n', key = '<leader>lf', buffer = bufnr,
+      act = function()
+        vim.lsp.buf.format({ async = true })
+      end,
+    },
+    { -- See `:help K` for why this keymap
+      desc = 'Hover Documentation',
+      mode = 'n', key = 'K', act = vim.lsp.buf.hover, buffer = bufnr,
+    },
+    {
+      desc = 'Signature Documentation',
+      mode = 'n', key = '<C-k>', act = vim.lsp.buf.signature_help, buffer = bufnr,
+    },
+  })
 end
 
 -- [[ Mappings ]]

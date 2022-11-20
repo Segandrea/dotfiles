@@ -39,11 +39,9 @@ require('nvim-tree').setup({
 })
 
 -- [[ Mappings ]]
-local map = vim.keymap.set
-local options = function(description)
-  return { noremap = true, silent = true, desc = description }
-end
-
-map('n', '<leader>ft', '<Cmd>NvimTreeToggle<CR>', options('[t]oggle'))
-map('n', '<leader>ff', '<Cmd>NvimTreeFocus<CR>', options('[f]ocus'))
-map('n', '<leader>fs', '<Cmd>NvimTreeFindFile<CR>', options('[s]earch'))
+local map = require('sgn.core.mapper').map
+map({
+  { mode = 'n', key = '<leader>ft', act = '<Cmd>NvimTreeToggle<CR>', desc = '[t]oggle' },
+  { mode = 'n', key = '<leader>ff', act = '<Cmd>NvimTreeFocus<CR>', desc = '[f]ocus' },
+  { mode = 'n', key = '<leader>fs', act = '<Cmd>NvimTreeFindFile<CR>', desc = '[s]earch' },
+})

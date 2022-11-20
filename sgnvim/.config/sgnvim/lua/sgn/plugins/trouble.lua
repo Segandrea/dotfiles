@@ -30,10 +30,9 @@ trouble.setup({
   },
 })
 
-local map = vim.keymap.set
-local options = function(description)
-  return { noremap = true, silent = true, desc = description }
-end
-
-map('n', '<leader>wd', ':TroubleToggle workspace_diagnostics<CR>', options('[d]iagnostics'))
-map('n', '<leader>?', ':TroubleToggle document_diagnostics<CR>', options('trouble[?]'))
+-- [[ Mappings ]]
+local map = require('sgn.core.mapper').map
+map({
+  { mode = 'n', key = '<leader>wd', act = ':TroubleToggle workspace_diagnostics<CR>', desc = '[d]iagnostics', },
+  { mode = 'n', key = '<leader>?',  act = ':TroubleToggle document_diagnostics<CR>', desc = 'trouble[?]', },
+})
