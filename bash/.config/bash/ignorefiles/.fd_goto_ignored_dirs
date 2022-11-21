@@ -47,5 +47,8 @@
 /.config/*
 !/.config/alacritty/
 !/.config/bash/
+!/.config/helix/
 !/.config/sgnvim/
 !/.config/tmux/
+!/.config/ulauncher/
+!/.config/spotify-player/

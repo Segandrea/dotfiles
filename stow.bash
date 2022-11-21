@@ -5,10 +5,23 @@ succ="$(tput setaf 2)Success:$(tput sgr 0)"             # green success
 warn="$(tput setaf 3)Warning:$(tput sgr 0)"             # yellow warning
 info="$(tput setaf 4)Info:$(tput sgr 0)"                # blue info
 
+declare -a dir2link
+dir2link=(
+  "alacritty/"
+  "bash/"
+  "fonts/"
+  "markdownlint/"
+  "sgnvim/"
+  "spotify-player/"
+  "starship/"
+  "tmux/"
+  "vim/"
+)
+
 if [[ -x "$(command -v stow)" ]]; then
   echo "${info} Linking files with stow"
-  stow --target="$HOME" -S alacritty/ bash/ fonts/ markdownlint/ sgnvim/ starship/ tmux/ vim/ && echo "${succ} configuration stowed" || echo "${error} failed to stow configuration"
+  stow --target="$HOME" -S "${dir2link[@]}" && echo "${succ} configuration stowed" || echo "${error} failed to stow configuration"
 else
-  echo "${error} Stow not found"
+  echo "${warn} Stow not found"
   exit
 fi

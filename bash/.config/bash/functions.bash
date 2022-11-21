@@ -285,4 +285,18 @@ gethelp() {
   [[ -n "${target}" ]] && tmux neww "tldr ${target}; exec bash" && return
 }
 
+# Use spotify_player (waiting implementation of --daemonize option)
+spt() {
+  if [[ -n "$(pgrep 'spotify_player')" ]]; then
+    tmux popup -E -w 80% -h 80% -b rounded "spotify_player"
+  else
+    if eval "tmux has-session -t 'spotify'" 2> /dev/null; then
+      echo 'Tmux session "spotify" already open'
+    else
+      tmux new-session -ds 'spotify' 'spotify_player'
+      tmux popup -E -w 80% -h 80% -b rounded 'spotify_player'
+    fi
+  fi
+}
+
 ## vim: foldmethod=indent foldminlines=0 foldlevel=0

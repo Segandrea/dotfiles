@@ -12,10 +12,10 @@ nls.setup({
     formatting.prettier, -- webdev + md, yml
     -- [[ Diagnostic ]]
     diagnostics.eslint, -- webdev
+    diagnostics.shellcheck, -- sh
     diagnostics.markdownlint.with({
       extra_args = { '-c', vim.fn.expand("$XDG_CONFIG_HOME/markdownlint/.markdownlint.yaml") },
     }), -- markdown only
-    -- TODO: maybe vale is better for markdown + tex
     -- [[ Code actions ]]
     code_actions.shellcheck, -- sh
     code_actions.eslint, -- webdev
