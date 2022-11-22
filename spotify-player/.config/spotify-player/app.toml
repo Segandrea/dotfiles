@@ -3,7 +3,7 @@ theme = "sgndracula"
 # This is from the web app
 client_id = "65b708073fc0480ea92a077233ca87bd"
 app_refresh_duration_in_ms = 100
-playback_refresh_duration_in_ms = 0
+playback_refresh_duration_in_ms = 1000
 cover_image_refresh_duration_in_ms = 2000
 track_table_item_max_len = 32
 enable_media_control = true

@@ -285,17 +285,12 @@ gethelp() {
   [[ -n "${target}" ]] && tmux neww "tldr ${target}; exec bash" && return
 }
 
-# Use spotify_player (waiting implementation of --daemonize option)
+# Use spotify_player
 spt() {
   if [[ -n "$(pgrep 'spotify_player')" ]]; then
-    tmux popup -E -w 80% -h 80% -b rounded "spotify_player"
+    echo "INFO: spotify_player already running."
   else
-    if eval "tmux has-session -t 'spotify'" 2> /dev/null; then
-      echo 'Tmux session "spotify" already open'
-    else
-      tmux new-session -ds 'spotify' 'spotify_player'
-      tmux popup -E -w 80% -h 80% -b rounded 'spotify_player'
-    fi
+      tmux new-window -n 'spotify' 'spotify_player'
   fi
 }
 
