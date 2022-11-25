@@ -20,7 +20,7 @@ set foldmethod=indent
 " don't fold
 set foldlevel=99
 " show white chars
-set list listchars=tab:\ \ ,trail:·
+set list listchars=tab:\ \ ,trail:•
 " set utf-8 as encoding
 set encoding=utf-8
 " show line number
