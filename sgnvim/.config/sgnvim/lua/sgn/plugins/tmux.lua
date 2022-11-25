@@ -49,4 +49,6 @@ map({
   -- resize right
   { mode = { 'i', 'n', 'v' }, key = '<M-S-l>', act = require("tmux").resize_right, desc = 'Resize right' },
   { mode = { 'i', 'n', 'v' }, key = '<M-S-Right>', act = require("tmux").resize_right, desc = 'Resize right' },
+  -- quit tmux pane without problem
+  { mode = { 'n', 'n', 'v' }, key = '<M-q>', act = ':wa<CR>:!tmux kill-pane<CR>', desc = 'Quit this split'}
 })
