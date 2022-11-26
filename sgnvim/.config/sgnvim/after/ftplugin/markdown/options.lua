@@ -27,3 +27,4 @@ vim.wo.relativenumber = false
 vim.bo.textwidth = 80
 vim.wo.colorcolumn = '80'
 vim.wo.signcolumn = 'no'
+vim.o.timeoutlen = 300
