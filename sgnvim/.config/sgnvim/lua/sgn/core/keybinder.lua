@@ -9,8 +9,8 @@ Mapper.map = function(mappings)
       {
         desc = binding.desc,
         expr = binding.expr,
-        callback = binding.callback,
         buffer = binding.bufnr,
+        callback = binding.callback,
         silent = binding.silent or true,
         noremap = binding.noremap or true,
       }
