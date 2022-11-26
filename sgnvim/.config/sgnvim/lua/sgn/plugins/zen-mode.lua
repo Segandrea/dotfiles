@@ -17,10 +17,3 @@ require('zen-mode').setup({
     tmux = { enabled = false, },
   },
 })
-
--- [[ Mappings ]]
-local map = require('sgn.core.mapper').map
-map({
-  { mode = 'n', key = '<leader>zt', act = require('twilight').toggle, desc = '[t]wilight', },
-  { mode = 'n', key = '<leader>zz', act = require('zen-mode').toggle, desc = '[z]en mode', },
-})

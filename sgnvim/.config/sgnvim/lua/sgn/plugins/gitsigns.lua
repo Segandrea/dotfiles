@@ -1,8 +1,7 @@
 local gs = require('gitsigns')
 -- [[ Mappings ]]
 local function on_attach(bufnr)
-  local map = require('sgn.core.mapper').map
-  map({
+  require('sgn.core.keybinder').map({
    { -- go to next git diff in file
       mode = 'n',
       key = '<leader>gnd',

@@ -1,6 +1,5 @@
 -- Core mappings for the configuration
--- Will probably be overwritten by plugins
-require('sgn.core.mapper').map({
+require('sgn.core.keybinder').map({
   -- Insert Mode mappings
   {
     desc = 'Go right instead of tab',

@@ -27,11 +27,3 @@ vim.wo.relativenumber = false
 vim.bo.textwidth = 80
 vim.wo.colorcolumn = '80'
 vim.wo.signcolumn = 'no'
-
--- Register in whichkey names for markdown bindings
-local whichkey_ok, whichkey = pcall(require, 'which-key')
-if whichkey_ok then
-  whichkey.register({
-    ['<leader>m'] = { name = '+[m]arkdown', },
-  })
-end

@@ -34,8 +34,7 @@ lsp.set_preferences({
 lsp.nvim_workspace()
 
 local on_attach = function(_, bufnr) -- first argument is "client", I don't need it
-  local map = require('sgn.core.mapper').map
-  map({
+  require('sgn.core.keybinder').map({
     -- Diagnostic keymaps
     {
       desc = '[d]iagnostics',

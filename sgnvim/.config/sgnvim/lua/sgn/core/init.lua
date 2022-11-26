@@ -10,6 +10,3 @@ require('sgn.core.options')
 
 -- [[ Basic autocmds ]]
 require('sgn.core.autocmd')
-
--- [[ Map shortcut ]]
-require('sgn.core.keymaps')
