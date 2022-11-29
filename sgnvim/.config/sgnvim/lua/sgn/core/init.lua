@@ -10,3 +10,6 @@ require('sgn.core.options')
 
 -- [[ Basic autocmds ]]
 require('sgn.core.autocmd')
+
+-- [[ Basic mappings ]]
+require('sgn.core.keybinder').map(require('sgn.core.mappings'))

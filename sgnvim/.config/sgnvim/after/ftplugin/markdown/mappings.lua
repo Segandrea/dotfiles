@@ -13,8 +13,7 @@ whichkey.register({
 
 require('sgn.core.keybinder').map({
   -- go in between when adding double underscores or double asterisk
-  { mode = 'i',          key = '**',          act = '**<left>',                      desc = 'autopair asterisk' },
-  { mode = 'i',          key = '__',          act = '__<left>',                      desc = 'autopair underscore' },
+  { mode = 'i',          key = '<space>_',    act = '__<left>',                   desc = 'autopair underscore' },
   -- Eval codeblocks (MdEval)
   { mode = 'n',          key = '<leader>me',  act = ':MdEval<cr>',                desc = '[e]val code' },
   -- Make table (MkdnFlow)
@@ -37,3 +36,8 @@ require('sgn.core.keybinder').map({
   -- Preview in pdf reader
   { mode = 'n',          key = '<leader>mp',  act = ':MarkdownPreviewToggle<CR>', desc = '[p]review' },
 })
+
+-- nvim-autopairs rules for markdown
+local npairs = require('nvim-autopairs')
+local Rule = require('nvim-autopairs.rule')
+npairs.add_rule(Rule('$', '$', 'markdown'))
