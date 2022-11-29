@@ -11,7 +11,7 @@ whichkey.register({
   ['<leader>m'] = { name = '+[m]arkdown', },
 })
 
-require('sgn.core.keybinder').map({
+require('sgn.utils').map({
   -- go in between when adding double underscores or double asterisk
   { mode = 'i',          key = '<space>_',    act = '__<left>',                   desc = 'autopair underscore' },
   -- Eval codeblocks (MdEval)
