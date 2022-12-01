@@ -33,11 +33,14 @@ whichkey.register({
     a = '[a]rgument swap forward',
     A = '[A]rgument swap backward',
   },
-  ['<leader>q'] = 'which_key_ignore',
   ['<leader>t'] = { name = '+[t]elescope' },
-  ['<leader>w'] = { name = '+[w]orkspaces',
-    q = 'which_key_ignore',
-  },
+  ['<leader>w'] = { name = '+[w]orkspaces' },
   ['<leader>z'] = { name = '+[z]en' },
   ['<leader>?'] = { name = '+trouble[?]' },
+})
+
+-- [[ KEYS TO IGNORE ]]
+whichkey.register({
+  ['<leader>wq'] = 'which_key_ignore',
+  ['<leader>q'] = 'which_key_ignore',
 })
