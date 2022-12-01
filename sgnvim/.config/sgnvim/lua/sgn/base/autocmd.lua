@@ -20,7 +20,7 @@ local insert_enter_group = augroup( 'InsertModeEnter', { clear = true } )
 autocmd('InsertEnter', {
   callback = function()
     vim.o.hlsearch = false -- disable highlight
-    vim.cmd('norm zz')     -- center the view
+    vim.cmd.normal('zz')     -- center the view
   end,
   pattern = '*',
   group = insert_enter_group,

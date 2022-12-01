@@ -18,5 +18,10 @@ Mapper.map = function(mappings)
   end
 end
 
+Mapper.unmap = function(mappings)
+  for _, binding in ipairs(mappings) do
+    vim.keymap.del(binding.mode, binding.key, binding.buffer)
+  end
+end
 
 return Mapper

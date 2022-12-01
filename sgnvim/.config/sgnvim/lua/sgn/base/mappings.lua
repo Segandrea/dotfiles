@@ -16,7 +16,6 @@ return {
     desc = 'Disable ctrl-k',
     mode = 'i', key = '<C-k>', act = '<Nop>',
   },
-  -- Normal Mode mappings
   {
     desc = 'Disable space to use as leader key',
     mode = 'n', key = '<Space>', act = '<Nop>',

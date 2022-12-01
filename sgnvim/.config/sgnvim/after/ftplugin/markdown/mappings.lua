@@ -12,8 +12,6 @@ whichkey.register({
 })
 
 require('sgn.utils').map({
-  -- go in between when adding double underscores or double asterisk
-  { mode = 'i',          key = '<space>_',    act = '__<left>',                   desc = 'autopair underscore' },
   -- Eval codeblocks (MdEval)
   { mode = 'n',          key = '<leader>me',  act = ':MdEval<cr>',                desc = '[e]val code' },
   -- Make table (MkdnFlow)

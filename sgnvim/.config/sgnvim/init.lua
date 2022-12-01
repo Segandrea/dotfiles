@@ -10,13 +10,7 @@ return require('packer').startup({
     use({ 'lewis6991/impatient.nvim' })
     require('impatient') -- Calling impatient here reduces the startup time
 
-    use(require('sgn.config')) -- Other plugins
+    use(require('sgn.configs')) -- Other plugins
   end,
-  config = {
-    display = {
-      open_fn = function()
-        return require('packer.util').float({ border = 'solid' })
-      end,
-    }
-  }
+  config = require('sgn.configs.packer.config')
 })
