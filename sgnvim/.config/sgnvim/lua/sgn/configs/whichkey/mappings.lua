@@ -2,11 +2,12 @@ local whichkey = require('which-key')
 
 -- [[ VISUAL ]]
 whichkey.register({
-  ['<leader>a'] = { name = '+[a]lign', },
+  ['<leader>a'] = { name = '+[a]lign' },
   ['<leader>c'] = { name = '+[c]omment',
     b = '[b]lock toggle',
     l = '[l]ine toggle',
   },
+  ['<leader>s'] = { name = '+[s]urround' },
 }, { mode = 'v' })
 
 -- [[ NORMAL ]]
@@ -32,6 +33,11 @@ whichkey.register({
   ['<leader>l'] = { name = '+[l]sp',
     a = '[a]rgument swap forward',
     A = '[A]rgument swap backward',
+  },
+  ['<leader>s'] = { name = '+[s]urround',
+    c = '[c]hange',
+    d = '[d]elete',
+    l = '[l]ine',
   },
   ['<leader>t'] = { name = '+[t]elescope' },
   ['<leader>w'] = { name = '+[w]orkspaces' },
