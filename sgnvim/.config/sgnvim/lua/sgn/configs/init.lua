@@ -154,10 +154,10 @@ return {
     'ojroques/nvim-bufdel',
     config = function() require('sgn.configs.nvim-bufdel') end,
   }, -- }}}
-  {
+  { -- Surround {{{
     'kylechui/nvim-surround',
     config = function() require('sgn.configs.nvim-surround') end,
-  },
+  }, -- }}}
   -- Markdown
   { -- Markdown related plugins {{{
     'jakewvincent/mkdnflow.nvim',

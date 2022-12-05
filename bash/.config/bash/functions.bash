@@ -13,7 +13,7 @@
 ################################################################################
 
 ## The following directive deactivates shellcheck's warning for missing shebang
-## shellcheck disable=SC2148
+#shellcheck disable=SC2148
 
 # Ping google with time
 gping() {
