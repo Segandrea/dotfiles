@@ -171,111 +171,32 @@ timer() {
 
 # Connect bluetooth: arg1 = "off|disconnect|remove" (optional)
 bt() {
-  local opt
-  opt="$1"
   local device
   local device_name
   local device_addr
-  case "${opt}" in
-    [pP][oO][wW][eE][rR][oO][fF][fF]|[oO][fF][fF]|[oO])
-      # Switch off
-      bluetoothctl power off
-    ;;
-    [dD][iI][sS][cC][oO][nN][nN][eE][cC][tT]|[dD][iI][sS][cC]|[dD])
-      # Disconnect
-      device="$(bluetoothctl devices Connected | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth='2..' --prompt='Disconnect from: ' --pointer='➜')"
-      if [[ -z "${device}" ]]; then
-        echo "Error: A device needs to be selected."
-        return
-      fi
-      device_name="${device/+([![:space:]])@([[:space:]])/}"
-      device_addr="${device//+([[:space:]])*([![:space:]])/}"
-      if [[ -z "${device_addr}" ]]; then
-        echo "Error retrieving device address."
-        return
-      fi
-      echo "Disconnecting ${device_name}"
-      bluetoothctl disconnect "${device_addr}" > /dev/null && echo "Successfully disconnected" || echo "Disconnection failed"
-    ;;
-    [rR][eE][mM][oO][vV][eE]|[rR][mM]|[rR])
-      # Remove
-      device="$(bluetoothctl devices Paired | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth='2..' --prompt='Remove: ' --pointer='➜')"
-      if [[ -z "${device}" ]]; then
-        echo "Error: A device needs to be selected."
-        return
-      fi
-      device_name="${device/+([![:space:]])@([[:space:]])/}"
-      device_addr="${device//+([[:space:]])*([![:space:]])/}"
-      if [[ -z "${device_addr}" ]]; then
-        echo "Error retrieving device address."
-        return
-      fi
-      bluetoothctl remove "${device_addr}" > /dev/null && echo "${device_name} correctly removed" || echo "Remotion failed"
-    ;;
-    [hH][eE][lL][pP]|[hH])
-      echo 'Usage: bt [OPTION]'
-      echo 'Wrapper for bluetoothctl'
-      echo 'Connect, pair, disconnect, remove devices and eventually poweroff bluetooth'
-      echo ''
-      echo 'Arguments are case insensitive'
-      echo ''
-      echo '  bt                   Invalid args or no args to connect'
-      echo '  bt disconnect        Disconnect a connected device'
-      echo '     disc'
-      echo '     d'
-      echo '  bt poweroff          Poweroff bluetooth'
-      echo '     off'
-      echo '     o'
-      echo '  bt remove            Remove a paired device'
-      echo '     rm'
-      echo '     r'
-      echo '  bt scan              Scan and then connect'
-      echo '     s'
-    ;;
-    [sS][cC][aA][nN]|[sS])
-      # Scan and Connect
-      bluetoothctl power on
-      echo "Scanning..."
-      bluetoothctl --timeout 5 scan on > /dev/null
-      device="$(bluetoothctl devices | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth='2..' --prompt='Connect to: ' --pointer='➜')"
-      if [[ -z "${device}" ]]; then
-        echo "Error: A device needs to be selected."
-        return
-      fi
-      device_name="${device/+([![:space:]])@([[:space:]])/}"
-      device_addr="${device//+([[:space:]])*([![:space:]])/}"
-      if [[ -z "${device_addr}" ]]; then
-        echo "Error retrieving device address."
-        return
-      fi
-      bluetoothctl agent NoInputNoOutput
-      if ! bluetoothctl devices Paired | grep -q "${device}"; then
-        echo "Pairing with ${device_name}..."
-        bluetoothctl pair "${device_addr}" > /dev/null && echo "Device ${device_name} paired" || echo "Pairing failed"
-        bluetoothctl trust "${device_addr}" > /dev/null && echo "Device ${device_name} trusted" || echo "Device ${device_name} can't be trusted"
-      fi
-      echo "Connecting to ${device_name}..."
-      bluetoothctl connect "${device_addr}" > /dev/null && echo "Successfully connected" || echo "Connection failed"
-    ;;
-    *)
-      # Connect to a known device
-      bluetoothctl power on
-      device="$(bluetoothctl devices Paired | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth='2..' --prompt='Connect to: ' --pointer='➜')"
-      if [[ -z "${device}" ]]; then
-        echo "Error: A device needs to be selected."
-        return
-      fi
-      device_name="${device/+([![:space:]])@([[:space:]])/}"
-      device_addr="${device//+([[:space:]])*([![:space:]])/}"
-      if [[ -z "${device_addr}" ]]; then
-        echo "Error retrieving device address."
-        return
-      fi
-      bluetoothctl agent NoInputNoOutput
-      echo "Connecting to ${device_name}..."
-      bluetoothctl connect "${device_addr}" > /dev/null && echo "Successfully connected" || echo "Connection failed"
-    ;;
-  esac
+  # Scan and Connect
+  bluetoothctl power on
+  echo "Scanning..."
+  bluetoothctl --timeout 5 scan on > /dev/null
+  device="$(bluetoothctl devices | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth='2..' --prompt='Connect to: ' --pointer='➜')"
+  if [[ -z "${device}" ]]; then
+    echo "Error: A device needs to be selected."
+    return
+  fi
+  device_name="${device/+([![:space:]])@([[:space:]])/}"
+  device_addr="${device//+([[:space:]])*([![:space:]])/}"
+  if [[ -z "${device_addr}" ]]; then
+    echo "Error retrieving device address."
+    return
+  fi
+  bluetoothctl agent NoInputNoOutput
+  if ! bluetoothctl devices Paired | grep -q "${device}"; then
+    echo "Pairing with ${device_name}..."
+    bluetoothctl pair "${device_addr}" > /dev/null && echo "Device ${device_name} paired" || echo "Pairing failed"
+    bluetoothctl trust "${device_addr}" > /dev/null && echo "Device ${device_name} trusted" || echo "Device ${device_name} can't be trusted"
+  fi
+  echo "Connecting to ${device_name}..."
+  bluetoothctl connect "${device_addr}" > /dev/null && echo "Successfully connected" || echo "Connection failed"
 }
 
 # Get help with tldr
@@ -283,15 +204,6 @@ gethelp() {
   local target
   target="$(tldr -l | sed -e "s/\[\|\]\|'//g" -e "s/, /\n/g" | fzf --no-info --preview='tldr {}' --prompt='tl;dr of help: ' --pointer='➜')"
   [[ -n "${target}" ]] && tmux neww "tldr ${target}; exec bash" && return
-}
-
-# Use spotify_player
-spt() {
-  if [[ -n "$(pgrep 'spotify_player')" ]]; then
-    echo "INFO: spotify_player already running."
-  else
-      tmux new-window -n 'spotify' 'spotify_player'
-  fi
 }
 
 ## vim: foldmethod=indent foldminlines=0 foldlevel=0
