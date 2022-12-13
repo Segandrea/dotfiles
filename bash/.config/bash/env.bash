@@ -4,33 +4,28 @@
 ##
 # environment configuration
 #
-# correct typos in directory names during cd
-shopt -s cdspell
-# correct typos in directory during autocompletion
-shopt -s dirspell
-# check and update the values of LINES and COLUMNS
-shopt -s checkwinsize
-# append to history
-shopt -s histappend
-# don't put duplicate lines or lines starting with space in history
-export HISTCONTROL="ignoreboth"
-# use .bash_history as file for storing history
-export HISTFILE="$HOME/.bash_history"
-# use less as pager
-export PAGER="less"
-# use vim as default editor
-export EDITOR="nvim"
-# use chrome as default browser
-export BROWSER="google-chrome"
-# nvm
-export NVM_DIR="$HOME/.nvm"
-# limits recursive functions, see 'man bash'
-[[ -z "$FUNCNEST" ]] && export FUNCNEST=100
-# adding cargo executables to path
-export PATH="$HOME/.cargo/bin:$PATH"
+shopt -s cdspell      # correct typos in directory names during cd
+shopt -s dirspell     # correct typos in directory during autocompletion
+shopt -s checkwinsize # check and update the values of LINES and COLUMNS
+shopt -s histappend   # append to history
 
-# fzf highlight choice with background color (unseeable)
-export FZF_DEFAULT_OPTS='--color=bg+:#282a36'
+# Declaring my paths
+declare -a my_paths=(
+#"$HOME/.cargo/bin" #NOTE:it is somehow already set
+"$HOME/.local/bin" # local scripts
+)
+paths_to_append="$(IFS=: ; echo "${my_paths[*]}")"
+
+export PATH="$PATH:${paths_to_append}"             # add custom paths to PATH
+export HISTCONTROL="ignoreboth"                    # no dups and no blank starting lines
+export HISTFILE="$XDG_STATE_HOME/bash/history"     # use .bash_history as file for storing history
+export PAGER="less"                                # use less as pager
+export LESSHISTFILE="$XDG_STATE_HOME/less/history" # place less history inside XDG_STATE directory
+export EDITOR="nvim"                               # use vim as default editor
+export BROWSER="google-chrome"                     # use chrome as default browser
+export NVM_DIR="$HOME/.nvm"                        # nvm
+export FUNCNEST=100                                # limits recursive functions, see 'man bash'
+export FZF_DEFAULT_OPTS='--color=bg+:#282a36'      # fzf highlight choice with background color (unseeable) adding cargo executables to path (it is some how already set)
 
 # User XDG Base Directory Specifications
 export XDG_CACHE_HOME="$HOME/.cache"       # analogous to /var/cache/

@@ -46,6 +46,7 @@ alias eco='echo'
 alias quit='exit'
 alias clear='clear -x'
 alias cls='clear -x'
+alias wget='wget --hsts-file $XDG_STATE_HOME/wget/history'
 
 # compile c with @daddinuz flames
 alias ddc='gcc -std=c17 -Wall -Wextra -Wpedantic -Werror'
