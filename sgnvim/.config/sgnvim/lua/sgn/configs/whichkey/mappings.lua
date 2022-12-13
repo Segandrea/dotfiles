@@ -49,4 +49,7 @@ whichkey.register({
 whichkey.register({
   ['<leader>wq'] = 'which_key_ignore',
   ['<leader>q'] = 'which_key_ignore',
+  ['y'] = 'which_key_ignore', -- ignored because nvim-surround
+  ['['] = 'which_key_ignore', -- ignored because nvim-surround
+  [']'] = 'which_key_ignore', -- ignored because nvim-surround
 })
