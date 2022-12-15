@@ -49,7 +49,9 @@
 !/.config/alacritty/
 !/.config/bash/
 !/.config/helix/
+!/.config/hypr/
+!/.config/readline/
 !/.config/sgnvim/
+!/.config/spotify-player/
 !/.config/tmux/
 !/.config/ulauncher/
-!/.config/spotify-player/
