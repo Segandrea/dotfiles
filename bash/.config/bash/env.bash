@@ -9,14 +9,18 @@ shopt -s dirspell     # correct typos in directory during autocompletion
 shopt -s checkwinsize # check and update the values of LINES and COLUMNS
 shopt -s histappend   # append to history
 
-# Declaring my paths
-declare -a my_paths=(
-#"$HOME/.cargo/bin" #NOTE:it is somehow already set
-"$HOME/.local/bin" # local scripts
+# Defining my paths
+declare -a script_and_bin_dirs=(
+  "$HOME/.cargo/bin" # cargo binaries
 )
-paths_to_append="$(IFS=: ; echo "${my_paths[*]}")"
+for index in "${!script_and_bin_dirs[@]}"; do
+  directory="${script_and_bin_dirs[${index}]}"
+  if ! echo ":${PATH}:" | grep -q ":${directory}:"; then
+    my_paths+=":${directory}"
+  fi
+done
 
-export PATH="$PATH:${paths_to_append}"             # add custom paths to PATH
+export PATH="${PATH}${my_paths}"                   # add custom paths to PATH
 export HISTCONTROL="ignoreboth"                    # no dups and no blank starting lines
 export HISTFILE="$XDG_STATE_HOME/bash/history"     # use .bash_history as file for storing history
 export PAGER="less"                                # use less as pager
@@ -26,6 +30,7 @@ export BROWSER="google-chrome"                     # use chrome as default brows
 export NVM_DIR="$HOME/.nvm"                        # nvm
 export FUNCNEST=100                                # limits recursive functions, see 'man bash'
 export FZF_DEFAULT_OPTS='--color=bg+:#282a36'      # fzf highlight choice with background color (unseeable) adding cargo executables to path (it is some how already set)
+export INPUTRC="$HOME/.config/readline/.inputrc"   # readline configuration
 
 # User XDG Base Directory Specifications
 export XDG_CACHE_HOME="$HOME/.cache"       # analogous to /var/cache/
