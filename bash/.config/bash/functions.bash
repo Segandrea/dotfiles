@@ -70,15 +70,14 @@ toggle_backup() {
 
 # Rm but asking if sure because rm -i sucks
 ra() {
-  echo ""
-  echo "###################"
-  echo "## Are you sure? ##"
-  echo "###################"
+  echo "#######################"
+  echo "## Are you sure? Y/n ##"
+  echo "#######################"
   local areyousure=""
   read -r areyousure
 
   case "${areyousure}" in
-    [yY][eE][sS]|[yY]|"")
+    [yY][eE][sS]|[yY][eE]|[yY]|"")
       command rm -rf -- "$@"
       ;;
     *)
