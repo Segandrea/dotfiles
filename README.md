@@ -17,48 +17,6 @@ bash stow.bash
 > However, if there is some constructive criticism or improving suggetsion,
 > it's more than welcome. Have fun!
 
-## Structure (Actually now is different)
-
-```tree
-.
-├── alacritty/
-│   └── alacritty.yml
-├── bash/
-│   ├── aliases.bash
-│   ├── completions
-│   ├── completions.bash
-│   ├── env.bash
-│   ├── functions.bash
-│   └── utils
-├── .bashrc
-├── fonts/
-│   ├── all-the-icons.ttf
-│   ├── file-icons.ttf
-│   ├── fontawesome.ttf
-│   ├── .gitkeep
-│   ├── Hasklig
-│   ├── material-design-icons.ttf
-│   ├── octicons.ttf
-│   ├── .uuid
-│   └── weathericons.ttf
-├── .gitignore
-├── .inputrc
-├── README.md
-├── settings.ini
-├── setup.bash
-├── sgnvim/
-│   ├── init.lua
-│   ├── lua
-│   ├── plugin
-│   └── to_do.md
-├── starship.toml
-├── tmux/
-│   ├── .gitkeep
-│   ├── plugins
-│   └── tmux.conf
-└── .vimrc
-```
-
 ## Alacritty
 
 Alacritty terminal configuration, uses:

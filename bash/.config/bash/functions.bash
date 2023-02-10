@@ -205,4 +205,14 @@ gethelp() {
   [[ -n "${target}" ]] && tmux neww "tldr ${target}; exec bash" && return
 }
 
+# Pomodoro timer TODO: improve
+mopodoro() {
+  declare -a farming
+  [[ -z "$1" ]] && farming=('30m') || farming=("$1")
+  declare -a pause
+  [[ -z "$2" ]] && pause=('5m') || pause=("$2")
+
+  (notify-send "Pomodoro started" && sleep "${farming[@]}" && sleep "${pause[@]}" && notify-send "Pomodoro ended" &)
+}
+
 ## vim: foldmethod=indent foldminlines=0 foldlevel=0
