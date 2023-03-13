@@ -11,6 +11,9 @@ bash stow.bash
 
 ## WARN: Subject to changes, poorly documented and may break
 
+> This repository is used by me to reproduce my dotfiles in case of distro
+> hopping or for a fresh start in case something breaks.
+>
 > Use as your own risk, these dot files will change without notice and the
 > documentating READMEs won't probably be updated as often.
 > It's better to just look at files for reference if you're not me.
@@ -48,6 +51,11 @@ Fonts that I use:
 **Warning**: this file may disappear, it works but it's a little broken.
 Some plugins are not working very well because of some gnome updates.
 Also I will probably change Desktop Environment or start using SwayWM/Hyprland.
+
+## Ideavimrc
+
+`ideavim/` contains the `.ideavimrc` configuration for the vim plugin of the
+Jetbrains editors as IntelliJ IDEA
 
 ## Setup script
 

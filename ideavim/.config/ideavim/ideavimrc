@@ -1,0 +1,222 @@
+" Option
+set ideajoin " Smart join, useful to join a lot of things
+set history
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set number
+set relativenumber
+set noshowmode
+set scrolloff=5
+set sidescorlloff=3
+set foldmethod=indent
+set foldlevel=99
+set clipboard+=unnamedplus
+set matchpairs+=<:>
+
+let mapleader=" "
+
+" NERDTree
+Plug 'preservim/nerdtree'
+nnoremap <leader>tt :NERDTreeToggle<CR>
+nnoremap <leader>tf :NERDTreeFocus<CR>
+nmap <Esc> <Action>(HideActiveWindow):set<space>nohlsearch<CR>
+
+" Highlighted Yank
+Plug 'machakann/vim-highlightedyank'
+let g:highlightedyank_highlight_duration=700
+let g:highlightedyank_highlight_color="rgba(98, 114, 164, 100)"
+
+" Vim-Surround
+Plug 'tpope/vim-surround'
+
+" Indent-object
+" indent becomes a textobject
+" ai: above and indentation (useful for python if)
+" ii: inner indentation
+" aI: around indentation (useful for c-like if with brackets)
+Plug 'michaeljsmith/vim-indent-object'
+
+" Which-key (requires to install the plugin)
+set notimeout
+source ~/.config/ideavim/which-key.vim
+let g:WhichKeyDesc_comment = "<Space>/ Comment"
+let g:WhichKeyDesc_commentByLine = "<Space>// Line Comment"
+let g:WhichKeyDesc_commentByComment = "<Space>/b Block Comment"
+let g:WhichKeyDesc_code = "<Space>c Code"
+let g:WhichKeyDesc_codeTest = "<Space>ct Test"
+let g:WhichKeyDesc_codeOverride = "<Space>co Override Methods"
+let g:WhichKeyDesc_codeImplement = "<Space>ci Implement Methods"
+let g:WhichKeyDesc_codeGenerate = "<Space>cg Generate"
+let g:WhichKeyDesc_codeFormat = "<Space>cf Format"
+let g:WhichKeyDesc_codeCleanup = "<Space>cc Code Cleanup"
+let g:WhichKeyDesc_codeBuild = "<Space>cb Build"
+let g:WhichKeyDesc_codeStop = "<Space>cR Stop"
+let g:WhichKeyDesc_codeStart = "<Space>cr Start"
+let g:WhichKeyDesc_debug = "<Space>d Debug"
+let g:WhichKeyDesc_debugStart = "<Space>dd Start Debugging"
+let g:WhichKeyDesc_debugEnd = "<Space>dD End Debugging"
+let g:WhichKeyDesc_debugBreakpoint = "<Space>db Toggle Breakpoint"
+let g:WhichKeyDesc_debugStep = "<Space>ds Step"
+let g:WhichKeyDesc_debugStepOver = "<Space>dso Debug"
+let g:WhichKeyDesc_debugStepInto = "<Space>dsi Debug"
+let g:WhichKeyDesc_debugStepOut = "<Space>dsO Debug"
+let g:WhichKeyDesc_file = "<Space>f File"
+let g:WhichKeyDesc_fileRecent = "<Space>fr Recent Files"
+let g:WhichKeyDesc_fileSettings = "<Space>fs Settings"
+let g:WhichKeyDesc_fileOpen = "<Space>fo Open"
+let g:WhichKeyDesc_fileNew = "<Space>fn New"
+let g:WhichKeyDesc_fileNewClass = "<Space>fnc New Class"
+let g:WhichKeyDesc_fileNewPackage = "<Space>fnp New Package"
+let g:WhichKeyDesc_fileCloseProject = "<Space>fc Close Project"
+let g:WhichKeyDesc_goto = "<Space>g Goto"
+let g:WhichKeyDesc_gotoPrevErr = "<Space>gE Prev Err"
+let g:WhichKeyDesc_gotoNextErr = "<Space>ge Next Err"
+let g:WhichKeyDesc_gotoPrevMethod = "<Space>gM Prev Method"
+let g:WhichKeyDesc_gotoNextMethod = "<Space>gm Next Method"
+let g:WhichKeyDesc_gotoDeclaration = "<Space>gd Declaration"
+let g:WhichKeyDesc_gotoImplementation = "<Space>gi Implementation"
+let g:WhichKeyDesc_gotoSuper = "<Space>gs Super"
+let g:WhichKeyDesc_gotoTest = "<Space>gt Test"
+let g:WhichKeyDesc_refactor = "<Space>r Refactor"
+let g:WhichKeyDesc_refactorDelete = "<Space>rd Safe Delete"
+let g:WhichKeyDesc_refactorRenameElement = "<Space>re Rename Element"
+let g:WhichKeyDesc_refactorRenameFile = "<Space>rf Rename File"
+let g:WhichKeyDesc_refactorMoveClass = "<Space>rm Move Class"
+let g:WhichKeyDesc_refactorList = "<Space>rt Quick Refactor List"
+let g:WhichKeyDesc_tree = "<Space>t Tree"
+let g:WhichKeyDesc_treeFocus = "<Space>tf Focus tree"
+let g:WhichKeyDesc_treeToggle = "<Space>tt Toggle tree"
+let g:WhichKeyDesc_window = "<Space>w Window"
+let g:WhichKeyDesc_windowPrevTab = "<Space>wN Prev Tab"
+let g:WhichKeyDesc_windowNextTab = "<Space>wn Next Tab"
+let g:WhichKeyDesc_zen = "<Space>z Zen"
+let g:WhichKeyDesc_zenDistractionFree = "<Space>zd Distraction Free Mode"
+let g:WhichKeyDesc_zenMode = "<Space>zz Real zen mode"
+
+" Mappings
+" Vim Mappings
+nnoremap <silent> n :set<space>hlsearch<CR>nzzzv
+nnoremap <silent> N :set<space>hlsearch<CR>Nzzzv
+nnoremap <silent> / :set<space>hlsearch<CR>/
+nnoremap <silent> ? :set<space>hlsearch<CR>?
+nnoremap <silent> * :set<space>hlsearch<CR>*
+nnoremap i :set<space>nohlsearch<CR>zzi
+nnoremap I :set<space>nohlsearch<CR>zzI
+nnoremap a :set<space>nohlsearch<CR>zza
+nnoremap A :set<space>nohlsearch<CR>zzA
+nnoremap K a<CR><Esc>k$
+nnoremap Y y$
+nnoremap vv V
+nnoremap V <C-v>$
+nnoremap > >>
+nnoremap < <<
+vnoremap > >gv
+vnoremap < <gv
+
+" Action Mappings
+" Zen mode
+nmap <leader>zz <Action>(ToggleZenMode)
+" Distraction free mode
+nmap <leader>zd <Action>(ToggleDistractionFreeMode)
+" Tab navigation
+nmap <leader>wn <Action>(NextTab)
+nmap <leader>wN <Action>(PreviousTab)
+
+" File management
+" new class
+nmap <leader>fnc <Action>(NewClass)
+" new package
+nmap <leader>fnp <Action>(NewDir)
+" open file
+nmap <leader>fo <Action>(OpenFile)
+" recent files
+nmap <leader>fr <Action>(RecentFiles)
+" close project
+nmap <leader>fc <Action>(CloseProject)
+" open settings
+nmap <leader>fs <Action>(ShowSettings)
+
+" Debug
+" Toggle breakpoint
+nmap <leader>db <Action>(ToggleLineBreakpoint)
+" Start debugging
+nmap <leader>dd <Action>(Debug)
+" Step over
+nmap <leader>dso <Action>(StepOver)
+" Step out
+nmap <leader>dsO <Action>(StepOut)
+" Step in
+nmap <leader>dsi <Action>(StepIn)
+" Stop debugging
+nmap <leader>dD <Action>(Stop)
+
+" Code
+" Run code
+nmap <leader>cr <Action>(Run)
+" Stop code
+nmap <leader>cR <Action>(Stop)
+" Test code
+map <leader>ct <Action>(RunTests)
+" Build code
+nmap <leader>cb <Action>(CompileDirty)
+" Override code
+nmap <leader>co <Action>(OverrideMethods)
+" Implement code
+nmap <leader>ci <Action>(ImplementMethods)
+" Generate code
+nmap <leader>cg <Action>(Generate)
+" Code cleanup
+nmap <leader>cc <Action>(CodeCleanup)
+" Reformat code
+nmap <leader>cf <Action>(ReformatCode)
+" Toggle folding
+nmap za <Action>(ExpandCollapseToggleAction)
+
+" Comments
+" line comment
+nmap <leader>// <Action>(CommentByLineComment)
+" block comment
+nmap <leader>/b <Action>(CommentByBlockComment)
+
+" Refactor
+" Refactor this
+nmap <leader>rt <Action>(Refactorings.QuickListPopupAction)
+" Rename element
+nmap <leader>re <Action>(RenameElement)
+" Rename file
+nmap <leader>rf <Action>(RenameFile)
+" Safe delete file
+nmap <leader>rd <Action>(SafeDelete)
+" Move class
+nmap <leader>rm <Action>(Move)
+
+" Goto
+" Goto declaration
+nmap <leader>gd <Action>(GotoDeclaration)
+" Goto next error
+nmap <leader>ge <Action>(GotoNextError)
+" Goto previous error
+nmap <leader>gE <Action>(GotoPreviousError)
+" Goto implementation
+nmap <leader>gi <Action>(GotoImplementation)
+" Goto next method
+nmap <leader>gm <Action>(MethodDown)
+" Goto previous method
+nmap <leader>gM <Action>(MethodUp)
+" Goto super method
+nmap <leader>gs <Action>(GotoSuperMethod)
+" Goto test
+nmap <leader>gt <Action>(GotoTest)
+
+" leader mappings
+" <leader>/ Comments
+" <leader>c Code
+" <leader>d Debugging
+" <leader>f Files
+" <leader>g Goto
+" <leader>r Refactor
+" <leader>t NERDTree
+" <leader>w Window/tabs
+" <leader>z Zen

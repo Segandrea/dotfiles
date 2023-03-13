@@ -11,6 +11,7 @@ dir2link=(
   "bash/"
   "fonts/"
   "markdownlint/"
+  "ideavim/"
   "readline/"
   "sgnvim/"
   "spotify-player/"
