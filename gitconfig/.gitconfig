@@ -1,0 +1,8 @@
+[user]
+	email = andreasegantini97@gmail.com
+[core]
+	editor = vim
+[init]
+	defaultBranch = main
+[diff]
+	toll = vimdiff

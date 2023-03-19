@@ -90,8 +90,8 @@ min_time = 10_000
 
 # prompt starting char
 [character]
-success_symbol = "[❱](bold green)"
-error_symbol = "[❱](bold red)"
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
 
 # clock
 [time]

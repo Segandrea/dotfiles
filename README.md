@@ -24,63 +24,39 @@ bash stow.bash
 
 Alacritty terminal configuration, uses:
 
-* [Hasklig](https://www.programmingfonts.org/#hasklig) nerdfonts.
-* [Dracula](https://draculatheme.com/alacritty) colorscheme.
+* [Hasklig](https://www.programmingfonts.org/#hasklig) nerdfonts (requires installation).
+* [Dracula](https://draculatheme.com/alacritty) colorscheme (no need to reinstall).
 
 ## Bash
 
 * `.bashrc`: Sources some bash files, enables some utilites.
-* `.inputrc` -> Contains readline configurations
-* `bash/`:
-  - `bash/aliases.bash`: Contains bash aliases, sourced by `.bashrc`
-  - `bash/functions.bash`: Contains bash functions, sourced by `.bashrc`
-  - `bash/env.bash`: Contains env variables, sourced by `.bashrc`
-  - `bash/completion/`: Contains completion script, all sourced by `completions.bash`
-  - `bash/completions.bash`: Sources completion scripts, sourced by `.bashrc`
+* `.config/bash/`:
+  - `aliases.bash`: Contains bash aliases, sourced by `.bashrc`
+  - `completion/`: Contains completion script, all sourced by `completions.bash`
+  - `completions.bash`: Sources completion scripts, sourced by `.bashrc`
+  - `env.bash`: Contains env variables, sourced by `.bashrc`
+  - `functions.bash`: Contains bash functions, sourced by `.bashrc`
+  - `ignorefiles/`: Contains infos for programs that need to ignore files
+  - `keybindings.bash`: Contains keybindings only for bash, sourced by `.bashrc`
 
-## Fonts
+## Gitconfig
 
-It's a directory used to install fonts by the `setup.bash` script.
-Fonts that I use:
-
-* [Hasklig](https://www.programmingfonts.org/#hasklig) nerdfonts.
-
-## Gnome settings
-
-`settings.ini` is a configuration file for dconf to restore my gnome settings
-**Warning**: this file may disappear, it works but it's a little broken.
-Some plugins are not working very well because of some gnome updates.
-Also I will probably change Desktop Environment or start using SwayWM/Hyprland.
+`gitconfig/` contains a basic git configuration.
 
 ## Ideavimrc
 
 `ideavim/` contains the `.ideavimrc` configuration for the vim plugin of the
-Jetbrains editors as IntelliJ IDEA
+Jetbrains editors as IntelliJ IDEA.
 
-## Setup script
+## Markdownlint
 
-### Warning
+`markdownlint/` contains the configuration for the linter for markdown which
+I use to take notes.
 
-> This script is malfunctioning due to an excessive number of changes.
-> It should be refactored and fixed but probably won't because I will
-> probably change distro.
+## Readline
 
-`setup.bash` is a script that:
-
-1. Sets some `git` configuration options.
-2. Installs packages from `pacman` package manager.
-3. Installs language-dependent packages from specific package managers.
-4. Installs packages from `aur` using `yay` package manager.
-5. Enables `snap` package manager (**NB: will probably become full flatpak**).
-6. Enables `flatpak` package manager.
-7. Installs `git` repos.
-8. Links configuration files to the paths they should be.
-9. Installs `snap` packages.
-10. Installs `flatpak` packages.
-11. Executes a script to fix some problems with keychron k2v2 keyboard.
-12. Does other small things: Enables `bluetooth`, Installs `fonts`,
- Installs `grub themes`, Applies `dconf configurations`.
-13. `reboot` the system.
+`readline/` contains the configuration and the keybindings for readline based
+programs.
 
 ## Sgnvim
 
@@ -101,9 +77,10 @@ It is configured to:
 ## Starship
 
 `starship.toml` contains the configuration for the [Starsip Prompt](https://starship.rs/)
-> Currently installed with snap, but that is causing some problems.
 
 ## Tmux
+
+> Requires to install [TPM](https://github.com/tmux-plugins/tpm)
 
 Configuration of tmux, uses [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm)
 to install plugins:
@@ -116,3 +93,8 @@ to install plugins:
 ## Vim
 
 A small `.vimrc` that requires no plugins.
+
+### settings.ini
+
+`settings.ini` is a file that contains a dconf configuration for GNOME.
+> It will often break and change, probably in future it will be removed.

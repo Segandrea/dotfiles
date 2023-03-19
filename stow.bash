@@ -9,12 +9,11 @@ declare -a dir2link
 dir2link=(
   "alacritty/"
   "bash/"
-  "fonts/"
+  "gitconfig/"
   "markdownlint/"
   "ideavim/"
   "readline/"
   "sgnvim/"
-  "spotify-player/"
   "starship/"
   "tmux/"
   "vim/"
