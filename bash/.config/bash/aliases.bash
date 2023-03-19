@@ -52,7 +52,7 @@ alias wget='wget --hsts-file $XDG_STATE_HOME/wget/history'
 alias ddc='gcc -std=c17 -Wall -Wextra -Wpedantic -Werror'
 
 # NetworkManager shortcuts
-alias nmlist='nmcli -f "in-use,bssid,ssid,chan,rate,signal,security" device wifi list'
+alias nmlist='nmcli -f "in-use,ssid,chan,rate,signal,security" device wifi list'
 alias nmconn='nmcli device wifi connect "$(nmcli d w rescan && nmcli -g "ssid" device wifi list | fzf --no-info --border=rounded --prompt="Connect to: " --pointer="➜")"'
 
 # fix for letting my drawing tablet go on second screen
