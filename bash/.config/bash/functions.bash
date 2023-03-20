@@ -20,7 +20,7 @@ gping() {
   ping 8.8.8.8 | while read -r pingout; do
     local datedping
     datedping="$(date +"[%T]"): ${pingout}"
-    echo "${datedping/: *_/: }"
+    echo -ne "\n${datedping/: *_/: }"
   done
 }
 
