@@ -12,6 +12,7 @@ shopt -s histappend   # append to history
 # Defining my paths
 declare -a script_and_bin_dirs=(
   "$HOME/.cargo/bin" # cargo binaries
+  "$HOME/.local/bin" # local binaries
 )
 for index in "${!script_and_bin_dirs[@]}"; do
   directory="${script_and_bin_dirs[${index}]}"
