@@ -11,7 +11,7 @@ nls.setup({
     -- [[ Formatting ]]
     formatting.prettier, -- webdev + md, yml
     -- [[ Diagnostic ]]
-    diagnostics.eslint, -- webdev
+    diagnostics.eslint_d, -- webdev
     diagnostics.shellcheck, -- sh
     diagnostics.markdownlint.with({
       extra_args = { '-c', vim.fn.expand("$XDG_CONFIG_HOME/markdownlint/.markdownlint.yaml") },
