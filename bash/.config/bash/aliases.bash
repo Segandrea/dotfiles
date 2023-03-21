@@ -91,10 +91,3 @@ alias dconfload='dconf load / < dumped_settings.ini'
 alias nora='[[ -d "$IGNORAMUS_DIR" ]] && cd "$IGNORAMUS_DIR" && "$EDITOR" "$IGNORAMUS_DIR/index.md" && cd "$OLDPWD"'
 # my todo list
 alias todo='tmux popup -E -w 80% -h 80% -b rounded "$EDITOR $DESKTOP_DIR/todo.md"'
-
-# nix package manager
-alias nixinstall='nix-env --install'
-alias nixupgrade='nix-env --upgrade'
-alias nixremove='nix-env --uninstall'
-alias nixsearch='nix-env --query --available --status'
-alias nixlist='nix-env --query'
