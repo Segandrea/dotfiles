@@ -80,6 +80,7 @@ sudo chmod a+wr -R /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/
 spicetify restore backup apply'
 
 # upgrade from pacman, aur, flatpak and other packages
+# TODO: make me a function
 alias upgradeall='yay -Syu && flatpak update && rustup update'
 
 # dump and load gnome settings
