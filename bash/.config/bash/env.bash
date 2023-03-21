@@ -37,7 +37,7 @@ export PAGER="less"                                # use less as pager
 export LESSHISTFILE="$XDG_STATE_HOME/less/history" # place less history inside XDG_STATE directory
 export EDITOR="nvim"                               # use vim as default editor
 export BROWSER="google-chrome"                     # use chrome as default browser
-export NVM_DIR="$HOME/.nvm"                        # nvm
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"                        # nvm
 export FUNCNEST=100                                # limits recursive functions, see 'man bash'
 export FZF_DEFAULT_OPTS='--color=bg+:#282a36'      # fzf highlight choice with background color (unseeable) adding cargo executables to path (it is some how already set)
 export INPUTRC="$HOME/.config/readline/.inputrc"   # readline configuration
