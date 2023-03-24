@@ -8,6 +8,26 @@
 [[ $- != *i* ]] && return
 [[ "$(whoami)" = "root" ]] && return
 
+##
+# Other utilities
+#
+# starship prompt
+[[ -x "$(command -v starship)" ]] && eval "$(starship init bash)"
+# setup colors
+[[ -x "$(command -v dircolors)" ]] && eval "$(dircolors -b)"
+# tmux
+if [[ -x "$(command -v tmux)" && -z "$TMUX" ]]; then
+    _tmux_unattached_session="$(tmux list-sessions | grep -v -m 1 attached)"
+    if [[ -n "${_tmux_unattached_session}" ]]; then
+        tmux attach -t "${_tmux_unattached_session/:*/}"
+    else
+        tmux new
+    fi
+fi
+
+# Load nvm
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+
 # Source global config
 [[ -f "/etc/bashrc" ]] && source "/etc/bashrc"
 [[ -f "/etc/bash.bashrc" ]] && source "/etc/bash.bashrc"
@@ -25,23 +45,3 @@
 [[ -f "$HOME/.config/bash/completions.bash" ]] && source "$HOME/.config/bash/completions.bash"
 # enable bash keybindings
 [[ -f "$HOME/.config/bash/keybindings.bash" ]] && source "$HOME/.config/bash/keybindings.bash"
-
-##
-# Other utilities
-#
-# starship prompt
-eval "$(starship init bash)"
-# setup colors
-[[ -x "$(command -v dircolors)" ]] && eval "$(dircolors -b)"
-# tmux
-if [[ -x "$(command -v tmux)" && -z "$TMUX" ]]; then
-    _tmux_unattached_session="$(tmux list-sessions | grep -v -m 1 attached)"
-    if [[ -n "${_tmux_unattached_session}" ]]; then
-        tmux attach -t "${_tmux_unattached_session/:*/}"
-    else
-        tmux new
-    fi
-fi
-
-# Load nvm
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"

@@ -31,13 +31,13 @@ export XDG_STATE_HOME="$HOME/.local/state" # analogous to /var/lib/
 export PATH="${PATH}${my_paths}"                   # add custom paths to PATH
 export HISTCONTROL="ignoreboth"                    # no dups and no blank starting lines
 [[ ! -d "$XDG_STATE_HOME/bash" ]] && mkdir -p -- "$XDG_STATE_HOME/bash"
-export HISTFILE="$XDG_STATE_HOME/bash/history"     # place bash history inside XDG_STATE directory
+export HISTFILE="$XDG_STATE_HOME/bash/history"     # place bash history inside XDG_STATE directory (needs to be created)
 export PAGER="less"                                # use less as pager
 [[ ! -d "$XDG_STATE_HOME/less" ]] && mkdir -p -- "$XDG_STATE_HOME/less"
-export LESSHISTFILE="$XDG_STATE_HOME/less/history" # place less history inside XDG_STATE directory
+export LESSHISTFILE="$XDG_STATE_HOME/less/history" # place less history inside XDG_STATE directory (needs to be created)
 export EDITOR="nvim"                               # use vim as default editor
 export BROWSER="google-chrome"                     # use chrome as default browser
-export NVM_DIR="$XDG_CONFIG_HOME/nvm"                        # nvm
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"              # nvm
 export FUNCNEST=100                                # limits recursive functions, see 'man bash'
 export FZF_DEFAULT_OPTS='--color=bg+:#282a36'      # fzf highlight choice with background color (unseeable) adding cargo executables to path (it is some how already set)
 export INPUTRC="$HOME/.config/readline/.inputrc"   # readline configuration
