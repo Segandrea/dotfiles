@@ -1,4 +1,4 @@
-# Dotfiles for endeavourOS
+# Dotfiles for linux
 
 ## Requirements
 

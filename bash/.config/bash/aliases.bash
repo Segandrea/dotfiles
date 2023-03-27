@@ -81,7 +81,7 @@ spicetify restore backup apply'
 
 # upgrade from pacman, aur, flatpak and other packages
 # TODO: make me a function
-alias upgradeall='yay -Syu && flatpak update && rustup update'
+alias upgradeall='sudo dnf upgrade && flatpak update && rustup update'
 
 # dump and load gnome settings
 alias dconfdump='dconf dump / > dumped_settings.ini'
