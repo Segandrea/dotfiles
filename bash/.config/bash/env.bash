@@ -27,7 +27,6 @@ export XDG_CONFIG_HOME="$HOME/.config"     # analogous to /etc/
 export XDG_DATA_HOME="$HOME/.local/share"  # analogous to /usr/share/
 export XDG_STATE_HOME="$HOME/.local/state" # analogous to /var/lib/
 
-
 export PATH="${PATH}${my_paths}"                   # add custom paths to PATH
 export HISTCONTROL="ignoreboth"                    # no dups and no blank starting lines
 [[ ! -d "$XDG_STATE_HOME/bash" ]] && mkdir -p -- "$XDG_STATE_HOME/bash"
@@ -40,7 +39,6 @@ export BROWSER="google-chrome"                     # use chrome as default brows
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"              # nvm
 export FUNCNEST=100                                # limits recursive functions, see 'man bash'
 export FZF_DEFAULT_OPTS='--color=bg+:#282a36'      # fzf highlight choice with background color (unseeable) adding cargo executables to path (it is some how already set)
-export INPUTRC="$HOME/.config/readline/.inputrc"   # readline configuration
 
 # my most used directories
 export DOCUMENTS_DIR="$HOME/Documents"
