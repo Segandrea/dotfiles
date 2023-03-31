@@ -9,6 +9,7 @@ declare -a dir2link
 dir2link=(
   "alacritty/"
   "bash/"
+  "eslint/"
   "gitconfig/"
   "markdownlint/"
   "ideavim/"
