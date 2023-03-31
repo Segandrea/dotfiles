@@ -25,9 +25,6 @@ if [[ -x "$(command -v tmux)" && -z "$TMUX" ]]; then
     fi
 fi
 
-# Load nvm
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-
 # Source global config
 [[ -f "/etc/bashrc" ]] && source "/etc/bashrc"
 [[ -f "/etc/bash.bashrc" ]] && source "/etc/bash.bashrc"
@@ -45,3 +42,6 @@ fi
 [[ -f "$HOME/.config/bash/completions.bash" ]] && source "$HOME/.config/bash/completions.bash"
 # enable bash keybindings
 [[ -f "$HOME/.config/bash/keybindings.bash" ]] && source "$HOME/.config/bash/keybindings.bash"
+
+# Load nvm
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
