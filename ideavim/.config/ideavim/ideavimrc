@@ -79,6 +79,7 @@ let g:WhichKeyDesc_gotoDeclaration = "<Space>gd Declaration"
 let g:WhichKeyDesc_gotoImplementation = "<Space>gi Implementation"
 let g:WhichKeyDesc_gotoSuper = "<Space>gs Super"
 let g:WhichKeyDesc_gotoTest = "<Space>gt Test"
+let g:WhichKeyDesc_hideAllWindows = "<Space>wh Toggle All Windows"
 let g:WhichKeyDesc_refactor = "<Space>r Refactor"
 let g:WhichKeyDesc_refactorDelete = "<Space>rd Safe Delete"
 let g:WhichKeyDesc_refactorRenameElement = "<Space>re Rename Element"
@@ -115,7 +116,8 @@ nnoremap < <<
 vnoremap > >gv
 vnoremap < <gv
 
-" Action Mappings
+""" Action Mappings
+" Window, panes, split, tabs, ecc. management
 " Zen mode
 nmap <leader>zz <Action>(ToggleZenMode)
 " Distraction free mode
@@ -123,6 +125,8 @@ nmap <leader>zd <Action>(ToggleDistractionFreeMode)
 " Tab navigation
 nmap <leader>wn <Action>(NextTab)
 nmap <leader>wN <Action>(PreviousTab)
+" Toggle splits
+nmap <leader>wh <Action>(HideAllWindows)
 
 " File management
 " new class
