@@ -10,6 +10,7 @@ dir2link=(
   "alacritty/"
   "bash/"
   "eslint/"
+  "fd/"
   "gitconfig/"
   "markdownlint/"
   "ideavim/"

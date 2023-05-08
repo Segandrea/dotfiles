@@ -40,8 +40,10 @@
 **/dotfiles/*
 **/env/
 **/gradle/
+**/IdeaProjects/
 **/res/
 **/test/
+**/tmux/plugins/
 **/venv/
 
 # things to be ignored in ~/.config/
