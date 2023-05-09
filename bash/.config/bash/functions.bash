@@ -142,8 +142,7 @@ goto() {
     --type directory \
     --follow \
     --hidden \
-    --strip-cwd-prefix \
-    --ignore-file "$XDG_CONFIG_HOME/bash/ignorefiles/.fd_goto_ignored_dirs" |
+    --strip-cwd-prefix |
     sort |
     fzf \
     --exact \
