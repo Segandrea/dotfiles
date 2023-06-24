@@ -14,7 +14,3 @@
 # Bind Ctrl+g to `goto()`
 bind -m vi-insert '"\C-g":"\C-c\ngoto && clear\n"'
 bind -m vi-command '"\C-g":"\C-c\ngoto && clear\n"' # 'i' is to enter insert
-
-# Bind Ctrl+h to `gethelp()`
-bind -m vi-insert '"\C-h":"\C-c\ngethelp && clear\n"'
-bind -m vi-command '"\C-h":"\C-c\ngethelp && clear\n"'
