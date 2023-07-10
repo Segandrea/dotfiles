@@ -21,7 +21,7 @@ let mapleader=" "
 Plug 'preservim/nerdtree'
 nnoremap <leader>tt :NERDTreeToggle<CR>
 nnoremap <leader>tf :NERDTreeFocus<CR>
-nmap <Esc> <Action>(HideActiveWindow):set<space>nohlsearch<CR>
+nmap <Esc> :set<space>nohlsearch<CR><Esc>
 
 " Highlighted Yank
 Plug 'machakann/vim-highlightedyank'
@@ -39,6 +39,8 @@ Plug 'tpope/vim-surround'
 Plug 'michaeljsmith/vim-indent-object'
 
 " Which-key (requires to install the plugin)
+" TODO: move description near the mapping
+" TODO: change some mapping to have a more efficent and understandable way
 set notimeout
 source ~/.config/ideavim/which-key.vim
 let g:WhichKeyDesc_comment = "<Space>/ Comment"
@@ -79,6 +81,7 @@ let g:WhichKeyDesc_gotoDeclaration = "<Space>gd Declaration"
 let g:WhichKeyDesc_gotoImplementation = "<Space>gi Implementation"
 let g:WhichKeyDesc_gotoSuper = "<Space>gs Super"
 let g:WhichKeyDesc_gotoTest = "<Space>gt Test"
+let g:WhichKeyDesc_hideActiveWindow = "<Space>wa Toggle Active Window"
 let g:WhichKeyDesc_hideAllWindows = "<Space>wh Toggle All Windows"
 let g:WhichKeyDesc_refactor = "<Space>r Refactor"
 let g:WhichKeyDesc_refactorDelete = "<Space>rd Safe Delete"
@@ -86,6 +89,7 @@ let g:WhichKeyDesc_refactorRenameElement = "<Space>re Rename Element"
 let g:WhichKeyDesc_refactorRenameFile = "<Space>rf Rename File"
 let g:WhichKeyDesc_refactorMoveClass = "<Space>rm Move Class"
 let g:WhichKeyDesc_refactorList = "<Space>rt Quick Refactor List"
+let g:WhichKeyDesc_showIntentionActions = "<Space>ca Actions lightbulb"
 let g:WhichKeyDesc_tree = "<Space>t Tree"
 let g:WhichKeyDesc_treeFocus = "<Space>tf Focus tree"
 let g:WhichKeyDesc_treeToggle = "<Space>tt Toggle tree"
@@ -127,6 +131,8 @@ nmap <leader>wn <Action>(NextTab)
 nmap <leader>wN <Action>(PreviousTab)
 " Toggle splits
 nmap <leader>wh <Action>(HideAllWindows)
+" Toggle active window
+nmap <leader>wa <Action>(HideActiveWindow)
 
 " File management
 " new class
@@ -177,6 +183,8 @@ nmap <leader>cc <Action>(CodeCleanup)
 nmap <leader>cf <Action>(ReformatCode)
 " Toggle folding
 nmap za <Action>(ExpandCollapseToggleAction)
+" Show possible actions (the lightbulb)
+nmap <leader>ca <Action>(ShowIntentionActions)
 
 " Comments
 " line comment
@@ -214,6 +222,7 @@ nmap <leader>gs <Action>(GotoSuperMethod)
 " Goto test
 nmap <leader>gt <Action>(GotoTest)
 
+" TODO: refactore these
 " leader mappings
 " <leader>/ Comments
 " <leader>c Code
