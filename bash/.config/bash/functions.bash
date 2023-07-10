@@ -228,4 +228,42 @@ mopodoro() {
   (notify-send "Pomodoro started" && sleep "${farming[@]}" && sleep "${pause[@]}" && notify-send "Pomodoro ended" &)
 }
 
+# ElBarquo was here
+elbarquo() {
+  declare -i half_boat_len
+  half_boat_len=9
+
+  declare -i half_boat_heigth
+  half_boat_heigth=3
+
+  local horizontal_padding
+  horizontal_padding=$(( ($(tput cols) / 2) - half_boat_len ))
+
+  local vertical_padding
+  vertical_padding=$(( ($(tput lines) / 2 ) - half_boat_heigth))
+
+  local whites
+  for _ in $(seq ${horizontal_padding}); do
+    whites="${whites} "
+  done
+
+  clear
+
+  for _ in $(seq ${vertical_padding}); do
+    printf '\n'
+  done
+
+  echo "${whites}         /\         "
+  echo "${whites}        /  \        "
+  echo "${whites}_______/____\_______"
+  echo "${whites}\     ElBarquo     /"
+  echo "${whites} \________________/ "
+
+  for _ in $(seq ${vertical_padding}); do
+    printf '\n'
+  done
+
+  sleep 5
+  clear
+}
 ## vim: foldmethod=indent foldminlines=0 foldlevel=0
