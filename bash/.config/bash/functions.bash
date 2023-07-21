@@ -266,4 +266,10 @@ elbarquo() {
   sleep 5
   clear
 }
+
+# Flatpak calibre ebook-convert wrapper: arg1 = in.inputFormat (eg. file.pdf), arg2 = out.outputFormat (eg. file.epub)
+ebook-convert() {
+  flatpak --command="sh" run com.calibre_ebook.calibre -c "ebook-convert ${1} ${2}"
+}
+
 ## vim: foldmethod=indent foldminlines=0 foldlevel=0
