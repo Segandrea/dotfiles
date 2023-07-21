@@ -12,6 +12,7 @@
 **/.angular/
 **/.cache/
 **/.cargo/
+**/.fleet/
 **/.git/
 **/.github/
 **/.gnome/
@@ -21,6 +22,8 @@
 **/.ipynb_checkpoints/
 **/.ipython/
 **/.java/
+**/.jdk/
+**/.jdks/
 **/.jupyter/
 **/.local/
 **/.m2/
@@ -34,6 +37,7 @@
 **/.texlive/
 **/.var/
 **/.vscode/
+**/.vscode-oss/
 **/.yarn/
 **/androidTest/
 **/build/
