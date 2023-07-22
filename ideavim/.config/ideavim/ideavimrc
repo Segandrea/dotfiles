@@ -82,115 +82,143 @@ nmap za <Action>(ExpandCollapseToggleAction)
 
 
 " Vim-Surround mappings
-let g:WhichKeyDesc_surround = "<Space>s Surround"
+let g:WhichKeyDesc_surround         = "<Space>s Surround"
 let g:WhichKeyDesc_deleteSurrounder = "<Space>sd Delete"
 nmap <leader>sd ds
 let g:WhichKeyDesc_changeSurrounder = "<Space>sc Change"
 nmap <leader>sc cs
-let g:WhichKeyDesc_addSurrounder = "<Space>sa Add"
+let g:WhichKeyDesc_addSurrounder    = "<Space>sa Add"
 nmap <leader>sa ys
-let g:WhichKeyDesc_surroundLine = "<Space>sl Line"
+let g:WhichKeyDesc_surroundLine     = "<Space>sl Line"
 nmap <leader>sl yss
 vmap <leader>s S
 
 
 " Window and tags navigation
-let g:WhichKeyDesc_window = "<Space>w Window"
+let g:WhichKeyDesc_window             = "<Space>w Window"
 " windows are lateral panels
-let g:WhichKeyDesc_hideActiveWindow = "<Space>wa Toggle Active Window"
+let g:WhichKeyDesc_hideActiveWindow   = "<Space>wa Toggle Active Window"
 nmap <leader>wa <Action>(HideActiveWindow)
-let g:WhichKeyDesc_hideAllWindows = "<Space>wh Toggle All Windows"
+let g:WhichKeyDesc_showBookmarksTool  = "<Space>wb Show Bookmarks List"
+nmap <leader>wb <Action>(ActivateBookmarksToolWindow)
+let g:WhichKeyDesc_showCommitTool     = "<Space>wc Show Commit Tool"
+nmap <leader>wc <Action>(ActivateCommitToolWindow)
+let g:WhichKeyDesc_showDebugTool      = "<Space>wd Show Debug Console"
+nmap <leader>wd <Action>(ActivateDebugToolWindow)
+let g:WhichKeyDesc_findTool           = "<Space>wf Show Find Tool"
+nmap <leader>wf <Action>(ActivateFindToolWindow)
+let g:WhichKeyDesc_showGradleTool     = "<Space>wg Show Gradle Tool"
+nmap <leader>wg <Action>(ActivateGradleToolWindow)
+let g:WhichKeyDesc_hideAllWindows     = "<Space>wh Toggle All Windows"
 nmap <leader>wh <Action>(HideAllWindows)
+let g:WhichKeyDesc_showNotification   = "<Space>wn Show Notifications List"
+nmap <leader>wn <Action>(ActivateNotificationsToolWindow)
+let g:WhichKeyDesc_showProblemsTool   = "<Space>wp Show Problems List"
+nmap <leader>wp <Action>(ActivateProblemsViewToolWindow)
+let g:WhichKeyDesc_showRunningTool    = "<Space>wr Show Run Console"
+nmap <leader>wr <Action>(ActivateRunToolWindow)
+let g:WhichKeyDesc_showServicesTool   = "<Space>wS Show Services Tool"
+nmap <leader>wS <Action>(ActivateServicesToolWindow)
+let g:WhichKeyDesc_showTaskTool       = "<Space>wt Show Task Tool"
+nmap <leader>wt <Action>(ActivateTaskToolWindow)
+let g:WhichKeyDesc_openTerminal       = "<Space>wT Open Terminal"
+nmap <leader>wT <Action>(ActivateTerminalToolWindow)
+let g:WhichKeyDesc_showVersionControl = "<Space>wv Show Versioning Tool"
+nmap <leader>wv <Action>(ActivateVersionControlToolWindow)
 " splitting
-let g:WhichKeyDesc_split = "<Space>ws Split"
-let g:WhichKeyDesc_splitVertically = "<Space>wsv Vertically"
+let g:WhichKeyDesc_split              = "<Space>ws Split"
+let g:WhichKeyDesc_splitVertically    = "<Space>wsv Vertically"
 nmap <leader>wsv <Action>SplitVertically
-let g:WhichKeyDesc_splitHorizontally = "<Space>wsh Horizontally"
+let g:WhichKeyDesc_splitHorizontally  = "<Space>wsh Horizontally"
 nmap <leader>wsh <Action>SplitHorizontally
-let g:WhichKeyDesc_unsplit = "<Space>wu Unsplit"
+let g:WhichKeyDesc_unsplit            = "<Space>wu Unsplit"
 nmap <leader>wu <Action>Unsplit
-let g:WhichKeyDesc_zen = "<Space>wz Toggle Zen Mode"
+let g:WhichKeyDesc_zen                = "<Space>wz Toggle Zen Mode"
 nmap <leader>wz <Action>(ToggleZenMode)
 
+
 " File management
-let g:WhichKeyDesc_file = "<Space>f File"
-let g:WhichKeyDesc_fileOpen = "<Space>fo Open"
+let g:WhichKeyDesc_file             = "<Space>f File"
+let g:WhichKeyDesc_fileOpen         = "<Space>fo Open"
 nmap <leader>fo <Action>(OpenFile)
-let g:WhichKeyDesc_fileRecent = "<Space>fr Recent Files"
+let g:WhichKeyDesc_fileRecent       = "<Space>fr Recent Files"
 nmap <leader>fr <Action>(RecentFiles)
-let g:WhichKeyDesc_fileCloseProject = "<Space>fc Close File"
+let g:WhichKeyDesc_fileCloseEditor  = "<Space>fc Close File"
 nmap <leader>fc <Action>(CloseEditor)
 let g:WhichKeyDesc_fileCloseProject = "<Space>fC Close Project"
 nmap <leader>fC <Action>(CloseProject)
-let g:WhichKeyDesc_fileSettings = "<Space>fs Settings"
+let g:WhichKeyDesc_fileSettings     = "<Space>fs Settings"
 nmap <leader>fs <Action>(ShowSettings)
 " New things
-let g:WhichKeyDesc_fileNew = "<Space>fn New"
-let g:WhichKeyDesc_fileNewClass = "<Space>fnc New Class"
+let g:WhichKeyDesc_fileNew          = "<Space>fn New"
+let g:WhichKeyDesc_fileNewClass     = "<Space>fnc New Class"
 nmap <leader>fnc <Action>(NewClass)
-let g:WhichKeyDesc_fileNewPackage = "<Space>fnp New Package"
+let g:WhichKeyDesc_fileNewPackage   = "<Space>fnp New Package"
 nmap <leader>fnp <Action>(NewDir)
 " NERDTree mappings
-let g:WhichKeyDesc_treeFocus = "<Space>ft Focus tree"
+let g:WhichKeyDesc_treeFocus        = "<Space>ft Focus tree"
 nnoremap <leader>ft :NERDTreeFocus<CR>
 
 
 " Debug
+let g:WhichKeyDesc_debug                        = "<Space>d Debug"
+let g:WhichKeyDesc_debugBreakpoint              = "<Space>db Toggle Breakpoint"
+nmap <leader>db <Action>(ToggleLineBreakpoint)
 let g:WhichKeyDesc_codeChooseDebugConfiguration = "<Space>dC Choose configuration"
 nmap <leader>dC <Action>(ChooseDebugConfiguration)
-
-let g:WhichKeyDesc_debug = "<Space>d Debug"
-let g:WhichKeyDesc_debugBreakpoint = "<Space>db Toggle Breakpoint"
-nmap <leader>db <Action>(ToggleLineBreakpoint)
-let g:WhichKeyDesc_debugStart = "<Space>dd Start Debugging"
+let g:WhichKeyDesc_debugStart                   = "<Space>dd Start Debugging"
 nmap <leader>dd <Action>(Debug)
-let g:WhichKeyDesc_debugEnd = "<Space>dD End Debugging"
+let g:WhichKeyDesc_debugEnd                     = "<Space>dD End Debugging"
 nmap <leader>dD <Action>(Stop)
 " Step
-let g:WhichKeyDesc_debugStep = "<Space>ds Step"
-let g:WhichKeyDesc_debugStepOver = "<Space>dso Over"
+let g:WhichKeyDesc_debugStep                    = "<Space>ds Step"
+let g:WhichKeyDesc_debugStepOver                = "<Space>dso Over"
 nmap <leader>dso <Action>(StepOver)
-let g:WhichKeyDesc_debugStepOut = "<Space>dsO Out"
+let g:WhichKeyDesc_debugStepOut                 = "<Space>dsO Out"
 nmap <leader>dsO <Action>(StepOut)
-let g:WhichKeyDesc_debugStepInto = "<Space>dsi Into"
+let g:WhichKeyDesc_debugStepInto                = "<Space>dsi Into"
 nmap <leader>dsi <Action>(StepIn)
 
 
 " Code
-let g:WhichKeyDesc_code = "<Space>c Code"
-let g:WhichKeyDesc_codeActions = "<Space>ca Actions"
+let g:WhichKeyDesc_code                       = "<Space>c Code"
+let g:WhichKeyDesc_codeActions                = "<Space>ca Actions"
 nmap <leader>ca <Action>(GotoAction)
-let g:WhichKeyDesc_codeBuild = "<Space>cb Build"
+let g:WhichKeyDesc_codeBuild                  = "<Space>cb Build"
 nmap <leader>cb <Action>(CompileDirty)
-let g:WhichKeyDesc_codeCleanup = "<Space>cc Code Cleanup"
+let g:WhichKeyDesc_codeCleanup                = "<Space>cc Code Cleanup"
 nmap <leader>cc <Action>(CodeCleanup)
 let g:WhichKeyDesc_codeChooseRunConfiguration = "<Space>cC Choose Configuration"
 nmap <leader>cC <Action>(ChooseRunConfiguration)
-let g:WhichKeyDesc_codeShowDocumentation = "<Space>cd Show Quick Doc"
+let g:WhichKeyDesc_codeShowDocumentation      = "<Space>cd Show Quick Doc"
 nmap <leader>cd <Action>(QuickJavaDoc)
-let g:WhichKeyDesc_codeShowErrorDescription = "<Space>ce Error Description"
+let g:WhichKeyDesc_codeShowErrorDescription   = "<Space>ce Error Description"
 nmap <leader>ce <Action>(ShowErrorDescription)
-let g:WhichKeyDesc_codeFormat = "<Space>cf Format"
-nmap <leader>cf <Action>(ReformatCode)
-let g:WhichKeyDesc_codeGenerate = "<Space>cg Generate"
+let g:WhichKeyDesc_codeFindUsages             = "<Space>cf Find Usage"
+nmap <leader>cf <Action>(FindUsages)
+let g:WhichKeyDesc_codeFormat                 = "<Space>cF Format"
+nmap <leader>cF <Action>(ReformatCode)
+let g:WhichKeyDesc_codeGenerate               = "<Space>cg Generate"
 nmap <leader>cg <Action>(Generate)
-let g:WhichKeyDesc_codeImplement = "<Space>ci Implement Methods"
+let g:WhichKeyDesc_codeImplement              = "<Space>ci Implement Methods"
 nmap <leader>ci <Action>(ImplementMethods)
-let g:WhichKeyDesc_codeShowIntentionActions = "<Space>cl Actions Lightbulb"
+let g:WhichKeyDesc_codeShowIntentionActions   = "<Space>cl Actions Lightbulb"
 nmap <leader>cl <Action>(ShowIntentionActions)
-let g:WhichKeyDesc_codeOverride = "<Space>co Override Methods"
+let g:WhichKeyDesc_codeOverride               = "<Space>co Override Methods"
 nmap <leader>co <Action>(OverrideMethods)
-let g:WhichKeyDesc_codeStart = "<Space>cr Start"
+let g:WhichKeyDesc_codeOptimizeImports        = "<Space>cO Optimize Imports"
+nmap <leader>cO <Action>(OptimizeImports)
+let g:WhichKeyDesc_codeStart                  = "<Space>cr Start"
 nmap <leader>cr <Action>(Run)
-let g:WhichKeyDesc_codeStop = "<Space>cR Stop"
+let g:WhichKeyDesc_codeStop                   = "<Space>cR Stop"
 nmap <leader>cR <Action>(Stop)
-let g:WhichKeyDesc_codeTest = "<Space>ct Test"
+let g:WhichKeyDesc_codeTest                   = "<Space>ct Test"
 map <leader>ct <Action>(RunTests)
 
 
 " Comments
-let g:WhichKeyDesc_comment = "<Space>/ Comment"
-let g:WhichKeyDesc_commentByLine = "<Space>// Line"
+let g:WhichKeyDesc_comment          = "<Space>/ Comment"
+let g:WhichKeyDesc_commentByLine    = "<Space>// Line"
 nmap <leader>// <Action>(CommentByLineComment)
 let g:WhichKeyDesc_commentByComment = "<Space>/b Block"
 nmap <leader>/b <Action>(CommentByBlockComment)
@@ -198,42 +226,42 @@ vmap <leader>/b <Action>(CommentByBlockComment)
 
 
 " Refactor
-let g:WhichKeyDesc_refactor = "<Space>r Refactor"
-let g:WhichKeyDesc_refactorDelete = "<Space>rd Safe Delete"
+let g:WhichKeyDesc_refactor              = "<Space>r Refactor"
+let g:WhichKeyDesc_refactorDelete        = "<Space>rd Safe Delete"
 nmap <leader>rd <Action>(SafeDelete)
 let g:WhichKeyDesc_refactorRenameElement = "<Space>re Rename Element"
 nmap <leader>re <Action>(RenameElement)
-let g:WhichKeyDesc_refactorRenameFile = "<Space>rf Rename File"
+let g:WhichKeyDesc_refactorRenameFile    = "<Space>rf Rename File"
 nmap <leader>rf <Action>(RenameFile)
-let g:WhichKeyDesc_refactorMoveClass = "<Space>rm Move Class"
+let g:WhichKeyDesc_refactorMoveClass     = "<Space>rm Move Class"
 nmap <leader>rm <Action>(Move)
-let g:WhichKeyDesc_refactorList = "<Space>rt Quick Refactor List"
+let g:WhichKeyDesc_refactorList          = "<Space>rt Quick Refactor List"
 nmap <leader>rt <Action>(Refactorings.QuickListPopupAction)
 
 
 " Goto
-let g:WhichKeyDesc_goto = "<Space>g Goto"
-let g:WhichKeyDesc_gotoDeclaration = "<Space>gd Declaration"
+let g:WhichKeyDesc_goto               = "<Space>g Goto"
+let g:WhichKeyDesc_gotoDeclaration    = "<Space>gd Declaration"
 nmap <leader>gd <Action>(GotoDeclaration)
 let g:WhichKeyDesc_gotoImplementation = "<Space>gi Implementation"
 nmap <leader>gi <Action>(GotoImplementation)
-let g:WhichKeyDesc_gotoSuper = "<Space>gs Super"
+let g:WhichKeyDesc_gotoSuper          = "<Space>gs Super"
 nmap <leader>gs <Action>(GotoSuperMethod)
-let g:WhichKeyDesc_gotoTest = "<Space>gt Test"
+let g:WhichKeyDesc_gotoTest           = "<Space>gt Test"
 nmap <leader>gt <Action>(GotoTest)
 " go next
-let g:WhichKeyDesc_gotoNext = "<Space>gn Next"
-let g:WhichKeyDesc_gotoNextMethod = "<Space>gnm Method"
+let g:WhichKeyDesc_gotoNext           = "<Space>gn Next"
+let g:WhichKeyDesc_gotoNextMethod     = "<Space>gnm Method"
 nmap <leader>gnm <Action>(MethodDown)
-let g:WhichKeyDesc_windowNextTab = "<Space>gnt Tab"
+let g:WhichKeyDesc_windowNextTab      = "<Space>gnt Tab"
 nmap <leader>gnt <Action>(NextTab)
-let g:WhichKeyDesc_gotoNextErr = "<Space>gne Error"
+let g:WhichKeyDesc_gotoNextErr        = "<Space>gne Error"
 nmap <leader>gne <Action>(GotoNextError)
 " go prev
-let g:WhichKeyDesc_gotoPrev = "<Space>gn Previous"
-let g:WhichKeyDesc_gotoPrevMethod = "<Space>gpm Method"
+let g:WhichKeyDesc_gotoPrev           = "<Space>gn Previous"
+let g:WhichKeyDesc_gotoPrevMethod     = "<Space>gpm Method"
 nmap <leader>gpm <Action>(MethodUp)
-let g:WhichKeyDesc_gotoPrevErr = "<Space>gpe Error"
+let g:WhichKeyDesc_gotoPrevErr        = "<Space>gpe Error"
 nmap <leader>gpe <Action>(GotoPreviousError)
-let g:WhichKeyDesc_windowPrevTab = "<Space>gpt Tab"
+let g:WhichKeyDesc_windowPrevTab      = "<Space>gpt Tab"
 nmap <leader>gpt <Action>(PreviousTab)
