@@ -44,6 +44,9 @@ let g:highlightedyank_highlight_color="rgba(98, 114, 164, 100)"
 
 " Vim-Surround
 Plug 'tpope/vim-surround'
+let g:WhichKeyDesc_ys = "ys"
+let g:WhichKeyDesc_cs = "cs"
+let g:WhichKeyDesc_ds = "ds"
 
 """"""""""""
 " MAPPINGS "
