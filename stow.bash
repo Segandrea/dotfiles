@@ -12,6 +12,7 @@ dir2link=(
   "eslint/"
   "fd/"
   "gitconfig/"
+  "gtk/" # removes titlebars from apps like chrome
   "markdownlint/"
   "ideavim/"
   "readline/"
