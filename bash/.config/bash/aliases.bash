@@ -83,9 +83,10 @@ spicetify restore backup apply'
 # TODO: make me a function
 alias upgradeall='sudo dnf upgrade && flatpak update && rustup update'
 
-# dump and load gnome settings
+# dump, load or reset gnome settings
 alias dconfdump='dconf dump / > '
 alias dconfload='dconf load / < '
+alias dconfreset='dconf reset -f /org/gnome'
 
 # open ignoramus
 alias nora='[[ -d "$IGNORAMUS_DIR" ]] && cd "$IGNORAMUS_DIR" && "$EDITOR" "$IGNORAMUS_DIR/index.md" && cd "$OLDPWD"'
