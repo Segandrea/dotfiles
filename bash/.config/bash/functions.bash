@@ -272,4 +272,27 @@ ebook-convert() {
   flatpak --command="sh" run com.calibre_ebook.calibre -c "ebook-convert ${1} ${2}"
 }
 
+# Change wallpaper
+wallpaper() {
+  local target
+  target="$(fd -t f -t l --hidden . "$PICTURES_DIR/Gnome/Wallpaper/" |
+    fzf \
+    --exact \
+    --no-info \
+    --reverse \
+    --preview='tree -CL 2 {}' \
+    --delimiter='/' \
+    --with-nth -1 \
+    --pointer='➜' \
+    --prompt='Set as wallpaper ')"
+  if [[ -n "${target}" ]]; then
+    gsettings set org.gnome.desktop.background picture-uri "file://${target}" && \
+      gsettings set org.gnome.desktop.background picture-uri-dark "file://${target}" && \
+      gsettings set org.gnome.desktop.screensaver picture-uri "file://${target}" && \
+      echo "the new wallpaper is ${target}"
+  else
+    echo "Choose one of the wallpaper or download one and retry"
+  fi
+}
+
 ## vim: foldmethod=indent foldminlines=0 foldlevel=0
