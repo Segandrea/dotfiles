@@ -92,3 +92,9 @@ alias dconfreset='dconf reset -f /org/gnome/'
 alias nora='[[ -d "$IGNORAMUS_DIR" ]] && cd "$IGNORAMUS_DIR" && "$EDITOR" "$IGNORAMUS_DIR/index.md" && cd "$OLDPWD"'
 # my todo list
 alias todo='tmux popup -E -w 80% -h 80% -b rounded "$EDITOR $DESKTOP_DIR/todo.md"'
+
+# git shortcuts
+alias add='git add'
+alias diff='git diff'
+alias status='git status'
+alias commit='git commit -m'
