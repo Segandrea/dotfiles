@@ -3,8 +3,6 @@
 """""""""""""""""""""""""""
 " disable vi compatibility
 set nocompatible
-" set colorscheme
-colorscheme desert
 " syntax highlight
 syntax on
 " show completions
