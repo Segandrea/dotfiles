@@ -50,7 +50,7 @@ alias wget='wget --hsts-file $XDG_STATE_HOME/wget/history'
 alias path='echo -e "${PATH//:/\\n}"'
 alias detach='tmux detach-client'
 
-# compile c with @daddinuz flames
+# compile c with @daddinuz's flames
 alias ddc='gcc -std=c17 -Wall -Wextra -Wpedantic -Werror'
 
 # NetworkManager shortcuts
@@ -93,4 +93,4 @@ alias dconfreset='dconf reset -f /org/gnome/'
 # open ignoramus
 alias nora='[[ -d "$IGNORAMUS_DIR" ]] && cd "$IGNORAMUS_DIR" && "$EDITOR" "$IGNORAMUS_DIR/index.md" && cd "$OLDPWD"'
 # my todo list
-alias todo='tmux popup -E -w 80% -h 80% -b rounded "$EDITOR $DESKTOP_DIR/todo.md"'
+alias todo='tmux popup -E -w 80% -h 80% -b rounded "vim $DESKTOP_DIR/todo.md"'

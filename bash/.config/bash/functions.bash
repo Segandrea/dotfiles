@@ -131,7 +131,7 @@ showfunctions() {
   if [[ -z "$1" ]]; then
     grep -A 1 -e "^# .*" "$(realpath "${BASH_SOURCE[0]}")" --color=always | less
   else
-    grep -A 1 -e "^# .*" "$(realpath "${BASH_SOURCE[0]}")" | grep -B 1 -A 1 -m 1 -i "$1"
+    grep -A 1 -e "^# .*" "$(realpath "${BASH_SOURCE[0]}")" | grep --before-context=1 --after-context=1 --max-count=1 --ignore-case "$1"
   fi
 }
 
@@ -272,7 +272,7 @@ ebook-convert() {
   flatpak --command="sh" run com.calibre_ebook.calibre -c "ebook-convert ${1} ${2}"
 }
 
-# Change wallpaper
+# Change gnome wallpaper
 wallpaper() {
   local target
   target="$(fd -t f -t l --hidden . "$PICTURES_DIR/Gnome/Wallpaper/" |
