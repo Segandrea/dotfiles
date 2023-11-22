@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=ScreenLock
+Comment=Stop music and disable bluetooth at screenlock
+Exec=/usr/bin/bash -c "$HOME/.local/bin/scripts/screenlock.bash"
+Version=1.0
+Type=Application
+Terminal=false

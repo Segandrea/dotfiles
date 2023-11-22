@@ -8,6 +8,7 @@ info="$(tput setaf 4)Info:$(tput sgr 0)"                # blue info
 declare -a dir2link
 dir2link=(
   "alacritty/"
+  "autostart/"
   "bash/"
   "eslint/"
   "fd/"
@@ -16,6 +17,7 @@ dir2link=(
   "markdownlint/"
   "ideavim/"
   "readline/"
+  "scripts/"
   "sgnvim/"
   "starship/"
   "tmux/"
