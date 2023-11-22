@@ -83,11 +83,11 @@ return {
     },
   }, -- }}}
   -- Ui
-  { --  Indent lines {{{
-    'lukas-reineke/indent-blankline.nvim',
-    config = function()
-      require('indent_blankline').setup({ char = '┊', show_current_context = true })
-    end,
+  { -- Indent lines {{{
+    -- 'lukas-reineke/indent-blankline.nvim',
+    -- config = function()
+    --   require('indent_blankline').setup({ char = '┊', show_current_context = true })
+    -- end,
   }, -- }}}
   { -- Dracula Colorscheme {{{
     'dracula/vim',
@@ -159,16 +159,8 @@ return {
     config = function() require('sgn.configs.nvim-surround') end,
   }, -- }}}
   -- Markdown
-  { -- Markdown related plugins {{{
-    'jakewvincent/mkdnflow.nvim',
-    config = function() require('sgn.configs.mkdnflow') end,
-    rocks = 'luautf8',
-    ft = 'markdown',
-    requires = {
-      { 'jubnzv/mdeval.nvim', ft = 'markdown', },
-      { 'iamcco/markdown-preview.nvim', run = function() vim.fn["mkdp#util#install"]() end, ft = 'markdown', },
-    }
-  }, -- }}}
+  -- { -- Markdown related plugins {{{
+  -- }, -- }}}
   -- Neorg
   { -- Neorg support {{{
     'nvim-neorg/neorg',

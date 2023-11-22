@@ -6,7 +6,7 @@ require('mason').setup(config.mason) -- Mason needs to be configured before lspz
 local lsp = require('lsp-zero')
 lsp.preset('recommended') -- Using 'recommended' preset then adding preferences
 lsp.set_preferences(config.zero_preferences)
-lsp.nvim_workspace() -- Add lua lsp support for neovim config
+-- TODO: is not working anymore lsp.nvim_workspace() -- Add lua lsp support for neovim config
 -- attach lsp mappings to buffer
 lsp.on_attach(require('sgn.configs.lsp-zero.mappings'))
 -- needs to be the last command after lsp configuration
