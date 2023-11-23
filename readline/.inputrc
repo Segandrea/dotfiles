@@ -83,3 +83,9 @@ TAB:menu-complete
 "\C-l":clear-screen
 # Control-x to expand aliases
 "\C-x":shell-expand-line
+# Control-a to go to the beginning of the line
+"\C-a":beginning-of-line
+# Control-e to go to the end of the line
+"\C-e":end-of-line
+# Control-backspace (and also Control-h) to delete a word backward
+"\C-h":backward-kill-word
