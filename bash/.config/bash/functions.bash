@@ -89,12 +89,13 @@ ra() {
 # Choose from inputted values: array of args
 randomchoice() {
   declare -a choices=( "$@" )
-  echo "${choices[$(shuf -i 0-$(($#-1)) -n1)]}"
+  echo "${choices[$(shuf --input-range=0-$(($#-1)) --head-count=1)]}"
 }
 
 # Flip a coin
 flipacoin() {
-  [[ "$(shuf -i 1-2 -n1)" == "1" ]] && echo "head" || echo "tail"
+  [[ "$(shuf --input-range=1-2 --head-count=1)" == "1" ]] &&
+    echo "head" || echo "tail"
 }
 
 # Extract things with tar bunzip2 unrar gunzip unzip uncompress 7z
@@ -129,9 +130,9 @@ extract() {
 # List all custom functions
 showfunctions() {
   if [[ -z "$1" ]]; then
-    grep -A 1 -e "^# .*" "$(realpath "${BASH_SOURCE[0]}")" --color=always | less
+    grep --after-context=1 --regexp="^# .*" "$(realpath "${BASH_SOURCE[0]}")" --color=always | less
   else
-    grep -A 1 -e "^# .*" "$(realpath "${BASH_SOURCE[0]}")" | grep --before-context=1 --after-context=1 --max-count=1 --ignore-case "$1"
+    grep --after-context=1 --regexp="^# .*" "$(realpath "${BASH_SOURCE[0]}")" | grep --before-context=1 --after-context=1 --max-count=1 --ignore-case "$1"
   fi
 }
 
@@ -190,7 +191,11 @@ bt() {
   bluetoothctl power on
   echo "Scanning..."
   bluetoothctl --timeout 5 scan on > /dev/null
-  device="$(bluetoothctl devices | sed "s/Device //" | fzf --no-info --delimiter=' ' --with-nth='2..' --prompt='Connect to: ' --pointer='➜')"
+  device="$(
+    bluetoothctl devices |
+    sed "s/Device //" |
+    fzf --no-info --delimiter=' ' --with-nth='2..' --prompt='Connect to: ' --pointer='➜'
+  )"
   if [[ -z "${device}" ]]; then
     echo "Error: A device needs to be selected."
     return
@@ -214,7 +219,11 @@ bt() {
 # Get help with tldr
 gethelp() {
   local target
-  target="$(tldr -l | sed -e "s/\[\|\]\|'//g" -e "s/, /\n/g" | fzf --no-info --preview='tldr {}' --prompt='tl;dr of help: ' --pointer='➜')"
+  target="$(
+    tldr --list |
+    sed --expression="s/\[\|\]\|'//g" --expression="s/, /\n/g" |
+    fzf --no-info --preview='tldr {}' --prompt='tl;dr of help: ' --pointer='➜'
+  )"
   [[ -n "${target}" ]] && tmux neww "tldr ${target}; exec bash" && return
 }
 
@@ -275,7 +284,8 @@ ebook-convert() {
 # Change gnome wallpaper
 wallpaper() {
   local target
-  target="$(fd -t f -t l --hidden . "$PICTURES_DIR/Gnome/Wallpaper/" |
+  target="$(
+    fd --type f --type l --hidden . "$PICTURES_DIR/Gnome/Wallpaper/" |
     fzf \
     --exact \
     --no-info \
@@ -284,7 +294,8 @@ wallpaper() {
     --delimiter='/' \
     --with-nth -1 \
     --pointer='➜' \
-    --prompt='Set as wallpaper ')"
+    --prompt='Set as wallpaper '
+  )"
   if [[ -n "${target}" ]]; then
     gsettings set org.gnome.desktop.background picture-uri "file://${target}" && \
       gsettings set org.gnome.desktop.background picture-uri-dark "file://${target}" && \

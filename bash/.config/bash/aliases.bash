@@ -54,8 +54,8 @@ alias detach='tmux detach-client'
 alias ddc='gcc -std=c17 -Wall -Wextra -Wpedantic -Werror'
 
 # NetworkManager shortcuts
-alias nmlist='nmcli -f "in-use,ssid,chan,rate,signal,security" device wifi list'
-alias nmconn='nmcli device wifi connect "$(nmcli d w rescan && nmcli -g "ssid" device wifi list | fzf --no-info --border=rounded --prompt="Connect to: " --pointer="➜")"'
+alias nmlist='nmcli --fields "in-use,ssid,chan,rate,signal,security" device wifi list'
+alias nmconn='nmcli device wifi connect "$(nmcli device wifi rescan && nmcli --get-values "ssid" device wifi list | fzf --no-info --border=rounded --prompt="Connect to: " --pointer="➜")"'
 
 # fix for letting my drawing tablet go on second screen
 # TODO: write a wayland version
@@ -77,9 +77,6 @@ alias lockscreen='dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org
 alias sptnext='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next'
 alias sptprev='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous'
 alias spttoggle='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause'
-alias spicespotify='sudo chmod a+wr /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify && \
-sudo chmod a+wr -R /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/Apps && \
-spicetify restore backup apply'
 
 # upgrade from pacman, aur, flatpak and other packages
 # TODO: make me a function

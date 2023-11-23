@@ -14,10 +14,10 @@
 # starship prompt
 [[ -x "$(command -v starship)" ]] && eval "$(starship init bash)"
 # setup colors
-[[ -x "$(command -v dircolors)" ]] && eval "$(dircolors -b)"
+[[ -x "$(command -v dircolors)" ]] && eval "$(dircolors --bourne-shell)"
 # tmux
 if [[ -x "$(command -v tmux)" && -z "$TMUX" ]]; then
-    _tmux_unattached_session="$(tmux list-sessions | grep -v -m 1 attached)"
+    _tmux_unattached_session="$(tmux list-sessions | grep --invert-match --max-count=1 attached)"
     if [[ -n "${_tmux_unattached_session}" ]]; then
         tmux attach -t "${_tmux_unattached_session/:*/}"
     else
