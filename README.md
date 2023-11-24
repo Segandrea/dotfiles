@@ -4,7 +4,7 @@
 
 The directories of this repository will be linked in the right place using
 a [program](https://www.gnu.org/software/stow/) called `stow` that makes symlinks
-based on the [structure](2023-11-23_structure.md) of the various directories.
+based on the structure of the various directories.
 
 To link all configurations, from the root directory of dotfiles, do
 
