@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Spotify
+Comment=Launch Spotify at startup
+Exec=flatpak run com.spotify.Client
+Type=Application
+Terminal=false

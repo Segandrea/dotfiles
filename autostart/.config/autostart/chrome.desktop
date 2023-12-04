@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Chrome
+Comment=Launch google-chrome at startup
+Exec=google-chrome
+Type=Application
+Terminal=false
