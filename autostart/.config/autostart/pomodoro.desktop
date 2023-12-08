@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Gnome Pomodoro
+Comment=Start a pomodoro at startup
+Exec=gnome-pomodoro --start
+Type=Application
+Terminal=false
