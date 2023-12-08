@@ -85,7 +85,7 @@ alias upgradeall='sudo dnf upgrade && flatpak update && rustup update'
 # dump, load or reset gnome settings
 alias dconfdump='dconf dump / > '
 alias dconfload='dconf load / < '
-alias dconfreset='dconf reset -f /org/gnome/'
+alias dconfreset='dconf reset -f /'
 
 # open ignoramus
 alias nora='[[ -d "$IGNORAMUS_DIR" ]] && cd "$IGNORAMUS_DIR" && "$EDITOR" "$IGNORAMUS_DIR/index.md" && cd "$OLDPWD"'
