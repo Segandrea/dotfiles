@@ -17,7 +17,7 @@ dbus-monitor --session "type='signal',interface='org.gnome.ScreenSaver'" |
         # this "if" is needed because the signal is doubled
         if $is_unlocked; then
           is_unlocked=false
-          gnome-pomodoro --pause
+          gnome-pomodoro --stop
           # Stop spotify
           dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
           connected_devices="$(bluetoothctl devices Connected | awk '{print $2}')"
@@ -28,7 +28,7 @@ dbus-monitor --session "type='signal',interface='org.gnome.ScreenSaver'" |
         # this "if" is needed because the signal is doubled
         if ! $is_unlocked; then
           is_unlocked=true
-          gnome-pomodoro --resume
+          gnome-pomodoro --start
           bluetoothctl power on
           sleep 5
           for device in $connected_devices; do
