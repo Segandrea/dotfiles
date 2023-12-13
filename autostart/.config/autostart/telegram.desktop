@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=Telegram
-Comment=Launch Telegram-desktop at startup
-Exec=flatpak run org.telegram.desktop
-Type=Application
-Terminal=false
