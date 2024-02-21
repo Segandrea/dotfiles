@@ -18,7 +18,9 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 # ps grepping something
-alias psgrep='ps aux | grep'
+alias psgrep='ps aux | grep -i'
+# grep from env
+alias envgrep='env | grep -i'
 
 # show git tree
 alias gittree='git log --all --graph --decorate --oneline'
