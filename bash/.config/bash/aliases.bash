@@ -17,8 +17,8 @@ alias less='less -R'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-# grep from ps aux (could be a function)
-alias psgrep='ps u | head --lines=1; ps aux | grep -v "grep" | grep -i'
+# grep from ps aux
+alias psgrep='ps aux | head --lines=1; ps aux | grep -v "grep" | grep -i'
 # grep from env
 alias envgrep='env | grep -i'
 
