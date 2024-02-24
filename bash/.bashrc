@@ -6,7 +6,6 @@
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-[[ "$(whoami)" = "root" ]] && return
 
 ##
 # Other utilities
@@ -24,10 +23,6 @@ if [[ -x "$(command -v tmux)" && -z "$TMUX" ]]; then
         tmux new
     fi
 fi
-
-# Source global config
-[[ -f "/etc/bashrc" ]] && source "/etc/bashrc"
-[[ -f "/etc/bash.bashrc" ]] && source "/etc/bash.bashrc"
 
 ##
 # configs
