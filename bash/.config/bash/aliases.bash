@@ -17,15 +17,15 @@ alias less='less -R'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-# ps grepping something
-alias psgrep='ps aux | grep -i'
+# grep from ps aux (could be a function)
+alias psgrep='ps u | head --lines=1; ps aux | grep -v "grep" | grep -i'
 # grep from env
 alias envgrep='env | grep -i'
 
 # show git tree
 alias gittree='git log --all --graph --decorate --oneline'
 # use vimdiff to see differences in files
-alias gd='git difftool'
+alias gd='git difftool --tool=vimdiff'
 
 # (e)dit file with nvim
 alias e='$EDITOR'
@@ -89,7 +89,5 @@ alias dconfdump='dconf dump / > '
 alias dconfload='dconf load / < '
 alias dconfreset='dconf reset -f /'
 
-# open ignoramus
-alias nora='[[ -d "$IGNORAMUS_DIR" ]] && cd "$IGNORAMUS_DIR" && "$EDITOR" "$IGNORAMUS_DIR/index.md" && cd "$OLDPWD"'
 # my todo list
 alias todo='tmux popup -E -w 80% -h 80% -b rounded "vim $DESKTOP_DIR/todo.md"'
