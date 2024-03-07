@@ -8,10 +8,26 @@
 [[ $- != *i* ]] && return
 
 ##
+# configs
+#
+# source env variables
+[[ -f "$HOME/.config/bash/env.bash" ]] && source "$HOME/.config/bash/env.bash"
+# source aliases
+[[ -f "$HOME/.config/bash/aliases.bash" ]] && source "$HOME/.config/bash/aliases.bash"
+# source functions
+[[ -f "$HOME/.config/bash/functions.bash" ]] && source "$HOME/.config/bash/functions.bash"
+# enable bash completion
+[[ -f "$HOME/.config/bash/completions.bash" ]] && source "$HOME/.config/bash/completions.bash"
+# enable bash keybindings
+[[ -f "$HOME/.config/bash/keybindings.bash" ]] && source "$HOME/.config/bash/keybindings.bash"
+
+##
 # Other utilities
 #
 # starship prompt
 [[ -x "$(command -v starship)" ]] && eval "$(starship init bash)"
+# zoxide instead of cd
+[[ -x "$(command -v zoxide)" ]] && eval "$(zoxide init --cmd go bash)"
 # setup colors
 [[ -x "$(command -v dircolors)" ]] && eval "$(dircolors --bourne-shell)"
 # tmux
@@ -23,20 +39,6 @@ if [[ -x "$(command -v tmux)" && -z "$TMUX" ]]; then
         tmux new
     fi
 fi
-
-##
-# configs
-#
-# source env variables
-[[ -f "$HOME/.config/bash/env.bash" ]] && source "$HOME/.config/bash/env.bash" 
-# source aliases
-[[ -f "$HOME/.config/bash/aliases.bash" ]] && source "$HOME/.config/bash/aliases.bash" 
-# source functions
-[[ -f "$HOME/.config/bash/functions.bash" ]] && source "$HOME/.config/bash/functions.bash"
-# enable bash completion
-[[ -f "$HOME/.config/bash/completions.bash" ]] && source "$HOME/.config/bash/completions.bash"
-# enable bash keybindings
-[[ -f "$HOME/.config/bash/keybindings.bash" ]] && source "$HOME/.config/bash/keybindings.bash"
 
 # Load nvm
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
