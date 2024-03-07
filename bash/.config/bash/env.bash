@@ -40,6 +40,10 @@ export BROWSER="google-chrome"                     # use chrome as default brows
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"              # nvm
 export FUNCNEST=100                                # limits recursive functions, see 'man bash'
 export FZF_DEFAULT_OPTS='--color=bg+:#282a36'      # fzf highlight choice with background color (unseeable) adding cargo executables to path (it is some how already set)
+# fzf defaults for history completion
+export FZF_CTRL_R_OPTS="--color=bg+:#282a36 --exact --no-info --reverse --no-sort --pointer='➜' --prompt='Do: '"
+# fzf defaults for ctrl+t completions
+export FZF_CTRL_T_OPTS="--color=bg+:#282a36 --exact --no-info --reverse --no-sort --pointer='➜' --prompt='Select: ' --preview='[[ -d {} ]] && tree -CL 2 {} || bat --number --color=always {}'"
 # default fzf options for zoxide use
 export _ZO_FZF_OPTS="--color=bg+:#282a36 --exact --no-info --reverse --no-sort --pointer='➜' --prompt='Go to: '"
 
