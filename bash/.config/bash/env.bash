@@ -40,6 +40,8 @@ export BROWSER="google-chrome"                     # use chrome as default brows
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"              # nvm
 export FUNCNEST=100                                # limits recursive functions, see 'man bash'
 export FZF_DEFAULT_OPTS='--color=bg+:#282a36'      # fzf highlight choice with background color (unseeable) adding cargo executables to path (it is some how already set)
+# default fzf options for zoxide use
+export _ZO_FZF_OPTS="--exact --no-info --reverse --preview='tree -CL 2 {}' --delimiter='/' --pointer='➜' --prompt='Go to: '"
 
 # my most used directories
 export DOCUMENTS_DIR="$HOME/Documents"
