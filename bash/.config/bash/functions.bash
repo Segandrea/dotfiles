@@ -136,28 +136,6 @@ showfunctions() {
   fi
 }
 
-# Fzf to a directory from $HOME
-goto() {
-  local target
-  target="$(cd && fd \
-    --type directory \
-    --follow \
-    --hidden \
-    --strip-cwd-prefix |
-    sort |
-    fzf \
-    --exact \
-    --no-info \
-    --reverse \
-    --preview='tree -CL 2 {}' \
-    --delimiter='/' \
-    --pointer='➜' \
-    --prompt='Go to: ')"
-  if [[ -n "${target}" ]]; then
-    cd -- "$HOME/${target}" || return
-  fi
-}
-
 # Color manpages with a dracula like colorscheme
 man() {
   # ..-md is "from bold start" (01 is black bg; 34 is purple text) and ..-me is "from bold end" (0 is color reset)
