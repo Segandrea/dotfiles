@@ -129,6 +129,10 @@ style = "bold green"
 discharging_symbol = " "
 charging_symbol = " "
 
+# disable jobs from showing because of zoxide
+[jobs]
+disabled = true
+
 # language symbols
 [aws]
 symbol = " "
