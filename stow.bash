@@ -15,10 +15,10 @@ dir2link=(
   "gitconfig/"
   "gtk/" # removes titlebars from apps like chrome
   "markdownlint/"
+  "nvim/"
   "ideavim/"
   "readline/"
   "scripts/"
-  "sgnvim/"
   "starship/"
   "tmux/"
   "vim/"
