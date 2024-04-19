@@ -97,11 +97,10 @@ whichkey.register({
 
 -- [[ KEYS TO IGNORE ]]
 whichkey.register({
-  ['y'] = 'which_key_ignore', -- ignored because nvim-surround
-  ['['] = 'which_key_ignore', -- ignored because nvim-surround
-  [']'] = 'which_key_ignore', -- ignored because nvim-surround
   ['>'] = 'which_key_ignore',
   ['<'] = 'which_key_ignore',
+  ['[%'] = 'which_key_ignore',
+  [']%'] = 'which_key_ignore',
   ['cs'] = 'which_key_ignore',
   ['ds'] = 'which_key_ignore',
   ['gv'] = 'which_key_ignore',
