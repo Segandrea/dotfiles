@@ -3,11 +3,11 @@ return {
   commit = 'd035934',
   opts = {
     mappings = {
-      add = 'sa',
+      add = 'S',
       delete = 'ds',
       find = '',
       find_left = '',
-      highlight = 'sm',
+      highlight = '',
       replace = 'cs',
       update_n_lines = '',
     },
