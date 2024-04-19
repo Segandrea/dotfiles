@@ -102,6 +102,8 @@ whichkey.register({
   [']'] = 'which_key_ignore', -- ignored because nvim-surround
   ['>'] = 'which_key_ignore',
   ['<'] = 'which_key_ignore',
+  ['cs'] = 'which_key_ignore',
+  ['ds'] = 'which_key_ignore',
   ['gv'] = 'which_key_ignore',
   ['gN'] = 'which_key_ignore',
   ['gt'] = 'which_key_ignore',
