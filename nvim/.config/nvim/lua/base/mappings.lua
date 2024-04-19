@@ -15,11 +15,11 @@ return {
   -- Normal Mode mappings
   {
     desc = 'Send old text after a c change to an unused register',
-    mode = 'n', key = 'c', act = '_c',
+    mode = 'n', key = 'c', act = '"_c',
   },
   {
     desc = 'Send old text after a c change to an unused register',
-    mode = 'n', key = 'C', act = '_C',
+    mode = 'n', key = 'C', act = '"_C',
   },
   {
     desc = 'Disable space to use as leader key',
@@ -80,11 +80,11 @@ return {
   -- Basic go to mappings
   {
     desc = 'Go to line start [H]',
-    mode = 'n', key = 'H', act = '^',
+    mode = { 'o', 'n' }, key = 'H', act = '^', noremap = false,
   },
   {
     desc = 'Go to line end [L]',
-    mode = 'n', key = 'L', act = '$',
+    mode = { 'o', 'n' }, key = 'L', act = '$', noremap = false,
   },
   {
     desc = '[t]ab',
@@ -121,11 +121,11 @@ return {
   -- Visual Mode mappings
   {
     desc = 'Send old text after a c change to an unused register',
-    mode = 'v', key = 'c', act = '_c',
+    mode = 'v', key = 'c', act = '"_c',
   },
   {
     desc = 'Send old text after a c change to an unused register',
-    mode = 'v', key = 'C', act = '_C',
+    mode = 'v', key = 'C', act = '"_C',
   },
   {
     desc = 'Move current line above',
