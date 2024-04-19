@@ -14,6 +14,14 @@ return {
   },
   -- Normal Mode mappings
   {
+    desc = 'Send old text after a c change to an unused register',
+    mode = 'n', key = 'c', act = '_c',
+  },
+  {
+    desc = 'Send old text after a c change to an unused register',
+    mode = 'n', key = 'C', act = '_C',
+  },
+  {
     desc = 'Disable space to use as leader key',
     mode = 'n', key = '<Space>', act = '<Nop>',
   },
@@ -111,6 +119,14 @@ return {
     mode = 'n', key = 'gpf', act = 'zk',
   },
   -- Visual Mode mappings
+  {
+    desc = 'Send old text after a c change to an unused register',
+    mode = 'v', key = 'c', act = '_c',
+  },
+  {
+    desc = 'Send old text after a c change to an unused register',
+    mode = 'v', key = 'C', act = '_C',
+  },
   {
     desc = 'Move current line above',
     mode = 'v', key = 'K', act = ":m<space>'<-2<cr>gv=gv",
