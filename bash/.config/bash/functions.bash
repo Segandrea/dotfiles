@@ -47,11 +47,6 @@ mkcd() {
   mkdir -p -- "$1" && cd -P -- "$1" || return
 }
 
-# cd then clean the screen and do la
-cla() {
-  cd -- "$1" && clear && ls -AF
-}
-
 # Bakcup or restore a file
 toggle_backup() {
   local target="${1/\//}"
