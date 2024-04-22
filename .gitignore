@@ -1,5 +1,6 @@
 **/tmux/plugins/
 **/fonts/*
+**/gtk*/bookmarks
 Cyberpunk-GRUB-Theme/
 packer_compiled.lua
 .luarc.json
