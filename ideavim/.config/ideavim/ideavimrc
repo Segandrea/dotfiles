@@ -74,23 +74,10 @@ nnoremap < <<
 vnoremap > >gv
 vnoremap < <gv
 
+" TODO: many keybindings should be changed
 
 " Toggle folding
 nmap za <Action>(ExpandCollapseToggleAction)
-
-
-" Vim-Surround mappings
-let g:WhichKeyDesc_surround         = "<Space>s Surround"
-let g:WhichKeyDesc_deleteSurrounder = "<Space>sd Delete"
-nmap <leader>sd ds
-let g:WhichKeyDesc_changeSurrounder = "<Space>sc Change"
-nmap <leader>sc cs
-let g:WhichKeyDesc_addSurrounder    = "<Space>sa Add"
-nmap <leader>sa ys
-let g:WhichKeyDesc_surroundLine     = "<Space>sl Line"
-nmap <leader>sl yss
-vmap <leader>s S
-
 
 " Window and tags navigation
 let g:WhichKeyDesc_window             = "<Space>w Window"
