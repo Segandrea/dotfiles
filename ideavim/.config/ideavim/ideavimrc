@@ -69,8 +69,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap Y y$
-nnoremap vv V
-nnoremap V <C-v>$
 nnoremap > >>
 nnoremap < <<
 vnoremap > >gv
