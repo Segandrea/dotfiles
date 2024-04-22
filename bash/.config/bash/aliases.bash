@@ -93,6 +93,7 @@ alias dconfreset='dconf reset -f /'
 
 # navigation
 alias goto='cdi'
+alias go='cd'
 
 # my todo list
 alias todo='tmux popup -E -w 80% -h 80% -b rounded "vim $DESKTOP_DIR/todo.md"'
