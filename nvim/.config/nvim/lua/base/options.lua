@@ -13,7 +13,7 @@ local g = {
 -- See `:help vim.opt`
 local opt = {
   -- Strings to use in List mode (see wo.list)
-  listchars = { trail = "•", tab = "ﲖ ", extends = "»", precedes = "ﲕ" },
+  listchars = { trail = "•", tab = "ﲖ ", extends = "»", precedes = "«" },
   -- Use system clipboard
   clipboard = "unnamedplus",
   -- Insert as many blanks as 'tabstop'
@@ -23,9 +23,9 @@ local opt = {
   -- Minimal number of lines to keep above/below the cursor
   scrolloff = 5,
   -- Minimal number of columns to scroll horizontally
-  sidescroll = 3,
+  sidescroll = 0,
   -- Minimal number of columns to keep left/right of the cursor (see wo.wrap)
-  sidescrolloff = 4,
+  sidescrolloff = 0,
   -- String encoding used internally and for RPC communications
   encoding = "utf-8",
   -- Don't show a statusline
