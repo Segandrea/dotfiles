@@ -102,11 +102,13 @@ return {
     mode = 'n', key = 'U', act = '<C-r>',
   },
   -- Basic go to mappings
-  {
+  { -- 'o' is "operator-pending" mode but doesn't seem to work
+    -- because of timeoutlen: set a long timeoutlen or notimeout
     desc = 'Go to line start [H]',
     mode = { 'o', 'n', 'v' }, key = 'H', act = '^', noremap = false,
   },
-  {
+  { -- 'o' is "operator-pending" mode but doesn't seem to work
+    -- because of timeoutlen: set a long timeoutlen or notimeout
     desc = 'Go to line end [L]',
     mode = { 'o', 'n', 'v' }, key = 'L', act = '$', noremap = false,
   },
