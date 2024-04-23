@@ -14,12 +14,36 @@ return {
   },
   -- Normal Mode mappings
   {
+    desc = 'Paste and go to the end of the pasted text',
+    mode = 'n', key = 'p', act = 'p`]'
+  },
+  {
+    desc = 'Paste and go to the end of the pasted text',
+    mode = 'n', key = 'P', act = 'P`]'
+  },
+  {
+    desc = 'Break line opposite of J',
+    mode = 'n', key = 'K', act = 'a<CR><Esc>k$'
+  },
+  {
     desc = 'Send old text after a c change to an unused register',
     mode = 'n', key = 'c', act = '"_c',
   },
   {
-    desc = 'Send old text after a c change to an unused register',
+    desc = 'Send old text after a C change to an unused register',
     mode = 'n', key = 'C', act = '"_C',
+  },
+  {
+    desc = 'Send old text after a x deletion to an unused register',
+    mode = { 'n', 'v' }, key = 'x', act = '"_x',
+  },
+  {
+    desc = 'Send old text after a X deletion to an unused register',
+    mode = { 'n', 'v' }, key = 'X', act = '"_X',
+  },
+  {
+    desc = 'Send old text after a s substitution to an unused register',
+    mode = { 'n', 'v' }, key = 's', act = '"_s',
   },
   {
     desc = 'Disable space to use as leader key',
@@ -80,11 +104,11 @@ return {
   -- Basic go to mappings
   {
     desc = 'Go to line start [H]',
-    mode = { 'o', 'n' }, key = 'H', act = '^', noremap = false,
+    mode = { 'o', 'n', 'v' }, key = 'H', act = '^', noremap = false,
   },
   {
     desc = 'Go to line end [L]',
-    mode = { 'o', 'n' }, key = 'L', act = '$', noremap = false,
+    mode = { 'o', 'n', 'v' }, key = 'L', act = '$', noremap = false,
   },
   {
     desc = '[t]ab',
@@ -119,14 +143,6 @@ return {
     mode = 'n', key = 'gpf', act = 'zk',
   },
   -- Visual Mode mappings
-  {
-    desc = 'Send old text after a c change to an unused register',
-    mode = 'v', key = 'c', act = '"_c',
-  },
-  {
-    desc = 'Send old text after a c change to an unused register',
-    mode = 'v', key = 'C', act = '"_C',
-  },
   {
     desc = 'Move current line above',
     mode = 'v', key = 'K', act = ":m<space>'<-2<cr>gv=gv",
