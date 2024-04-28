@@ -3,7 +3,6 @@
 """""""""""
 set ideajoin " Smart join, useful to join a lot of things
 set idearefactormode=keep
-set history
 set ignorecase
 set smartcase
 set hlsearch
@@ -11,12 +10,6 @@ set incsearch
 set number
 set relativenumber
 set noshowmode
-set scrolloff=5
-set sidescorlloff=3
-set foldmethod=indent
-set foldlevel=99
-set clipboard+=unnamed
-set clipboard+=unnamedplus
 set clipboard+=ideaput
 set matchpairs+=<:>
 
@@ -28,7 +21,15 @@ let mapleader=" "
 
 " Which-key (requires to install the plugin)
 set notimeout
-source ~/.config/ideavim/which-key.vim
+" BUG: whichkey is currently disabled because it has crashes caused
+" from a refactor of ideavim. Wait for Android Studion Jellifish 2023.3.1
+" that adds compatibility for ideavim 2.8+ which will make whichkey work
+"source ~/.config/ideavim/which-key.vim
+" TODO: move which-key.vim content into this file
+
+" Quickscope shows unique characters when using f, F, t, T
+set quickscope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " NERDTree
 Plug 'preservim/nerdtree'
@@ -52,32 +53,153 @@ let g:WhichKeyDesc_ds = "ds"
 " MAPPINGS "
 """"""""""""
 
-" Vim Mappings
+" Decide if vim or ide should be to handle a keystroke
+" Syntax: `sethandler keys mode-list:handler ...`
+" mode-list can be one or more of the following:
+"   - a: all modes
+"   - i: insert mode
+"   - n: normal mode
+"   - x: visual mode
+"   - v: visual and select modes
+" handler can be: `ide` or `vim`
+" Example: `sethandler <C-a> i-v:vim n:ide`
+
+sethandler <C-a> n-v-x:vim i:ide
+sethandler <C-x> n-v-x:vim i:ide
+sethandler <C-v> n:vim i:ide
+
+" Vim Basic Mappings
+" highlight wrappers
 nnoremap <silent> n :set<space>hlsearch<CR>nzzzv
 nnoremap <silent> N :set<space>hlsearch<CR>Nzzzv
 nnoremap <silent> / :set<space>hlsearch<CR>/
 nnoremap <silent> ? :set<space>hlsearch<CR>?
 nnoremap <silent> * :set<space>hlsearch<CR>*
+nnoremap <silent> # :set<space>hlsearch<CR>#
 nnoremap <Esc> :set<space>nohlsearch<CR><Esc>
 nnoremap i :set<space>nohlsearch<CR>zzi
 nnoremap I :set<space>nohlsearch<CR>zzI
 nnoremap a :set<space>nohlsearch<CR>zza
 nnoremap A :set<space>nohlsearch<CR>zzA
+" break the line coherently with J
 nnoremap K a<CR><Esc>k$
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" increment/decrement and keep selected
+vnoremap g<C-a> g<C-a>gv
+vnoremap g<C-x> g<C-x>gv
+vnoremap <C-a> <C-a>gv
+vnoremap <C-x> <C-x>gv
+" go to the end of pasted text
+nnoremap p p`]
+nnoremap P P`]
+" keep position after yank in visual mode
+vnoremap y ygv<Esc>
+" undo the Undone
+nnoremap U <C-r>
+" keep clipboard clean
+nnoremap c "_c
+nnoremap C "_C
+nnoremap x "_x
+nnoremap X "_X
+nnoremap s "_s
+vnoremap x "_x
+vnoremap X "_X
+vnoremap s "_s
+" yank as it should be
 nnoremap Y y$
-nnoremap > >>
-nnoremap < <<
+" shifting as it should be
 vnoremap > >gv
 vnoremap < <gv
+nnoremap > >>
+nnoremap < <<
+" ~ with movements
+nnoremap ~ g~
+" go to start/end of line
+nnoremap H ^
+nnoremap L $
+onoremap H ^
+vnoremap H ^
+vnoremap L $
 
 " TODO: many keybindings should be changed
+" TODO: add mappings to edit in a new floating window (EditSourceInNewWindow)
+" and also to navigate them (NextWindow)
+" and also to close a window/split (CloseContent/CloseAllEditors)
+" TODO: read more about the `sethandler` command
 
 " Toggle folding
 nmap za <Action>(ExpandCollapseToggleAction)
+
+" Vim-Surround mapping to add surrounders
+" NB. ds default to delete and cs default to change
+nmap S ys
+
+" Splits and navigation
+" handlers
+sethandler <M-v> a:vim
+sethandler <M-o> a:vim
+sethandler <M-h> a:vim
+sethandler <M-j> a:vim
+sethandler <M-k> a:vim
+sethandler <M-l> a:vim
+" mappings
+nmap <M-v> <Action>(SplitVertically)
+nmap <M-o> <Action>(SplitHorizontally)
+nmap <M-q> <Action>(Unsplit)
+vmap <M-v> <Action>(SplitVertically)
+vmap <M-o> <Action>(SplitHorizontally)
+vmap <M-q> <Action>(Unsplit)
+imap <M-v> <Action>(SplitVertically)
+imap <M-o> <Action>(SplitHorizontally)
+imap <M-q> <Action>(Unsplit)
+nnoremap <M-h> <C-w>h
+nnoremap <M-j> <C-w>j
+nnoremap <M-k> <C-w>k
+nnoremap <M-l> <C-w>l
+inoremap <M-h> <C-w>h
+inoremap <M-j> <C-w>j
+inoremap <M-k> <C-w>k
+inoremap <M-l> <C-w>l
+vnoremap <M-h> <C-w>h
+vnoremap <M-j> <C-w>j
+vnoremap <M-k> <C-w>k
+vnoremap <M-l> <C-w>l
+
+" TODO: remove me
+nmap <leader>foo <Action>(IdeaVim.ReloadVimRc.reload)
+
+" Goto mappings
+let g:WhichKeyDesc_goto                = "g [g]oto"
+let g:WhichKeyDesc_gotoDeclaration     = "gd [d]eclaration"
+nmap gd <Action>(GotoDeclaration)
+let g:WhichKeyDesc_gotoImplementation  = "gi [i]mplementation"
+nmap gi <Action>(GotoImplementation)
+let g:WhichKeyDesc_gotoSuper           = "gs [s]uper method"
+nmap gs <Action>(GotoSuperMethod)
+let g:WhichKeyDesc_gotoTest            = "gT [T]est"
+nmap gT <Action>(GotoTest)
+let g:WhichKeyDesc_gotoTypeDeclaration = "gt [t]ype Declaration"
+nmap gt <Action>(GotoTypeDeclaration)
+" goto next
+let g:WhichKeyDesc_gotoNext            = "gn [n]ext"
+let g:WhichKeyDesc_gotoNextMethod      = "gnm [m]ethod"
+nmap gnm <Action>(MethodDown)
+let g:WhichKeyDesc_windowNextTab       = "gnt [t]ab"
+nmap gnt <Action>(NextTab)
+let g:WhichKeyDesc_gotoNextErr         = "gne [d]iagnostic"
+nmap gnd <Action>(GotoNextError)
+let g:WhichKeyDesc_gotoNextSearchSel   = "gne searched and [s]elect"
+noremap gns gn
+" goto prev
+let g:WhichKeyDesc_gotoPrev            = "gn [p]revious"
+let g:WhichKeyDesc_gotoPrevMethod      = "gpm [m]ethod"
+nmap gpm <Action>(MethodUp)
+let g:WhichKeyDesc_gotoPrevErr         = "gpe [d]iagnostic"
+nmap gpd <Action>(GotoPreviousError)
+let g:WhichKeyDesc_windowPrevTab       = "gpt [t]ab"
+nmap gpt <Action>(PreviousTab)
+let g:WhichKeyDesc_gotoPrevSearchSel   = "gne searched and [s]elect"
+nmap gps gN
+
 
 " Window and tags navigation
 let g:WhichKeyDesc_window             = "<Space>w Window"
@@ -110,15 +232,7 @@ let g:WhichKeyDesc_openTerminal       = "<Space>wT Open Terminal"
 nmap <leader>wT <Action>(ActivateTerminalToolWindow)
 let g:WhichKeyDesc_showVersionControl = "<Space>wv Show Versioning Tool"
 nmap <leader>wv <Action>(ActivateVersionControlToolWindow)
-" splitting
-let g:WhichKeyDesc_split              = "<Space>ws Split"
-let g:WhichKeyDesc_splitVertically    = "<Space>wsv Vertically"
-nmap <leader>wsv <Action>SplitVertically
-let g:WhichKeyDesc_splitHorizontally  = "<Space>wsh Horizontally"
-nmap <leader>wsh <Action>SplitHorizontally
-let g:WhichKeyDesc_unsplit            = "<Space>wu Unsplit"
-nmap <leader>wu <Action>Unsplit
-let g:WhichKeyDesc_zen                = "<Space>wz Toggle Zen Mode"
+let g:WhichKeyDesc_zen                = "<Space>wz Toggle [z]en Mode"
 nmap <leader>wz <Action>(ToggleZenMode)
 
 
@@ -143,6 +257,7 @@ nmap <leader>fnp <Action>(NewDir)
 " NERDTree mappings
 let g:WhichKeyDesc_treeFocus        = "<Space>ft Focus tree"
 nnoremap <leader>ft :NERDTreeFocus<CR>
+nmap <leader>sp <Action>(ShowPopupMenu)
 
 
 " Debug
@@ -167,8 +282,6 @@ nmap <leader>dsi <Action>(StepIn)
 
 " Code
 let g:WhichKeyDesc_code                       = "<Space>c Code"
-let g:WhichKeyDesc_codeActions                = "<Space>ca Actions"
-nmap <leader>ca <Action>(GotoAction)
 let g:WhichKeyDesc_codeBuild                  = "<Space>cb Build"
 nmap <leader>cb <Action>(CompileDirty)
 let g:WhichKeyDesc_codeCleanup                = "<Space>cc Code Cleanup"
@@ -187,8 +300,8 @@ let g:WhichKeyDesc_codeGenerate               = "<Space>cg Generate"
 nmap <leader>cg <Action>(Generate)
 let g:WhichKeyDesc_codeImplement              = "<Space>ci Implement Methods"
 nmap <leader>ci <Action>(ImplementMethods)
-let g:WhichKeyDesc_codeShowIntentionActions   = "<Space>cl Actions Lightbulb"
-nmap <leader>cl <Action>(ShowIntentionActions)
+let g:WhichKeyDesc_codeShowIntentionActions   = "<Space>ca Actions"
+nmap <leader>ca <Action>(ShowIntentionActions)
 let g:WhichKeyDesc_codeOverride               = "<Space>co Override Methods"
 nmap <leader>co <Action>(OverrideMethods)
 let g:WhichKeyDesc_codeOptimizeImports        = "<Space>cO Optimize Imports"
@@ -222,31 +335,3 @@ let g:WhichKeyDesc_refactorMoveClass     = "<Space>rm Move Class"
 nmap <leader>rm <Action>(Move)
 let g:WhichKeyDesc_refactorList          = "<Space>rt Quick Refactor List"
 nmap <leader>rt <Action>(Refactorings.QuickListPopupAction)
-
-
-" Goto
-let g:WhichKeyDesc_goto               = "<Space>g Goto"
-let g:WhichKeyDesc_gotoDeclaration    = "<Space>gd Declaration"
-nmap <leader>gd <Action>(GotoDeclaration)
-let g:WhichKeyDesc_gotoImplementation = "<Space>gi Implementation"
-nmap <leader>gi <Action>(GotoImplementation)
-let g:WhichKeyDesc_gotoSuper          = "<Space>gs Super"
-nmap <leader>gs <Action>(GotoSuperMethod)
-let g:WhichKeyDesc_gotoTest           = "<Space>gt Test"
-nmap <leader>gt <Action>(GotoTest)
-" go next
-let g:WhichKeyDesc_gotoNext           = "<Space>gn Next"
-let g:WhichKeyDesc_gotoNextMethod     = "<Space>gnm Method"
-nmap <leader>gnm <Action>(MethodDown)
-let g:WhichKeyDesc_windowNextTab      = "<Space>gnt Tab"
-nmap <leader>gnt <Action>(NextTab)
-let g:WhichKeyDesc_gotoNextErr        = "<Space>gne Error"
-nmap <leader>gne <Action>(GotoNextError)
-" go prev
-let g:WhichKeyDesc_gotoPrev           = "<Space>gn Previous"
-let g:WhichKeyDesc_gotoPrevMethod     = "<Space>gpm Method"
-nmap <leader>gpm <Action>(MethodUp)
-let g:WhichKeyDesc_gotoPrevErr        = "<Space>gpe Error"
-nmap <leader>gpe <Action>(GotoPreviousError)
-let g:WhichKeyDesc_windowPrevTab      = "<Space>gpt Tab"
-nmap <leader>gpt <Action>(PreviousTab)
