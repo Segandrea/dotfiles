@@ -81,7 +81,7 @@ ra() {
   esac
 }
 
-# Choose from inputted values: array of args
+# Choose from inputted values: randomchoice "arg1" "arg2" ...
 randomchoice() {
   declare -a choices=( "$@" )
   echo "${choices[$(shuf --input-range=0-$(($#-1)) --head-count=1)]}"
@@ -97,20 +97,20 @@ flipacoin() {
 extract() {
   if [ -f "$1" ] ; then
     case "$1"  in
-      *.tar.bz2)   tar xjf "$1" ;;
-      *.tar.gz)    tar xzf "$1" ;;
-      *.tar.xz)    tar xJf "$1" ;;
-      *.txz)       tar xJf "$1" ;;
-      *.bz2)       bunzip2 "$1" ;;
-      *.rar)       unrar x "$1" ;;
-      *.gz)        gunzip "$1" ;;
-      *.tar)       tar xf "$1" ;;
-      *.tbz2)      tar xjf "$1" ;;
-      *.tgz)       tar xzf "$1" ;;
-      *.zip)       unzip "$1" ;;
-      *.Z)         uncompress "$1" ;;
-      *.7z)        7z x "$1" ;;
-      *.jar)       jar xf "$1" ;;
+      *.tar.bz2)    tar xjf "$1" ;;
+      *.tar.gz)     tar xzf "$1" ;;
+      *.tar.xz)     tar xJf "$1" ;;
+      *.txz)        tar xJf "$1" ;;
+      *.bz2)        bunzip2 "$1" ;;
+      *.rar)        unrar x "$1" ;;
+      *.gz)         gunzip "$1" ;;
+      *.tar)        tar xf "$1" ;;
+      *.tbz2)       tar xjf "$1" ;;
+      *.tgz)        tar xzf "$1" ;;
+      *.zip|*.epub) unzip "$1" ;;
+      *.Z)          uncompress "$1" ;;
+      *.7z)         7z x "$1" ;;
+      *.jar)        jar xf "$1" ;;
       *)
                    echo "'$1' cannot be extracted via extract()"
                    return 1
@@ -127,6 +127,7 @@ showfunctions() {
   if [[ -z "$1" ]]; then
     grep --after-context=1 --regexp="^# .*" "$(realpath "${BASH_SOURCE[0]}")" --color=always | less
   else
+    # first grep gets all lines starting with comments and associated functions, second grep filters between them
     grep --after-context=1 --regexp="^# .*" "$(realpath "${BASH_SOURCE[0]}")" | grep --before-context=1 --after-context=1 --max-count=1 --ignore-case "$1"
   fi
 }
@@ -249,11 +250,6 @@ elbarquo() {
   clear
 }
 
-# Flatpak calibre ebook-convert wrapper: arg1 = in.inputFormat (eg. file.pdf), arg2 = out.outputFormat (eg. file.epub)
-ebook-convert() {
-  flatpak --command="sh" run com.calibre_ebook.calibre -c "ebook-convert ${1} ${2}"
-}
-
 # Change gnome wallpaper
 wallpaper() {
   local target
@@ -278,5 +274,82 @@ wallpaper() {
     echo "Choose one of the wallpaper or download one and retry"
   fi
 }
+
+# Change format of ebooks: arg1 = filename (eg: file.pdf), arg2 = newExtension (eg: epub) [optional]
+convert-book() {
+  local file
+  file="${1}"
+  if [[ -z "$2" ]]; then
+    echo "Converting to the same extension..."
+    ebook-convert "${file}" "converted-${file}"
+  else
+    local extensionlessfile
+    extensionlessfile="${file%.*}"
+    local newextension
+    newextension="$2"
+    echo "Converting to ${newextension} extension..."
+    ebook-convert "${file}" "${extensionlessfile}.${newextension}"
+  fi
+}
+
+# Fix ebook for google play books: arg1 = filename (only works with epubs)
+fix-ebook() {
+  local file
+  file="${1}"
+  [[ -z "${file}" ]] && echo "Error: filename required" && return
+  case "${file}" in
+    *.epub)
+      local tmpfile
+      tmpfile="${file/%.epub/.mobi}"
+      echo "######## Fixing #######"
+      ebook-convert "${file}" "${tmpfile}"
+      echo -e "\n\n First conversion executed, eliminating original \n\n"
+      sleep 5
+      rm "${file}"
+      ebook-convert "${tmpfile}" "${file}"
+      rm "${tmpfile}"
+      echo "###### Fixed (?) ######"
+      ;;
+    *.mobi)
+      local tmpfile
+      tmpfile="${file/%.mobi/.epub}"
+      echo "######## Fixing #######"
+      ebook-convert "${file}" "${tmpfile}"
+      echo -e "\n\n First conversion executed, eliminating original \n\n"
+      sleep 5
+      rm "${file}"
+      ebook-convert "${tmpfile}" "${file}"
+      rm "${tmpfile}"
+      echo "###### Fixed (?) ######"
+      ;;
+    *)
+      echo "Error: format not supported"
+  esac
+}
+
+# Compress images of an ebook (flatpak wrapper): arg1 = filename (eg: file.epub)
+##ebook-compress() {
+##  local file
+##  file="${1}"
+##  echo "Compressing images..."
+##  flatpak --command="sh" run com.calibre_ebook.calibre -c "ebook-polish --compress-images \"${file}\" \"compressed-${file}\""
+##}
+
+# Change format of ebooks (flatpak wrapper): arg1 = filename (eg: file.pdf), arg2 = newExtension (eg: epub) [optional]
+##ebook-convert() {
+##  local file
+##  file="${1}"
+##  if [[ -z "$2" ]]; then
+##    echo "Converting to the same extension..."
+##    flatpak --command="sh" run com.calibre_ebook.calibre -c "ebook-convert \"${file}\" \"converted-${file}\""
+##  else
+##    local extensionlessfile
+##    extensionlessfile="${file%.*}"
+##    local newextension
+##    newextension="$2"
+##    echo "Converting to ${newextension} extension..."
+##    flatpak --command="sh" run com.calibre_ebook.calibre -c "ebook-convert \"${file}\" \"${extensionlessfile}.${newextension}\""
+##  fi
+##}
 
 ## vim: foldmethod=indent foldminlines=0 foldlevel=0
