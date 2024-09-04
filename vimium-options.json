@@ -1,0 +1,22 @@
+{
+  "hideHud": true,
+  "keyMappings": "# Insert your preferred key mappings here.\n\n# open google login page\nmap gb createTab https://gemini.google.com/app\n# move tabs faster\nmap < moveTabLeft\nmap > moveTabRight\n# Go to prev/next page of the site\nmap [ goPrevious\nmap ] goNext\n# Open link in incognito mode\nmap I LinkHints.activateModeToOpenIncognito\n# Scroll all the way to left/right\nmap $ scrollToRight\nmap 0 scrollToLeft\n# Use t to navigate open tabs\nunmap t\nmap t Vomnibar.activateTabSelection\n# Hover links\nmap go LinkHints.activateMode action=hover\n# Yank link text\nmap yF LinkHints.activateMode action=copy-text\n# Hard reload\nmap R reload hard",
+  "linkHintCharacters": "qwertasdfgzxcvb",
+  "linkHintNumbers": "0123456789abcdefghijklmnopqrstuvwxyz",
+  "newTabUrl": "https://google.com/search?q=",
+  "nextPatterns": "next,more,newer,>,›,→,»,≫,>>,Older Posts,下一章,下一页",
+  "previousPatterns": "prev,previous,back,older,<,‹,←,«,≪,<<,Newer Posts,上一章,上一页",
+  "ignoreKeyboardLayout": true,
+  "scrollStepSize": 50,
+  "grabBackFocus": true,
+  "searchEngines": "## Sort in alphabetical order based on the keyword used\n\n## Amazon.it\namazon: https://www.amazon.it/s?k=%s Amazon.it\n## DuckDuckGo\nd: https://duckduckgo.com/?q=%s DuckDuckGo\n## Translate to english\nen: https://translate.google.it/?sl=auto&tl=en&text=%s&op=translate Translate To English\n## Github\ngh: https://github.com/search?q=%s&ref=opensearch Github\n## Google images\ngi: https://www.google.com/search?tbm=isch&q=%s Google Images\n## Google maps\ngm: https://www.google.com/maps?q=%s Google Maps\n## Translate to italian\nit: https://translate.google.it/?sl=auto&tl=it&text=%s&op=translate Translate To Italian\n## Reddit\nr: https://www.reddit.com/search/?q=%s Reddit\n## Youtube\ny: https://www.youtube.com/results?search_query=%s Youtube\n## Wikipedia\nw: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\n## Wolfram Alpha\nwa: http://www.wolframalpha.com/input/?i=%s Wolfram Alpha\n## Z-library\nzlib: https://z-library.rs/s/%s",
+  "searchUrl": "https://google.com/search?q=",
+  "settingsVersion": "2.1.2",
+  "userDefinedLinkHintCss": "#vimiumHintMarkerContainer div.internalVimiumHintMarker, #vimiumHintMarkerContainer div.vimiumHintMarker {\n  padding: 3px 4px;\n  background: #444;\n  border: none;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n}\n\n#vimiumHintMarkerContainer div span {\n  color: #fff;\n  text-shadow: none;\n}\n\n#vimiumHintMarkerContainer div > .matchingCharacter {\n  opacity: 0.4;\n}\n\n#vimiumHintMarkerContainer div > .matchingCharacter ~ span {\n  color: hotpink;\n}\n\n#vomnibar {\n  background: #444;\n  border: none;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  animation: show 200ms cubic-bezier(0, 0, 0.2, 1) forwards;\n}\n\n@keyframes show {\n  0% {\n    transform: translateY(50px);\n    opacity: 0;\n  }\n  100% {\n    transform: translateY(0);\n    opacity: 1;\n  }\n}\n\n#vomnibar .vomnibarSearchArea,\n#vomnibar input {\n  color: #fff;\n  background: transparent;\n  border: none;\n}\n\n#vomnibar .vomnibarSearchArea {\n  padding: 10px 30px;\n}\n\n#vomnibar input {\n  padding: 0;\n}\n\n#vomnibar ul {\n  padding: 0;\n  background: #444;\n  border-top: 1px solid #333;\n}\n\n#vomnibar li {\n  padding: 10px;\n  border-bottom: 1px solid #333;\n}\n\n#vomnibar li .vomnibarTopHalf,\n#vomnibar li .vomnibarBottomHalf {\n  padding: 3px 0;\n}\n\n#vomnibar li .vomnibarSource {\n  color: #aaa;\n}\n\n#vomnibar li em,\n#vomnibar li .vomnibarTitle {\n  color: #aaa;\n}\n\n#vomnibar li .vomnibarUrl {\n  color: #777;\n}\n\n#vomnibar li .vomnibarMatch {\n  color: hotpink;\n  font-weight: normal;\n}\n\n#vomnibar li .vomnibarTitle .vomnibarMatch {\n  color: hotpink;\n}\n\n#vomnibar li.vomnibarSelected {\n  background-color: #333;\n}\n\ndiv.vimiumHUD {\n  background: #444;\n  border: none;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n}\n\ndiv.vimiumHUD span#hud-find-input,\ndiv.vimiumHUD .vimiumHUDSearchAreaInner {\n  color: #fff;\n}\n\ndiv.vimiumHUD .hud-find {\n  background-color: transparent;\n  border: none;\n}\n\ndiv.vimiumHUD .vimiumHUDSearchArea {\n  background-color: transparent;\n}",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://monkeytype.com/*"
+    }
+  ]
+}
