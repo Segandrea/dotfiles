@@ -44,7 +44,7 @@ unigping() {
 
 # Make a directory and cd in it
 mkcd() {
-  mkdir -p -- "$1" && cd -P -- "$1" || return
+  mkdir -p -- "$1" && command cd -P -- "$1" || return
 }
 
 # Bakcup or restore a file
