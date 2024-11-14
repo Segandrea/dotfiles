@@ -149,11 +149,17 @@ man() {
 # Set a timer: arg1 = "text", arg2 = time(eg. 3d 1h 32m 16.034s NB. unquoted)
 timer() {
   local text
-  [[ -z "$1" ]] && text='Alarm' || text="$1"
+  [[ -z "$1" ]] && text='Timer ended' || text="$1"
   declare -a time
   [[ -z "${*:2}" ]] && time=('1s') || time=("${@:2}")
 
   (sleep "${time[@]}" && notify-send "${text}" &)
+}
+
+# Set an alarm with 'at': arg1 = 'text' arg2 = "HH:MM" (NB. arg2 can be in any format accepted by 'at')
+alarm() {
+  [[ "$#" -ne 2 ]] && echo 'usage: alarm "some text" "HH:MM (or any format accepted by "at")"' && return
+  echo "notify-send '$1'" | at "$2"
 }
 
 # Connect bluetooth: arg1 = "off|disconnect|remove" (optional)
