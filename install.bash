@@ -14,6 +14,7 @@ dir2link=(
   "fd/"
   "gitconfig/"
   "gtk/" # removes titlebars from apps like chrome
+  "kitty/"
   "markdownlint/"
   "nvim/"
   "ideavim/"
@@ -27,7 +28,7 @@ dir2link=(
 # Enabling some copr
 sudo dnf copr enable atim/starship
 # Installing packages with dnf
-dnf_packages='alacritty calibre dconf fd-find fzf git gnome-shell-extension-pop-shell kitty ncompress neovim p7zip-plugins rustup starship stow tealdeer tmux unrar vim zoxide'
+dnf_packages='alacritty calibre dconf fd-find fzf git gnome-shell-extension-pop-shell gnome-tweaks kitty ncompress neovim p7zip-plugins rustup starship stow tealdeer tmux unrar vim zoxide'
 sudo dnf install "${dnf_packages}"
 # Installing packages with flatpak NB. if it doesn't work make an array from the variable and cycle through it
 flatpak_packages='androidstudio brave embellish extensionmanager extensions flatseal intellij spotify telegram'
