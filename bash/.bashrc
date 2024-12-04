@@ -27,7 +27,7 @@
 # starship prompt
 [[ -x "$(command -v starship)" ]] && eval "$(starship init bash)"
 # zoxide instead of cd
-[[ -x "$(command -v zoxide)" ]] && eval "$(zoxide init bash --cmd cd)"
+[[ -x "$(command -v zoxide)" ]] && eval "$(zoxide init bash --cmd go)"
 # setup colors
 [[ -x "$(command -v dircolors)" ]] && eval "$(dircolors --bourne-shell)"
 # tmux
