@@ -4,7 +4,6 @@
       commit = 'f197661',
       dependencies = {
         'nvim-treesitter/nvim-treesitter',
-        commit = 'a2d6678',
       }
     },
     { -- Text objects for functions and classes
@@ -12,12 +11,10 @@
       commit = 'f5183ce',
       dependencies = {
         'nvim-treesitter/nvim-treesitter',
-        commit = 'a2d6678',
       }
     },
     { -- Treesitter
       'nvim-treesitter/nvim-treesitter',
-      commit = 'a2d6678',
       build = ':TSUpdate',
       event = { 'VeryLazy', 'VimEnter' },
       main = 'nvim-treesitter.configs',
