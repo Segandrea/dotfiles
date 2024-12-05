@@ -68,7 +68,7 @@ TERM = "xterm-256color"
 size = 14.0
 
 [font.normal]
-family = "Hasklig Medium"
+family = "Hasklug Nerd Font Mono"
 
 [scrolling]
 history = 50000
