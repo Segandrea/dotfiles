@@ -19,9 +19,9 @@ bash stow.bash
 > NOTE: some commands are distro-specific.
 >
 > Use as your own risk, these dot files will change without notice and the
-> documentating READMEs won't probably be updated as often.
+> README won't probably be updated as often.
 > It's better to just look at files for reference if you're not me.
-> However, if there is some constructive criticism or improving suggetsion,
+> However, if there is some constructive criticism or improving suggestion,
 > it's more than welcome. Have fun!
 
 ## Alacritty
@@ -35,10 +35,12 @@ Linked to:
 Requires:
 
 * [Hasklig](https://www.programmingfonts.org/#hasklig) nerdfonts (requires installation).
+  NOTE: can be easily installed through [Embellish](https://flathub.org/apps/io.github.getnf.embellish)
 
 Uses:
 
-* [Dracula](https://draculatheme.com/alacritty) colorscheme (no need to reinstall).
+* [Dracula](https://draculatheme.com/alacritty) colorscheme (no need to reinstall,
+  it's now hardcoded in the config file `alacritty.toml`).
 
 ## Autostart
 
@@ -141,6 +143,24 @@ Linked to:
 
 * `~/.config/markdownlint/`
 
+## Nvim
+
+Contains the configuration files for [Neovim 0.8+](https://neovim.io/).
+> Subject to continuous breaking changes and thats the problem with neovim.
+> FIXME: Currently Broken
+
+Linked to:
+
+* `~/.config/nvim/`
+
+Requires:
+
+* [Lua](https://www.lua.org/)
+
+Uses:
+
+* Currently WIP
+
 ## Readline
 
 Contains the configuration and the keybindings for [Readline](https://tiswww.case.edu/php/chet/readline/rltop.html)
@@ -157,24 +177,6 @@ Contains some useful scripts.
 Linked to:
 
 * `~/.local/bin/scripts/`
-
-## Sgnvim
-
-Contains the configuration files for [Neovim 0.8+](https://neovim.io/).
-> Subject to continuous breaking changes and thats the problem with neovim.
-> FIXME: Currently Broken
-
-Linked to:
-
-* `~/.config/sgnvim/`
-
-Requires:
-
-* [Lua](https://www.lua.org/)
-
-Uses:
-
-* Currently WIP
 
 ## Starship
 
