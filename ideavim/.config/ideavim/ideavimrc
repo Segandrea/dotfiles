@@ -21,10 +21,7 @@ let mapleader=" "
 
 " Which-key (requires to install the plugin)
 set notimeout
-" BUG: whichkey is currently disabled because it has crashes caused
-" from a refactor of ideavim. Wait for Android Studion Jellifish 2023.3.1
-" that adds compatibility for ideavim 2.8+ which will make whichkey work
-"source ~/.config/ideavim/which-key.vim
+source ~/.config/ideavim/which-key.vim
 " TODO: move which-key.vim content into this file
 
 " Quickscope shows unique characters when using f, F, t, T
