@@ -96,3 +96,9 @@ alias goto='goi'
 
 # my todo list
 alias todo='tmux popup -E -w 80% -h 80% -b rounded "vim $DESKTOP_DIR/todo.md"'
+
+# adb
+alias adblist='adb shell pm list packages | sed "s/package://"'
+alias adbdisable='adb shell pm disable-user --user 0' # NB. append package after this
+alias adbenable='adb shell pm enable --user 0' # NB. append package after this
+alias adbremove='adb shell pm uninstall --user 0' # NB. append package after this
