@@ -358,4 +358,23 @@ fix-ebook() {
 ##  fi
 ##}
 
+# Enable/disable battery care: arg1 = 'true|false|yes|no|0|1'
+battery-care() {
+  local enable
+  enable="${1}"
+  case "${enable}" in
+    [yY][eE][sS]|[yY][eE]|[yY]|[tT][rR][uU][eE]|[tT]|""|1)
+      sudo tlp setcharge 0 1 BAT0
+      echo "NOTE: Battery care enabled, charging to 80%. Wait some seconds for it to take effect."
+    ;;
+    [nN][oO]|[nN]|[fF][aA][lL][sS][eE]|[fF]|0)
+      sudo tlp setcharge 0 0 BAT0
+      echo "NOTE: Battery care disabled, charging to 100%. Wait some seconds for it to take effect."
+    ;;
+    *)
+      echo "Error: Unknown option, try 'yes', 'no', 'true', 'false', '0', '1'"
+    ;;
+  esac
+}
+
 ## vim: foldmethod=indent foldminlines=0 foldlevel=0
