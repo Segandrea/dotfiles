@@ -28,10 +28,10 @@ dir2link=(
 sudo dnf copr enable atim/starship
 sudo dnf copr enable zeno/scrcpy
 # Installing packages with dnf
-dnf_packages='alacritty bat calibre dconf fd-find fzf git gnome-shell-extension-pop-shell gnome-shell-extension-screen-autorotate gnome-tweaks ncompress neovim p7zip-plugins rustup scrcpy starship stow tealdeer tmux unrar vim zoxide'
+dnf_packages='alacritty bat calibre dconf fd-find fzf git gnome-shell-extension-pop-shell gnome-shell-extension-screen-autorotate gnome-tweaks lm_sensors ncompress neovim openssl p7zip-plugins rustup scrcpy starship stow tealdeer tmux unrar vim zoxide'
 sudo dnf install "${dnf_packages}"
 # Installing packages with flatpak NB. if it doesn't work make an array from the variable and cycle through it
-flatpak_packages='androidstudio brave embellish extensionmanager extensions flatseal intellij spotify telegram'
+flatpak_packages='androidstudio brave embellish extensionmanager extensions flatseal intellij spotify stremio telegram'
 sudo flatpak install "${flatpak_packages}"
 # fonts
 echo "${info} Nerd fonts can be installed with embellish"
