@@ -82,7 +82,7 @@ ra() {
 }
 
 # Choose from inputted values: randomchoice "arg1" "arg2" ...
-randomchoice() {
+random_choice() {
   declare -a choices=( "$@" )
   echo "${choices[$(shuf --input-range=0-$(($#-1)) --head-count=1)]}"
 }
@@ -91,6 +91,23 @@ randomchoice() {
 flipacoin() {
   [[ "$(shuf --input-range=1-2 --head-count=1)" == "1" ]] &&
     echo "head" || echo "tail"
+}
+
+# Random Wallpaper
+random_wallpaper() {
+  shopt -s nullglob
+
+  declare -a images=( "$PICTURES_DIR/Gnome/Wallpaper"/*.{jpg,png,jpeg,JPG,PNG,JPEG} )
+  declare wallpaper_of_the_day="${images[$(shuf --input-range=0-$((${#images[@]}-1)) --head-count=1)]}"
+
+  if [[ -n "${wallpaper_of_the_day}" ]]; then
+    gsettings set org.gnome.desktop.background picture-uri "file://${wallpaper_of_the_day}" && \
+      gsettings set org.gnome.desktop.background picture-uri-dark "file://${wallpaper_of_the_day}" && \
+      gsettings set org.gnome.desktop.screensaver picture-uri "file://${wallpaper_of_the_day}" && \
+      notify-send --app-name="Random wallpaper" --icon="${wallpaper_of_the_day}" "the new wallpaper is '${wallpaper_of_the_day##*/}'"
+        else
+          notify-send "Choose one of the wallpaper or download one and retry"
+  fi
 }
 
 # Extract things with tar bunzip2 unrar gunzip unzip uncompress 7z
