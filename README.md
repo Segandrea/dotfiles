@@ -2,7 +2,7 @@
 
 ## Requirements
 
-The directories of this repository will be linked in the right place using
+The directories of this repository will be symlinked in the right place using
 a [program](https://www.gnu.org/software/stow/) called `stow` that makes symlinks
 based on the structure of the various directories.
 
@@ -15,10 +15,10 @@ bash stow.bash
 ## WARN: Subject to changes, poorly documented and may break
 
 > This repository is used by me to reproduce my dotfiles in case of distro
-> hopping or for a fresh start in case something breaks.
+> hopping or for a fresh start, in case I break something.
 > NOTE: some commands are distro-specific.
 >
-> Use as your own risk, these dot files will change without notice and the
+> Use at your own risk, these dotfiles will change without notice and the
 > README won't probably be updated as often.
 > It's better to just look at files for reference if you're not me.
 > However, if there is some constructive criticism or improving suggestion,
