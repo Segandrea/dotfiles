@@ -53,6 +53,7 @@ alias cla='clear -x && ls -AF'
 alias wget='wget --hsts-file $XDG_STATE_HOME/wget/history'
 alias path='echo -e "${PATH//:/\\n}"'
 alias detach='tmux detach-client'
+alias speedtest='speedtest-cli'
 
 # compile c with @daddinuz's flames
 alias ddc='gcc -std=c17 -Wall -Wextra -Wpedantic -Werror'
