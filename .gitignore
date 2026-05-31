@@ -1,6 +1,7 @@
+# Do not save the tmux plugins, reinstall them
 **/tmux/plugins/
+# Do not save the fonts, reinstall them
 **/fonts/*
-**/gtk*/bookmarks
-Cyberpunk-GRUB-Theme/
-packer_compiled.lua
-.luarc.json
+# Do not save binaries, just save my scripts
+scripts/.local/bin/*
+!scripts/.local/bin/scripts
