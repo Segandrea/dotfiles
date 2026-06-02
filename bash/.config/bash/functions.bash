@@ -394,4 +394,31 @@ battery-care() {
   esac
 }
 
+#TODO: finish make-usb
+# Make a bootable usb: arg1 = .iso file, arg2 = usb path (usually /dev/sda)
+##make-usb() {
+##    local iso
+##    iso="$1"
+##
+##    ## Check iso existence
+##    [[ -z "${iso}" ]] && echo "Usage: make-usb <file.iso>" && return
+##    [[ ! -f "${iso}" ]] && echo "Err: file '${iso}' does not exist" && return
+##
+##    [[ ! -x "$(command -v fzf)" ]] && echo "Err: fzf does not exist" && return
+##    local device
+##    device=$(lsblk \
+##            -d \
+##            -o PATH,SIZE,MODEL,TRAN \
+##            | tail -n +2 \
+##            | fzf --prompt="Select USB device" \
+##                  --header="WARN: selected device will be wiped. Be careful!" \
+##            | awk '{print $1}'
+##    )
+##
+##    [[ -z "$device" ]] && echo "Err: must select a device" && return
+##
+##    read -rp "Are you sure to write iso: '${iso}' on device: '${device}'? [y/N]" confirm
+##    [[ "${confirm}" =~ ^[Yy]$ ]] && echo "Err:" && return
+##}
+
 ## vim: foldmethod=indent foldminlines=0 foldlevel=0
