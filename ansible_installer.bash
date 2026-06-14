@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo dnf install ansible
+sudo dnf install -y ansible
 
 ansible-galaxy collection install community.general
 
