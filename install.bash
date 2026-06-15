@@ -31,6 +31,7 @@ log_err() { echo -e "${red}[Error]${reset} $*"; }
 hostname='hornet'
 flathub_url='https://dl.flathub.org/repo/flathub.flatpakrepo'
 workspaces_dir="${HOME}/Workspaces"
+dotfiles_dir="${workspaces_dir}/dotfiles"
 
 ####################
 # Requisite Checks #
@@ -221,8 +222,10 @@ if [[ ! -d "${workspaces_dir}" ]]; then
 fi
 
 # git clone repository before stowing the directories
-git clone git@github.com:Segandrea/dotfiles.git "${workspaces_dir}/dotfiles"
-cd "${workspaces_dir}/dotfiles"
+if [[ ! -d "${dotfiles_dir}" ]]; then
+    git clone git@github.com:Segandrea/dotfiles.git "${dotfiles_dir}"
+    cd "${dotfiles_dir}"
+fi
 
 if [[ -x "$(command -v stow)" ]]; then
     log_info "Linking files with stow"
