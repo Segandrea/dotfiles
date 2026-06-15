@@ -94,7 +94,7 @@ flatpak remote-add --if-not-exists flathub "${flathub_url}"
 
 # AppImage support
 sudo dnf install -y fuse-libs
-flatpak install -y it.mijorus.gearlever
+flatpak install -y --noninteractive it.mijorus.gearlever
 
 #####################
 # Commandline tools #
@@ -111,11 +111,11 @@ sudo dnf update -y
 declare -a commandline_tools=(
     bat
     calibre
-    dconf 
+    dconf
     fd-find
     fzf
     git
-    ncompress 
+    ncompress
     neovim
     openssl
     p7zip-plugins
@@ -142,8 +142,8 @@ sudo dnf update -y
 
 # Define the packages
 declare -a gnome_experience_pkgs=(
-    gnome-shell-extension-pop-shell 
-    gnome-shell-extension-screen-autorotate 
+    gnome-shell-extension-pop-shell
+    gnome-shell-extension-screen-autorotate
     gnome-tweaks
     lm_sensors
 )
@@ -158,7 +158,7 @@ declare -a gnome_flatpaks=(
 )
 
 # Install Gnome-related Flatpaks
-flatpak install -y "${gnome_flatpaks[@]}"
+flatpak install -y --noninteractive "${gnome_flatpaks[@]}"
 
 ###############################
 # Install normal applications #
@@ -191,7 +191,7 @@ declare -a flatpak_apps=(
 sudo dnf install -y "${dnf_apps[@]}"
 
 # Install flatpaks
-flatpak install -y "${flatpak_apps[@]}"
+flatpak install -y --noninteractive "${flatpak_apps[@]}"
 
 #################################
 # Link directories with configs #
