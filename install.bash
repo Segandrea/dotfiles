@@ -164,7 +164,9 @@ flatpak install -y "${gnome_flatpaks[@]}"
 ###############################
 
 # Enable terra repository (dnf repo community-mantained)
-sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+if ! rpm -q terra-release >/dev/null 2>&1; then
+    sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+fi
 
 # Define dnf applications to install
 declare -a dnf_apps=(
