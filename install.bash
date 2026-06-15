@@ -152,8 +152,8 @@ sudo dnf install -y "${gnome_experience_pkgs[@]}"
 
 # Define Gnome-related Flatpaks
 declare -a gnome_flatpaks=(
-    extensionmanager
-    extensions
+    com.mattjakeman.ExtensionManager
+    org.gnome.Extensions
 )
 
 # Install Gnome-related Flatpaks
