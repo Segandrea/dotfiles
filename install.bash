@@ -174,14 +174,14 @@ declare -a dnf_apps=(
 
 # Define flatpak applications to install
 declare -a flatpak_apps=(
-    androidstudio
-    brave
-    embellish
-    flatseal
-    intellij
-    spotify
-    stremio
-    telegram
+    com.google.AndroidStudio
+    com.brave.Browser
+    io.github.getnf.embellish
+    com.github.tchx84.Flatseal
+    com.jetbrains.IntelliJ-IDEA-Community
+    com.spotify.Client
+    com.stremio.Stremio
+    org.telegram.desktop
 )
 
 # Install from dnf
