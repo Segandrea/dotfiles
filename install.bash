@@ -229,7 +229,8 @@ fi
 
 # git clone repository before stowing the directories
 if [[ ! -d "${dotfiles_dir}" ]]; then
-    git clone git@github.com:Segandrea/dotfiles.git "${dotfiles_dir}"
+    #git clone git@github.com:Segandrea/dotfiles.git "${dotfiles_dir}"
+    git clone https://github.com/Segandrea/dotfiles.git "${dotfiles_dir}"
 fi
 cd "${dotfiles_dir}"
 
