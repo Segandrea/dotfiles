@@ -28,7 +28,7 @@ log_warn() { echo -e "${yellow}[Warning]${reset} $*"; }
 log_err() { echo -e "${red}[Error]${reset} $*"; }
 
 # Setup constants
-hostname='hornet'
+read -rp "Hostname: " hostname
 flathub_url='https://dl.flathub.org/repo/flathub.flatpakrepo'
 workspaces_dir="${HOME}/Workspaces"
 dotfiles_dir="${workspaces_dir}/dotfiles"
@@ -94,7 +94,7 @@ flatpak remote-add --if-not-exists flathub "${flathub_url}"
 
 # AppImage support
 sudo dnf install -y fuse-libs
-flatpak install -y --noninteractive it.mijorus.gearlever
+flatpak install -y --noninteractive flathub it.mijorus.gearlever
 
 #####################
 # Commandline tools #
@@ -119,7 +119,6 @@ declare -a commandline_tools=(
     neovim
     openssl
     p7zip-plugins
-    rustup
     scrcpy
     starship
     stow
@@ -158,7 +157,7 @@ declare -a gnome_flatpaks=(
 )
 
 # Install Gnome-related Flatpaks
-flatpak install -y --noninteractive "${gnome_flatpaks[@]}"
+flatpak install -y --noninteractive flathub "${gnome_flatpaks[@]}"
 
 ###############################
 # Install normal applications #
@@ -167,6 +166,12 @@ flatpak install -y --noninteractive "${gnome_flatpaks[@]}"
 # Enable terra repository (dnf repo community-mantained)
 if ! rpm -q terra-release >/dev/null 2>&1; then
     sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+fi
+
+# Install rustup if not installed and enable it
+if ! command -v rustup >/dev/null 2>&1; then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    source "$HOME/.cargo/env"
 fi
 
 # Define dnf applications to install
@@ -191,7 +196,7 @@ declare -a flatpak_apps=(
 sudo dnf install -y "${dnf_apps[@]}"
 
 # Install flatpaks
-flatpak install -y --noninteractive "${flatpak_apps[@]}"
+flatpak install -y --noninteractive flathub "${flatpak_apps[@]}"
 
 #################################
 # Link directories with configs #
@@ -217,6 +222,7 @@ dir2link=(
 # fonts
 log_info "Nerd fonts can be installed with embellish"
 
+# create a the workspaces directory
 if [[ ! -d "${workspaces_dir}" ]]; then
     mkdir -p "${workspaces_dir}"
 fi
@@ -224,13 +230,19 @@ fi
 # git clone repository before stowing the directories
 if [[ ! -d "${dotfiles_dir}" ]]; then
     git clone git@github.com:Segandrea/dotfiles.git "${dotfiles_dir}"
-    cd "${dotfiles_dir}"
 fi
+cd "${dotfiles_dir}"
 
-if [[ -x "$(command -v stow)" ]]; then
+# link configurations in the correct places
+if command -v stow >/dev/null 2>&1; then
     log_info "Linking files with stow"
     stow --target="$HOME" -S "${dir2link[@]}" && log_succ "configuration stowed"
 else
     log_err "Stow not found"
     exit
+fi
+
+# restore gnome configuration
+if command -v dconf >/dev/null 2>&1; then
+    dconf load / < "${dotfiles_dir}/settings.ini"
 fi
