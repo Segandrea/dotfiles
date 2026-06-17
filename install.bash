@@ -253,10 +253,18 @@ fi
 cd "${dotfiles_dir}"
 
 log_info "Stowing configuration files..."
+log_info "Checking repository status..."
+if [[ -n "$(git status --porcelain)" ]]; then
+    log_err "Repository has pending changes, aborting stow tricks."
+    exit
+fi
+
 # link configurations in the correct places
 if command -v stow >/dev/null 2>&1; then
     log_info "Linking files with stow..."
-    stow --target="$HOME" -S "${dir2link[@]}" && log_succ "Configuration stowed."
+    stow --target="$HOME" -S "${dir2link[@]}" --adopt && log_succ "Configuration stowed with the adoption of existing files."
+    git reset --hard
+    log_info "Repository reset to replace the adopted files with the original ones."
 else
     log_err "Stow not found."
     exit
