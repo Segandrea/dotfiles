@@ -28,7 +28,7 @@ log_warn() { echo -e "${yellow}[Warning]${reset} $*"; }
 log_err() { echo -e "${red}[Error]${reset} $*"; }
 
 # Setup constants
-read -rp "Hostname: " hostname
+read -rp "Type a new hostname: " hostname
 flathub_url='https://dl.flathub.org/repo/flathub.flatpakrepo'
 workspaces_dir="${HOME}/Workspaces"
 dotfiles_dir="${workspaces_dir}/dotfiles"
@@ -40,13 +40,15 @@ dotfiles_dir="${workspaces_dir}/dotfiles"
 # Check if fedora, otherwise stop the script
 source /etc/os-release
 if [[ "${ID:-}" != "fedora" ]]; then
-    log_err "This script is only for Fedora"
+    log_err "This script is only for Fedora."
     exit 1
 fi
 
 ############################
 # Base for a decent Fedora #
 ############################
+
+log_info "Optimizing dnf configuration..."
 
 # Step 0: setup dnf (/etc/dnf/dnf.conf should contain a [main] but check anyway) the fastest mirror, parallel downloads, default yes and keep cache
 if ! grep -q '^\[main\]' /etc/dnf/dnf.conf; then
@@ -62,6 +64,8 @@ fi
 
 # First things first: let's be up to date!
 sudo dnf update -y
+
+log_info "Enabling rpmfusion free and nonfree and installing basic media tools..."
 
 # Enabling rpmfusion free and nonfree for software and codecs not in the main repos and update
 sudo dnf install -y "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
@@ -83,11 +87,15 @@ sudo dnf install -y mesa-va-drivers-freeworld.i686 # AMD specific
 # OpenH264 for Firefox
 sudo dnf install -y openh264 gstreamer1-plugin-openh264 mozilla-openh264
 sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
-log_info "Enable Firefox's plugin for Openh264 in Settings"
+log_info "Enable Firefox's plugin for Openh264 in Settings."
 sleep 3
+
+log_info "Changing hostname in '${hostname}'."
 
 # Must change the hostname
 hostnamectl set-hostname "${hostname}"
+
+log_info "Adding flathub remote to flatpak and installing basic tools to manage appimages..."
 
 # Enable flathub
 flatpak remote-add --if-not-exists flathub "${flathub_url}"
@@ -99,6 +107,8 @@ flatpak install -y --noninteractive flathub it.mijorus.gearlever
 #####################
 # Commandline tools #
 #####################
+
+log_info "Adding coprs for secodary tools..."
 
 # Enabling some copr
 sudo dnf copr enable -y atim/starship
@@ -129,6 +139,8 @@ declare -a commandline_tools=(
     zoxide
 )
 
+log_info "Installing useful commandline tools..."
+
 # Install commandline tools
 sudo dnf install -y "${commandline_tools[@]}"
 
@@ -146,6 +158,8 @@ declare -a gnome_experience_pkgs=(
     gnome-tweaks
     lm_sensors
 )
+
+log_info "Installing gnome shell extensions and tools..."
 
 # Install gnome extensions and tweaks
 sudo dnf install -y "${gnome_experience_pkgs[@]}"
@@ -167,6 +181,8 @@ flatpak install -y --noninteractive flathub "${gnome_flatpaks[@]}"
 if ! rpm -q terra-release >/dev/null 2>&1; then
     sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
 fi
+
+log_info "Installing rust toolchain..."
 
 # Install rustup if not installed and enable it
 if ! command -v rustup >/dev/null 2>&1; then
@@ -191,6 +207,8 @@ declare -a flatpak_apps=(
     com.stremio.Stremio
     org.telegram.desktop
 )
+
+log_info "Installing basic applications..."
 
 # Install from dnf
 sudo dnf install -y "${dnf_apps[@]}"
@@ -220,13 +238,14 @@ dir2link=(
 )
 
 # fonts
-log_info "Nerd fonts can be installed with embellish"
+log_info "Nerd fonts can be installed with embellish."
 
 # create a the workspaces directory
 if [[ ! -d "${workspaces_dir}" ]]; then
     mkdir -p "${workspaces_dir}"
 fi
 
+log_info "Cloning dotfiles repository..."
 # git clone repository before stowing the directories
 if [[ ! -d "${dotfiles_dir}" ]]; then
     #git clone git@github.com:Segandrea/dotfiles.git "${dotfiles_dir}"
@@ -234,15 +253,17 @@ if [[ ! -d "${dotfiles_dir}" ]]; then
 fi
 cd "${dotfiles_dir}"
 
+log_info "Stowing configuration files..."
 # link configurations in the correct places
 if command -v stow >/dev/null 2>&1; then
-    log_info "Linking files with stow"
-    stow --target="$HOME" -S "${dir2link[@]}" && log_succ "configuration stowed"
+    log_info "Linking files with stow..."
+    stow --target="$HOME" -S "${dir2link[@]}" && log_succ "Configuration stowed."
 else
-    log_err "Stow not found"
+    log_err "Stow not found."
     exit
 fi
 
+log_info "Configuring Gnome..."
 # restore gnome configuration
 if command -v dconf >/dev/null 2>&1; then
     dconf load / < "${dotfiles_dir}/settings.ini"
