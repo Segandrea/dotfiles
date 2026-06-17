@@ -28,7 +28,7 @@ log_warn() { echo -e "${yellow}[Warning]${reset} $*"; }
 log_err() { echo -e "${red}[Error]${reset} $*"; }
 
 # Setup constants
-read -rp "Type a new hostname: " hostname
+hostname='hornet'
 flathub_url='https://dl.flathub.org/repo/flathub.flatpakrepo'
 workspaces_dir="${HOME}/Workspaces"
 dotfiles_dir="${workspaces_dir}/dotfiles"
@@ -91,12 +91,8 @@ log_info "Enable Firefox's plugin for Openh264 in Settings."
 sleep 3
 
 # Must change the hostname
-if [[ "$hostname" =~ ^[a-zA-Z0-9-]+$ ]]; then
-    log_info "Changing hostname in '${hostname}'."
-    sudo hostnamectl set-hostname "${hostname}"
-else
-    log_err "Invalid hostname"
-fi
+log_info "Changing hostname in '${hostname}'."
+sudo hostnamectl set-hostname "${hostname}"
 
 log_info "Adding flathub remote to flatpak and installing basic tools to manage appimages..."
 
