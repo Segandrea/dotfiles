@@ -1,5 +1,13 @@
 # Dotfiles for linux
 
+## Disclaimer
+
+**This README is not updated, the dotfiles can be installed with the following command:**
+
+```bash
+curl -sSLf https://raw.githubusercontent.com/Segandrea/dotfiles/refs/heads/main/install.bash | bash
+```
+
 ## Requirements
 
 The directories of this repository will be symlinked in the right place using
