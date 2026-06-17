@@ -90,10 +90,13 @@ sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
 log_info "Enable Firefox's plugin for Openh264 in Settings."
 sleep 3
 
-log_info "Changing hostname in '${hostname}'."
-
 # Must change the hostname
-hostnamectl set-hostname "${hostname}"
+if [[ "$hostname" =~ ^[a-zA-Z0-9-]+$ ]]; then
+    log_info "Changing hostname in '${hostname}'."
+    sudo hostnamectl set-hostname "${hostname}"
+else
+    log_err "Invalid hostname"
+fi
 
 log_info "Adding flathub remote to flatpak and installing basic tools to manage appimages..."
 
