@@ -23,7 +23,7 @@ else
 fi
 
 log_info() { echo -e "${blue}[Info]${reset} $*"; }
-log_succ() { echo -e "${green}[Success]${reset} $*"; }
+log_succ() { echo -e "${green}[Success]${reset} $*"; sleep 3; }
 log_warn() { echo -e "${yellow}[Warning]${reset} $*"; }
 log_err() { echo -e "${red}[Error]${reset} $*"; }
 
