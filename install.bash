@@ -75,8 +75,7 @@ sudo dnf group install -y core
 
 # Installing codecs, full version of ffmpeg, gstreamer components, and sound and videos packages
 sudo dnf group install -y multimedia
-sudo dnf swap 'ffmpeg-free' 'ffmpeg' --allowerasing
-sudo dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+sudo dnf swap ffmpeg-free ffmpeg --allowerasing
 sudo dnf group install -y sound-and-video
 
 # H/W Video Accelleration
