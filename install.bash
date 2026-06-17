@@ -263,7 +263,7 @@ if command -v stow >/dev/null 2>&1; then
     log_info "Linking files with stow..."
     stow --target="$HOME" -S "${dir2link[@]}" --adopt && log_succ "Configuration stowed with the adoption of existing files."
     git reset --hard
-    log_info "Repository reset to replace the adopted files with the original ones."
+    log_succ "Repository reset to replace the adopted files with the original ones."
 else
     log_err "Stow not found."
     exit
@@ -273,4 +273,10 @@ log_info "Configuring Gnome..."
 # restore gnome configuration
 if command -v dconf >/dev/null 2>&1; then
     dconf load / < "${dotfiles_dir}/settings.ini"
+    log_succ "Gnome settings loaded."
+else
+    log_err "Gnome settings configuration failed."
 fi
+
+log_succ "Installation compleated"
+log_info "Remember to install secrets like ssh keys"
