@@ -65,28 +65,28 @@ if ! grep -q '^fastestmirror=' /etc/dnf/dnf.conf; then
 fi
 
 # First things first: let's be up to date!
-sudo dnf update -y && log_succ "DNF update completed."
+sudo dnf update -y -q && log_succ "DNF update completed."
 
 log_info "Enabling rpmfusion free and nonfree and installing basic media tools..."
 
 # Enabling rpmfusion free and nonfree for software and codecs not in the main repos and update
-sudo dnf install -y "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" && log_succ "RPMfusion free added"
-sudo dnf install -y "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm" && log_succ "RPMfusion nonfree added"
-sudo dnf group upgrade -y core && log_succ "Core group updated."
-sudo dnf group install -y core && log_succ "Core group installed."
+sudo dnf install -y -q "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" && log_succ "RPMfusion free added"
+sudo dnf install -y -q "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm" && log_succ "RPMfusion nonfree added"
+sudo dnf group upgrade -y -q core && log_succ "Core group updated."
+sudo dnf group install -y -q core && log_succ "Core group installed."
 
 # Installing codecs, full version of ffmpeg, gstreamer components, and sound and videos packages
-sudo dnf group install -y multimedia && log_succ "Multimedia group installed."
-sudo dnf swap ffmpeg-free ffmpeg --allowerasing && log_succ "Installed complete ffmpeg."
-sudo dnf group install -y sound-and-video && log_succ "Sound-and-vieo group installed."
+sudo dnf group install -y -q multimedia && log_succ "Multimedia group installed."
+sudo dnf swap -y -q ffmpeg-free ffmpeg --allowerasing && log_succ "Installed complete ffmpeg."
+sudo dnf group install -y -q sound-and-video && log_succ "Sound-and-vieo group installed."
 
 # H/W Video Accelleration
-sudo dnf install -y ffmpeg-libs libva libva-utils && log_succ "Installed ffmpeg-libs, libva and libva-utils."
-sudo dnf install -y mesa-va-drivers-freeworld && log_succ "Installed mesa-va-drivers-freeworld."              # AMD specific
-sudo dnf install -y mesa-va-drivers-freeworld.i686 && log_succ "Installed mesa-va-drivers-freeworld.i686."    # AMD specific
+sudo dnf install -y -q ffmpeg-libs libva libva-utils && log_succ "Installed ffmpeg-libs, libva and libva-utils."
+sudo dnf install -y -q mesa-va-drivers-freeworld && log_succ "Installed mesa-va-drivers-freeworld."              # AMD specific
+sudo dnf install -y -q mesa-va-drivers-freeworld.i686 && log_succ "Installed mesa-va-drivers-freeworld.i686."    # AMD specific
 
 # OpenH264 for Firefox
-sudo dnf install -y openh264 gstreamer1-plugin-openh264 mozilla-openh264 && log_succ "Installed openh264."
+sudo dnf install -y -q openh264 gstreamer1-plugin-openh264 mozilla-openh264 && log_succ "Installed openh264."
 sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1 && log_succ "Configuration: fedora-cisco-openh264.enabled=1."
 log_info "Enable Firefox's plugin for Openh264 in Settings."
 sleep 3
@@ -101,7 +101,7 @@ log_info "Adding flathub remote to flatpak and installing basic tools to manage 
 flatpak remote-add --if-not-exists flathub "${flathub_url}" && log_succ "Added flathub remote."
 
 # AppImage support
-sudo dnf install -y fuse-libs && log_succ "Installed fuse-libs."
+sudo dnf install -y -q fuse-libs && log_succ "Installed fuse-libs."
 flatpak install -y --noninteractive flathub it.mijorus.gearlever && log_succ "Installed gearlever to manage appimages."
 
 #####################
@@ -111,11 +111,11 @@ flatpak install -y --noninteractive flathub it.mijorus.gearlever && log_succ "In
 log_info "Adding coprs for secodary tools..."
 
 # Enabling some copr
-sudo dnf copr enable -y atim/starship && log_succ "Added starship's copr."
-sudo dnf copr enable -y zeno/scrcpy && log_succ "Added scrcpy's copr."
+sudo dnf copr enable -y -q atim/starship && log_succ "Added starship's copr."
+sudo dnf copr enable -y -q zeno/scrcpy && log_succ "Added scrcpy's copr."
 
 # Always update!
-sudo dnf update -y && log_succ "DNF update copleted."
+sudo dnf update -y -q && log_succ "DNF update copleted."
 
 # Define the tools
 declare -a commandline_tools=(
@@ -142,14 +142,14 @@ declare -a commandline_tools=(
 log_info "Installing useful commandline tools..."
 
 # Install commandline tools
-sudo dnf install -y "${commandline_tools[@]}" && log_succ "Installed commandline tools"
+sudo dnf install -y -q "${commandline_tools[@]}" && log_succ "Installed commandline tools"
 
 ############################
 # Improve Gnome experience #
 ############################
 
 # Always update!
-sudo dnf update -y && log_succ "DNF update completed."
+sudo dnf update -y -q && log_succ "DNF update completed."
 
 # Define the packages
 declare -a gnome_experience_pkgs=(
@@ -162,7 +162,7 @@ declare -a gnome_experience_pkgs=(
 log_info "Installing gnome shell extensions and tools..."
 
 # Install gnome extensions and tweaks
-sudo dnf install -y "${gnome_experience_pkgs[@]}" && log_succ "Installed gnome related packages."
+sudo dnf install -y -q "${gnome_experience_pkgs[@]}" && log_succ "Installed gnome related packages."
 
 # Define Gnome-related Flatpaks
 declare -a gnome_flatpaks=(
@@ -179,7 +179,7 @@ flatpak install -y --noninteractive flathub "${gnome_flatpaks[@]}" && log_succ "
 
 # Enable terra repository (dnf repo community-mantained)
 if ! rpm -q terra-release >/dev/null 2>&1; then
-    sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release && log_succ "Added terra repo."
+    sudo dnf install -y -q --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release && log_succ "Added terra repo."
 fi
 
 log_info "Installing rust toolchain..."
@@ -211,7 +211,7 @@ declare -a flatpak_apps=(
 log_info "Installing basic applications..."
 
 # Install from dnf
-sudo dnf install -y "${dnf_apps[@]}" && log_succ "Installed dnf packaged applications."
+sudo dnf install -y -q "${dnf_apps[@]}" && log_succ "Installed dnf packaged applications."
 
 # Install flatpaks
 flatpak install -y --noninteractive flathub "${flatpak_apps[@]}" && log_succ "Installed flatpak packaged applications."
