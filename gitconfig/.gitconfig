@@ -6,4 +6,4 @@
 [init]
 	defaultBranch = main
 [diff]
-	toll = vimdiff
+	tool = vimdiff

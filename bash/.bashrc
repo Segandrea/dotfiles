@@ -32,7 +32,7 @@
 [[ -x "$(command -v dircolors)" ]] && eval "$(dircolors --bourne-shell)"
 # tmux
 if [[ -x "$(command -v tmux)" && -z "$TMUX" ]]; then
-    _tmux_unattached_session="$(tmux list-sessions | grep --invert-match --max-count=1 attached)"
+    _tmux_unattached_session="$(tmux list-sessions 2>/dev/null | grep --invert-match --max-count=1 attached)"
     if [[ -n "${_tmux_unattached_session}" ]]; then
         tmux attach -t "${_tmux_unattached_session/:*/}"
     else
@@ -40,10 +40,12 @@ if [[ -x "$(command -v tmux)" && -z "$TMUX" ]]; then
     fi
 fi
 
+# Source cargo
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
 # Load nvm
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-. "$HOME/.cargo/env"

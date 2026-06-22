@@ -7,6 +7,6 @@
 
 cd "$HOME/.local/bin/scripts/startup/"
 
-for file in $(ls); do
+for file in *; do
   [[ "$(file ${file})" =~ "executable" ]] && ./"${file}"
 done

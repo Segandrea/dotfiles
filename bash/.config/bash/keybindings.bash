@@ -12,8 +12,8 @@
 #       dangling strings.
 
 # Bind Ctrl+g to `goto()`
-bind -m vi-insert '"\C-g":"\C-c\ngoto && clear\n"'
-bind -m vi-command '"\C-g":"\C-c\ngoto && clear\n"' # 'i' is to enter insert
+bind -m vi-insert '"\C-g":"\C-c\ncd && clear\n"'
+bind -m vi-command '"\C-g":"\C-c\ncd && clear\n"' # 'i' is to enter insert
 
 # source fzf keybindings
 [[ -f "/usr/share/fzf/shell/key-bindings.bash" ]] && source /usr/share/fzf/shell/key-bindings.bash
