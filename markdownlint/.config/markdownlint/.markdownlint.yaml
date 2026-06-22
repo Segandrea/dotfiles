@@ -1,5 +1,0 @@
-MD004:
-  style: sublist
-
-# Required because of underscores inside latex blocks
-MD037: false

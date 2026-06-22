@@ -237,9 +237,6 @@ dir2link=(
     "vim/"
 )
 
-# fonts
-log_info "Nerd fonts can be installed with embellish."
-
 # create a the workspaces directory
 if [[ ! -d "${workspaces_dir}" ]]; then
     mkdir -p "${workspaces_dir}"
@@ -278,5 +275,9 @@ else
     log_err "Gnome settings configuration failed."
 fi
 
-log_succ "Installation compleated"
-log_info "Remember to install secrets like ssh keys"
+log_succ "Installation compleated!"
+log_info "1. Remember to install secrets like ssh keys "
+log_info "2. Remember to chmod 600 '~/.ssh/private_key' and chmod 644 '~/.ssh/public_key.pub'"
+log_info "3. Remember to cd ${dotfiles_dir}; git remote set-url origin 'git@github.com:Segandrea/dotfiles.git'"
+log_info "4. Remember to install 'Hasklug', Nerdfonts can be installed with embellish."
+
