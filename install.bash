@@ -203,11 +203,9 @@ declare -a dnf_apps=(
 
 # Define flatpak applications to install
 declare -a flatpak_apps=(
-    com.google.AndroidStudio
     com.brave.Browser
     io.github.getnf.embellish
     com.github.tchx84.Flatseal
-    com.jetbrains.IntelliJ-IDEA-Community
     com.spotify.Client
     com.stremio.Stremio
     org.telegram.desktop
@@ -285,4 +283,4 @@ log_info "1. Remember to install secrets like ssh keys "
 log_info "2. Remember to chmod 600 '~/.ssh/private_key' and chmod 644 '~/.ssh/public_key.pub'"
 log_info "3. Remember to cd ${dotfiles_dir}; git remote set-url origin 'git@github.com:Segandrea/dotfiles.git'"
 log_info "4. Remember to install 'Hasklug', Nerdfonts can be installed with embellish."
-
+log_info "5. Remember to install 'Toolbox'(jetbrains.com/toolbox-app/) and all the ides that you need"
