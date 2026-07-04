@@ -157,6 +157,7 @@ sudo dnf update -y -q && log_succ "DNF update completed."
 declare -a gnome_experience_pkgs=(
     gnome-shell-extension-pop-shell
     gnome-shell-extension-screen-autorotate
+    gnome-shell-extension-just-perfection
     gnome-tweaks
     lm_sensors
 )
