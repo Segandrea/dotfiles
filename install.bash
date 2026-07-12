@@ -113,8 +113,6 @@ log_info "Adding coprs for secodary tools..."
 # Enabling some copr
 sudo dnf copr enable -y -q atim/starship && log_succ "Added starship's copr."
 sudo dnf copr enable -y -q zeno/scrcpy && log_succ "Added scrcpy's copr."
-sudo dnf copr enable -y -q yalter/niri && log_succ "Added niri's copr."
-sudo dnf copr enable -y -q lionheartp/Hyprland && log_succ "Added noctalia/hyprland's copr."
 
 # Always update!
 sudo dnf update -y -q && log_succ "DNF update copleted."
@@ -199,8 +197,6 @@ fi
 declare -a dnf_apps=(
     alacritty
     kitty
-    niri
-    noctalia-git
 )
 
 # Define flatpak applications to install
