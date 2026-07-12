@@ -35,7 +35,7 @@ export HISTFILE="$XDG_STATE_HOME/bash/history"     # place bash history inside X
 export PAGER="less"                                # use less as pager
 [[ ! -d "$XDG_STATE_HOME/less" ]] && mkdir -p -- "$XDG_STATE_HOME/less"
 export LESSHISTFILE="$XDG_STATE_HOME/less/history" # place less history inside XDG_STATE directory (needs to be created)
-export EDITOR="nvim"                               # use vim as default editor
+export EDITOR="hx"                                 # use helix as default editor
 export BROWSER="google-chrome"                     # use chrome as default browser
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"              # nvm
 export FUNCNEST=100                                # limits recursive functions, see 'man bash'
