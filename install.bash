@@ -128,6 +128,7 @@ declare -a commandline_tools=(
     ncompress
     neovim
     openssl
+    playerctl
     p7zip-plugins
     scrcpy
     starship
