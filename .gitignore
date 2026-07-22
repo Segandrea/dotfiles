@@ -5,3 +5,5 @@
 # Do not save binaries, just save my scripts
 scripts/.local/bin/*
 !scripts/.local/bin/scripts
+# Do not save toolbox as it isn't autoinstalled from install.bash
+autostart/.config/autostart/jetbrains-toolbox.desktop
