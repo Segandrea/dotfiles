@@ -82,8 +82,9 @@ sudo dnf group install -y -q sound-and-video && log_succ "Sound-and-vieo group i
 
 # H/W Video Accelleration
 sudo dnf install -y -q ffmpeg-libs libva libva-utils && log_succ "Installed ffmpeg-libs, libva and libva-utils."
-sudo dnf install -y -q mesa-va-drivers-freeworld && log_succ "Installed mesa-va-drivers-freeworld."              # AMD specific
-sudo dnf install -y -q mesa-va-drivers-freeworld.i686 && log_succ "Installed mesa-va-drivers-freeworld.i686."    # AMD specific
+sudo dnf install -y -q mesa-va-drivers && log_succ "Installed mesa-va-drivers"    # AMD specific
+#sudo dnf install -y -q mesa-va-drivers-freeworld.i686 && log_succ "Installed mesa-va-drivers-freeworld.i686."    # AMD specific
+#sudo dnf install -y -q mesa-va-drivers-freeworld && log_succ "Installed mesa-va-drivers-freeworld."              # AMD specific
 
 # OpenH264 for Firefox
 sudo dnf install -y -q openh264 gstreamer1-plugin-openh264 mozilla-openh264 && log_succ "Installed openh264."
