@@ -350,31 +350,6 @@ fix-ebook() {
   esac
 }
 
-# Compress images of an ebook (flatpak wrapper): arg1 = filename (eg: file.epub)
-##ebook-compress() {
-##  local file
-##  file="${1}"
-##  echo "Compressing images..."
-##  flatpak --command="sh" run com.calibre_ebook.calibre -c "ebook-polish --compress-images \"${file}\" \"compressed-${file}\""
-##}
-
-# Change format of ebooks (flatpak wrapper): arg1 = filename (eg: file.pdf), arg2 = newExtension (eg: epub) [optional]
-##ebook-convert() {
-##  local file
-##  file="${1}"
-##  if [[ -z "$2" ]]; then
-##    echo "Converting to the same extension..."
-##    flatpak --command="sh" run com.calibre_ebook.calibre -c "ebook-convert \"${file}\" \"converted-${file}\""
-##  else
-##    local extensionlessfile
-##    extensionlessfile="${file%.*}"
-##    local newextension
-##    newextension="$2"
-##    echo "Converting to ${newextension} extension..."
-##    flatpak --command="sh" run com.calibre_ebook.calibre -c "ebook-convert \"${file}\" \"${extensionlessfile}.${newextension}\""
-##  fi
-##}
-
 # Enable/disable battery care: arg1 = 'true|false|yes|no|0|1'
 battery-care() {
   local enable
@@ -394,31 +369,41 @@ battery-care() {
   esac
 }
 
-#TODO: finish make-usb
-# Make a bootable usb: arg1 = .iso file, arg2 = usb path (usually /dev/sda)
-##make-usb() {
-##    local iso
-##    iso="$1"
-##
-##    ## Check iso existence
-##    [[ -z "${iso}" ]] && echo "Usage: make-usb <file.iso>" && return
-##    [[ ! -f "${iso}" ]] && echo "Err: file '${iso}' does not exist" && return
-##
-##    [[ ! -x "$(command -v fzf)" ]] && echo "Err: fzf does not exist" && return
-##    local device
-##    device=$(lsblk \
-##            -d \
-##            -o PATH,SIZE,MODEL,TRAN \
-##            | tail -n +2 \
-##            | fzf --prompt="Select USB device" \
-##                  --header="WARN: selected device will be wiped. Be careful!" \
-##            | awk '{print $1}'
-##    )
-##
-##    [[ -z "$device" ]] && echo "Err: must select a device" && return
-##
-##    read -rp "Are you sure to write iso: '${iso}' on device: '${device}'? [y/N]" confirm
-##    [[ "${confirm}" =~ ^[Yy]$ ]] && echo "Err:" && return
-##}
+# Go to usb connected devices' directory (written by chatgpt)
+cdusb(){
+    local gvfs
+    gvfs="/run/user/$(id -u)/gvfs"
+    declare -a phones
+
+    while IFS= read -r dir; do
+        phones+=("$dir")
+    done < <(find "$gvfs" -maxdepth 1 -type d -name 'mtp:host=*' -print)
+
+    if (( ${#phones[@]} == 0 )); then
+        echo "No device connected."
+        return 1
+    fi
+
+    local selected
+
+    if (( ${#phones[@]} == 1 )); then
+        selected="${phones[0]}"
+    else
+        selected=$(printf '%s\n' "${phones[@]}" |
+            sed 's|.*/mtp:host=||' |
+            fzf --prompt="Device: " --height=40% --reverse)
+
+        [[ -z "$selected" ]] && return 0
+
+        selected="$gvfs/mtp:host=$selected"
+    fi
+
+    if [[ ! -d "$selected" ]]; then
+        echo "Device not found: $selected"
+        return 1
+    fi
+
+    cd "$selected" || return 1
+}
 
 ## vim: foldmethod=indent foldminlines=0 foldlevel=0
