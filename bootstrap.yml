@@ -1,0 +1,11 @@
+- name: Bootstrap development environment
+  hosts: localhost
+
+  tasks:
+  - name: Install something with dnf
+    become: yes
+    when: ansible_facts["distribution"] == "Fedora"
+    ansible.builtin.dnf:
+      state: present
+      name:
+        - htop
