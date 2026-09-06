@@ -2,10 +2,6 @@
   hosts: localhost
 
   tasks:
-  - name: Install something with dnf
-    become: yes
+  - name: Setup fedora
     when: ansible_facts["distribution"] == "Fedora"
-    ansible.builtin.dnf:
-      state: present
-      name:
-        - htop
+    ansible.builtin.include_tasks: ansible/fedora/dnf_packages.yml

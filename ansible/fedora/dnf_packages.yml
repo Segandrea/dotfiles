@@ -1,0 +1,101 @@
+- name: Enable RPM fusion free and non free repositories
+  become: yes
+  ansible.builtin.dnf:
+    state: present
+    name:
+      - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts['distribution_major_version'] }}.noarch.rpm"
+      - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts['distribution_major_version'] }}.noarch.rpm"
+
+- name: Enable fedora-cisco-openh264 repository
+  become: yes
+  community.general.dnf_config_manager:
+    name: fedora-cisco-openh264
+    state: enabled
+
+- name: Enable COPRS
+  become: yes
+  community.general.copr:
+    name:
+      - atim/starship
+      - zeno/scrcpy
+
+- name: Install core package group
+  become: yes
+  ansible.builtin.dnf:
+    state: present
+    name: "@core"
+
+- name: Install codecs packages and groups
+  become: yes
+  ansible.builtin.dnf:
+    state: present
+    name:
+      - "@multimedia"
+      - "@sound-and-video"
+      - openh264
+      - gstreamer1-plugin-openh264
+      - mozilla-openh264
+
+- name: Install non-free ffmpeg
+  become: yes
+  ansible.builtin.dnf:
+    state: present
+    name: ffmpeg
+    allowerasing: true
+
+- name: Install H/W acceleration libraries
+  become: yes
+  ansible.builtin.dnf:
+    state: present
+    name:
+      - ffmpeg-libs
+      - libva
+      - libva-utils
+      - mesa-va-drivers
+
+- name: Install Gnome-Shell packages
+  become: yes
+  ansible.builtin.dnf:
+    state: present
+    name:
+      - gnome-shell-extension-appindicator
+      - gnome-shell-extension-freon
+      - gnome-shell-extension-just-perfection
+      - gnome-shell-extension-pop-shell
+      - gnome-shell-extension-screen-autorotate
+      - gnome-tweaks
+      - lm_sensors
+
+- name: Install commandline tools with dnf
+  become: yes
+  ansible.builtin.dnf:
+    state: present
+    name:
+      - bat
+      - calibre
+      - dconf
+      - fd-find
+      - fzf
+      - git
+      - htop
+      - ncompress
+      - neovim
+      - openssl
+      - playerctl
+      - p7zip-plugins
+      - scrcpy
+      - starship
+      - stow
+      - tealdeer
+      - tmux
+      - unrar
+      - vim
+      - zoxide
+
+- name: Install applications with dnf
+  become: yes
+  ansible.builtin.dnf:
+    state: present
+    name:
+      - alacritty
+      - kitty
