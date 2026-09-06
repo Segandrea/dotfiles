@@ -8,6 +8,8 @@
   loop:
     - { line: 'fastestmirror=True', regexcheck: 'fastestmirror=.*' }
     - { line: 'max_parallel_downloads=10', regexcheck: 'max_parallel_downloads=.*' }
+    - { line: 'defaultyes=True', regexcheck: 'defaultyes=.*' }
+    - { line: 'keepcache=True', regexcheck: 'keepcache=.*' }
     - { line: 'clean_requirements_on_remove=True', regexcheck: 'clean_requirements_on_remove=.*' }
     - { line: 'skip_if_unavailable=True', regexcheck: 'skip_if_unavailable=.*' }
     - { line: 'deltarpm=True', regexcheck: 'deltarpm=.*' }
