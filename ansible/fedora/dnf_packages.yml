@@ -1,23 +1,39 @@
+- name: Improve DNF performance by tweaking the configuration
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /etc/dnf/dnf.conf
+    state: present
+    regexp: "{{ item.regexcheck }}"
+    line: "{{ item.line }}"
+  loop:
+    - { line: 'fastestmirror=True', regexcheck: 'fastestmirror=.*' }
+    - { line: 'max_parallel_downloads=10', regexcheck: 'max_parallel_downloads=.*' }
+    - { line: 'clean_requirements_on_remove=True', regexcheck: 'clean_requirements_on_remove=.*' }
+    - { line: 'skip_if_unavailable=True', regexcheck: 'skip_if_unavailable=.*' }
+    - { line: 'deltarpm=True', regexcheck: 'deltarpm=.*' }
+
 - name: Enable RPM fusion free and non free repositories
   become: yes
   ansible.builtin.dnf:
     state: present
-    name:
+    enablerepo:
       - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts['distribution_major_version'] }}.noarch.rpm"
       - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts['distribution_major_version'] }}.noarch.rpm"
+
+- name: Enable COPRs for Starship and Scrcpy
+  become: yes
+  community.general.copr:
+    state: enabled
+    name: "{{ item }}"
+  loop:
+      - atim/starship
+      - zeno/scrcpy
 
 - name: Enable fedora-cisco-openh264 repository
   become: yes
   community.general.dnf_config_manager:
     name: fedora-cisco-openh264
     state: enabled
-
-- name: Enable COPRS
-  become: yes
-  community.general.copr:
-    name:
-      - atim/starship
-      - zeno/scrcpy
 
 - name: Install core package group
   become: yes
