@@ -1,3 +1,11 @@
+" In case it's not already set, set $XDG_CONFIG_HOME
+if empty($XDG_CONFIG_HOME)
+    let $XDG_CONFIG_HOME = expand('~/.config')
+endif
+
+" Keep Vim configuration, plugins and data under ~/.config/vim
+set runtimepath^=$XDG_CONFIG_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
 """""""""""""""""""""""""""
 " Basic vim configuration "
 """""""""""""""""""""""""""
@@ -25,7 +33,7 @@ set encoding=utf-8
 set number
 " relative numbers for the lines
 set relativenumber
-" use system clipboard (works only in xorg, use nvim instead)
+" use system clipboard (works only in xorg, for wayland see mappings below)
 set clipboard+=unnamedplus
 " ignore case during searches
 set ignorecase
@@ -111,3 +119,12 @@ augroup END
 augroup webdev
     autocmd Filetype javascript,html,css set shiftwidth=2 tabstop=2
 augroup END
+
+" Enable clipboard on wayland
+if !empty($WAYLAND_DISPLAY) && executable('wl-copy')
+    augroup wayland_clipboard
+        " NOTE: `if v:event.operator ==# 'y'` is to allow y to yank on both
+        " clipboard and register, 'd', 'c', 'x', ecc. won't use clipboard.
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system("wl-copy", @") | endif
+    augroup END
+endif
