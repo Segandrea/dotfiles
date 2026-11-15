@@ -101,3 +101,104 @@ If you keep your current **Bash + Stow** stack, these structural refactors will 
 - [ ] **Reconcile `startup/` scripts:** `README.md` (lines 251–254) and `launchStartupScripts.bash` reference `~/.local/bin/scripts/startup/random-wallpaper.bash` and `screenlock.bash`, which are currently missing from `scripts/.local/bin/scripts/`.
 - [ ] **Improve `launchStartupScripts.bash`** (lines 10–12): Replace `[[ "$(file ${file})" =~ "executable" ]] && ./"${file}"` with `[[ -f "$file" && -x "$file" ]] && ./"$file" &` so long-running startup scripts don't block the loop.
 - [ ] **Update Tmux Vim-awareness note in `README.md`** (lines 274–275): The README states `Alt+h/j/k/l` and `Alt+q` are Vim-aware, whereas the `$is_vim` checks in `tmux/.config/tmux/tmux.conf` (lines 107–157) are currently commented out.
+
+---
+
+## 4. Hyprland + Quickshell Migration Plan (Keeping GNOME as Backup)
+
+Transitioning to **Hyprland** as the primary environment while keeping **GNOME** intact as a backup in GDM.
+
+### A. Shell & Settings Strategy (Noctalia or Custom Quickshell)
+- [ ] **Install Quickshell on Fedora**:
+  - Enable the COPR in `install.bash`:
+    ```bash
+    sudo dnf copr enable -y -q errornointernet/quickshell
+    sudo dnf install -y -q quickshell
+    ```
+- [ ] **Choose or build the Quickshell configuration (`quickshell/.config/quickshell/`)**:
+  - **Option 1: [Noctalia](https://noctalia.dev/)** — Use Noctalia's Quickshell suite for a ready-made bar, notification center, quick settings/control center, OSD, and launcher.
+  - **Option 2: Custom Quickshell from scratch** — Create a `quickshell/` Stow package (`quickshell/.config/quickshell/shell.qml`) styled around **Dracula** (`#282a36`, `#bd93f9`, `#6272a4`) with a GNOME-like top bar (workspaces on the left, clock/calendar/notifications in the center, Quick Settings pill on the right) and integrated control panels.
+- [ ] **Settings GUI fallback**:
+  - Rely on Noctalia / custom Quickshell panels for daily toggles (Wi-Fi, Bluetooth, audio, brightness, power profiles, wallpaper).
+  - Keep `env XDG_CURRENT_DESKTOP=GNOME gnome-control-center` bound (e.g., `SUPER + I`) for deeper system settings (Printers, Network/VPN profiles, Online Accounts) and `nwg-displays` for visual monitor layout tweaks if needed.
+
+### B. Autostart & Background Tasks: Why `systemd --user` Beats `cron` and `.desktop` Files
+> **Why `systemd --user` instead of `cron`:**
+> `cron` runs jobs in an isolated, minimal environment *outside* your graphical Wayland session—it does not know `WAYLAND_DISPLAY`, `HYPRLAND_INSTANCE_SIGNATURE`, `DBUS_SESSION_BUS_ADDRESS`, or `XDG_RUNTIME_DIR`. That means GUI programs, `notify-send`, `swww`, `hyprctl`, or `gsettings` launched from `cron` will either fail or require brittle environment-scraping hacks.
+>
+> By contrast, **`systemd --user` services and `.timer` units** tied to `graphical-session.target` automatically inherit your Wayland/Hyprland session variables, start when you log in, stop cleanly when you log out, restart automatically on crash (`Restart=on-failure`), and log everything to `journalctl --user`.
+
+- [ ] **Export Wayland/Hyprland environment to `systemd --user` on login**:
+  - Either launch Hyprland via **[uwsm](https://github.com/Vladimir-csp/uwsm)** (Universal Wayland Session Manager, recommended by Hyprland for native `systemd --user` integration) or put this at the top of `hyprland.conf`:
+    ```ini
+    exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE
+    ```
+- [ ] **Create a `systemd/` Stow package (`systemd/.config/systemd/user/`)** to replace `autostart/` and `launchStartupScripts.bash`:
+  - `quickshell.service` — Runs `quickshell` (or Noctalia) with `PartOf=graphical-session.target` and `Restart=on-failure`.
+  - `swww.service` (or `hyprpaper.service`) — Runs the wallpaper daemon.
+  - `hypridle.service` — Runs the idle/lock daemon.
+  - `polkit-gnome.service` — Runs `/usr/libexec/polkit-gnome-authentication-agent-1`.
+  - `random-wallpaper.service` + `random-wallpaper.timer` — Replaces `cron` / startup script for rotating wallpapers on login or on a schedule (`OnCalendar=daily` or `OnStartupSec=5s`).
+  - `jetbrains-toolbox.service` — Starts JetBrains Toolbox minimized (`jetbrains-toolbox --minimize`).
+- [ ] **Scope Hyprland-only user services** so they don't accidentally run when logging into the backup GNOME session:
+  - Add `ConditionEnvironment=XDG_CURRENT_DESKTOP=Hyprland` under `[Unit]` in services that should only run in Hyprland (like `quickshell.service`, `hypridle.service`, and `swww.service`).
+
+### C. Adapting Existing Dotfiles for Dual GNOME / Hyprland Support
+- [ ] **`install.bash`**:
+  - Keep all existing GNOME packages and `dconf load` intact for the backup session.
+  - Add a `hyprland_pkgs` array:
+    ```bash
+    declare -a hyprland_pkgs=(
+        hyprland
+        hyprlock
+        hypridle
+        swww
+        xdg-desktop-portal-hyprland
+        polkit-gnome
+        wl-clipboard
+        grim
+        slurp
+        swappy
+        brightnessctl
+        pamixer
+        nwg-displays
+    )
+    ```
+  - Add `"hypr/"`, `"quickshell/"`, and `"systemd/"` to `dir2link`.
+- [ ] **`bash/.config/bash/aliases.bash`**:
+  - Make `lockscreen` (line 82) desktop-aware so it works in both Hyprland and GNOME:
+    ```bash
+    if [[ "$XDG_CURRENT_DESKTOP" == *Hyprland* ]]; then
+        alias lockscreen='loginctl lock-session' # or: hyprlock
+    else
+        alias lockscreen='dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock'
+    fi
+    ```
+  - Replace the X11-only `huion2screen` alias (line 70) with a native `device` block in `hyprland.conf` mapping the tablet to `HDMI-A-2`.
+- [ ] **`bash/.config/bash/functions.bash`**:
+  - Update `wallpaper()` (line 277) and `random_wallpaper()` (line 97) to apply the chosen image via `swww img "$target"` (or Noctalia/Quickshell IPC) when running under Hyprland, while still updating `gsettings` so GNOME stays in sync.
+- [ ] **XDG Desktop Portal coexistence (`hypr/.config/xdg-desktop-portal/hyprland-portals.conf`)**:
+  - Prevent conflicts between `xdg-desktop-portal-gnome` and `xdg-desktop-portal-hyprland`:
+    ```ini
+    [preferred]
+    default=hyprland;gtk
+    org.freedesktop.impl.portal.FileChooser=gtk
+    ```
+
+### D. Porting GNOME + Pop Shell Config (`settings.ini`) to `hypr/.config/hypr/hyprland.conf`
+- [ ] **Input & Keyboard Layouts**: Port `kb_layout = us,it` and `kb_options = compose:ralt` (from `settings.ini` lines 24–27).
+- [ ] **Dracula Look & Feel**:
+  - `gaps_in = 1`, `gaps_out = 1`, `col.active_border = rgb(6272a4)`, `rounding = 15` (from Pop Shell / Rounded Window Corners in `settings.ini`).
+  - `dim_inactive = true`, `dim_strength = 0.4` (replacing the `dim-background-windows` GNOME extension).
+- [ ] **Window Management Keybindings** (matching Pop Shell in `settings.ini` lines 398–421):
+  - `SUPER + h/j/k/l` -> `movefocus, l/d/u/r`
+  - `SUPER + ALT + h/j/k/l` -> `movewindow, l/d/u/r`
+  - `SUPER + SHIFT + Left/Down/Up/Right` -> `movewindow, mon:l/d/u/r`
+  - `SUPER + /` -> Toggle Quickshell / Noctalia app launcher
+  - `SUPER + v` -> Toggle Quickshell / Noctalia notification center
+- [ ] **Workspace Auto-Assignment Rules** (matching `auto-move-windows` in `settings.ini` line 324):
+  - Workspace 1: `brave-browser`, `google-chrome`, `firefox`
+  - Workspace 2: `obsidian`, `com.github.xournalpp.xournalpp`
+  - Workspace 3: `jetbrains-studio`, `jetbrains-idea-ce`
+  - Workspace 4: `org.telegram.desktop`
+  - Workspace 5: `Spotify`
